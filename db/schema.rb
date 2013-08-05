@@ -11,7 +11,36 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130805180419) do
+ActiveRecord::Schema.define(:version => 20130805184923) do
+
+  create_table "teams", :force => true do |t|
+    t.string   "name"
+    t.string   "abbrev"
+    t.integer  "gp"
+    t.integer  "wins"
+    t.integer  "losses"
+    t.integer  "ot_losses"
+    t.integer  "points"
+    t.float    "point_perc"
+    t.float    "gpg"
+    t.float    "gapg"
+    t.float    "pp_perc"
+    t.float    "pk_perc"
+    t.float    "spg"
+    t.float    "sapg"
+    t.float    "faceoff_perc"
+    t.string   "background_color"
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
+    t.string   "background_file_name"
+    t.string   "background_content_type"
+    t.integer  "background_file_size"
+    t.datetime "background_updated_at"
+    t.string   "players_pic_file_name"
+    t.string   "players_pic_content_type"
+    t.integer  "players_pic_file_size"
+    t.datetime "players_pic_updated_at"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "username",               :default => "", :null => false
