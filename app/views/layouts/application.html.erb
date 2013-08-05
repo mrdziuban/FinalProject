@@ -9,7 +9,39 @@
 </head>
 <body>
 
+  <% if current_user %>
+    <header>
+      <nav class="navbar">
+        <ul class="options group">
+          <li><a href="<%= user_root_url %>">HOME</a></li>
+          <li><a href="<%= user_url(current_user.username) %>">PROFILE</a></li>
+          <li class="stats">
+            <a href="#">STATS</a>
+
+            <ul class="dropdown group">
+              <li><a href="#">STANDINGS</a></li>
+              <li><a href="#">PLAYERS</a></li>
+              <li><a href="#">SCHEDULE</a></li>
+              <li><a href="#">ANALYSIS</a></li>
+            </ul>
+          </li>
+          <li><a href="#">FORUM</a></li>
+          <li><%= link_to "SIGN OUT", destroy_user_session_url, method: :delete %></li>
+        </ul>
+      </nav>
+    </header>
+  <% end %>
+
 <%= yield %>
 
 </body>
 </html>
+
+<script>
+  $(".stats").mouseenter(function () {
+    $(".dropdown").slideDown("fast");
+  });
+  $(".stats").mouseleave(function () {
+    $(".dropdown").slideUp("fast");
+  });
+</script>
