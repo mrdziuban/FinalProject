@@ -258,3 +258,43 @@ span.games-hidden {
 a.games-pic:hover span.games-hidden {
   opacity: 0.9;
 }
+
+.standings {
+  position: relative;
+  margin: 8% auto 5% auto;
+  width: 1000px;
+  background: #292929;
+  color: white;
+  border: 3px solid #99000A;
+  border-radius: 3px;
+}
+
+.standings-table {
+  margin: 5px auto 12px auto;
+  text-align: center;
+}
+
+.team-pic {
+  border-radius: 3px;
+  width: 39px;
+  height: auto;
+  right: 20px;
+}
+
+.standings > .standings-table > .standings-header {
+  font-weight: bold;
+  color: #99000A;
+  margin-top: 5px;
+}
+
+.standings > .standings-table > .standings-header th {
+  padding: 10px 10px 0 10px;
+}
+
+.standings > .standings-table > td {
+  padding: 5px 10px 10px 10px;
+}
+
+.standings a {
+  color: white;
+}

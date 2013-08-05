@@ -1,0 +1,44 @@
+<style>
+  html { 
+  background: url("pond.png") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+</style>
+
+<section class="standings">
+  <table class="standings-table">
+    <% @standings.each do |division, teams_hash| %>
+      <thead class="standings-header">
+        <tr>
+          <th></th>
+          <th><%= division %></th>
+          <% teams_hash[teams_hash.keys.first].keys.each do |stat| %>
+            <th><%= stat %></th>
+          <% end %>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% teams_hash.each do |team_abbrev, stats_hash| %>
+          <% next if team_abbrev.to_s == "division" %>
+          <tr>
+            <% team = Team.find_by_abbrev(team_abbrev.to_s) %>
+            <% puts team.abbrev %>
+            <td>
+              <a href="<%= team_url(team_abbrev) %>"><img class="team-pic" src="<%= team.background.url(:icon) %>"></a>
+            </td>
+            <td>
+              <a href="<%= team_url(team_abbrev) %>"><%= team.name %></a>
+            </td>
+            <% stats_hash.values.each do |stat| %>
+              <td><%= stat %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    <% end %>
+  </table>
+</section>
