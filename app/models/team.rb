@@ -1,9 +1,12 @@
+require 'open-uri'
+
 class Team < ActiveRecord::Base
   attr_accessible :abbrev, :background, :background_color, :faceoff_perc, :gapg, :gp, :gpg, :losses, :name, :ot_losses, :pk_perc, :players_pic, :point_perc, :points, :pp_perc, :sapg, :spg, :wins
 
   has_attached_file :background, styles: {icon: "39x22", medium: "222x125"}
   has_attached_file :players_pic, styles: {original: "222x125"}
   has_many :players, foreign_key: "team_abbrev", primary_key: "abbrev"
+  has_many :goalies, class_name: "Goalie", foreign_key: "team_abbrev", primary_key: "abbrev"
 
   def to_param
     abbrev
