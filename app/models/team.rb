@@ -3,6 +3,7 @@ class Team < ActiveRecord::Base
 
   has_attached_file :background, styles: {icon: "39x22", medium: "222x125"}
   has_attached_file :players_pic, styles: {original: "222x125"}
+  has_many :players, foreign_key: "team_abbrev", primary_key: "abbrev"
 
   def to_param
     abbrev
