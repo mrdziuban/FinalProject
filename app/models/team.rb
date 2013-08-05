@@ -192,7 +192,7 @@ class Team < ActiveRecord::Base
         file_name = "#{name_words[-1].downcase}.jpg"
       end
       
-      team.background = File.new("app/assets/images/team_backgrounds/#{file_name}", "r")
+      team.background = File.new("lib/team_backgrounds/#{file_name}", "r")
       team.save
     end
   end
@@ -209,7 +209,7 @@ class Team < ActiveRecord::Base
         file_name = "#{name_words[-1].downcase}.jpg"
       end
 
-      team.players_pic = File.new("app/assets/images/players_pics/#{file_name}", "r")
+      team.players_pic = File.new("lib/players_pics/#{file_name}", "r")
       team.save
     end
   end
