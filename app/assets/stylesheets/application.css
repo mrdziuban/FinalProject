@@ -300,7 +300,7 @@ a.games-pic:hover span.games-hidden {
 }
 
 .team-background {
-  margin-top: 35px;
+  margin-top: 51px;
   width: 100%;
   -moz-box-shadow: 0px 3px 2px #000;
   -webkit-box-shadow: 0px 3px 2px #000;
@@ -431,3 +431,9 @@ table#team-stats td {
   border-radius: 3px;
   margin-bottom: 38px;
 }
+
+table#player-stats td, table#player-stats a {
+    color: #292929;
+    font-weight: 600;
+    font-size: 20px;
+  }
