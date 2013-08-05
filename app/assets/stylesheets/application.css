@@ -489,6 +489,10 @@ table#player-stats td, table#player-stats a {
   color: white;
 }
 
+#players-index td > a:hover {
+  color: #99000A;
+}
+
 .paginator {
   margin: 8px auto 8px auto;
   text-align: center;

@@ -44,6 +44,11 @@
     color: <%= @player.team.background_color %>;
     text-shadow: 1px 1px 1px #000;
   }
+
+  table#player-stats td a:hover {
+    color: <%= @player.team.background_color %>;
+    font-weight: bold;
+  }
 </style>
 
 <a href="<%= team_url(@player.team) %>"><img class="team-background" src="<%= @player.team.background.url %>"></a>
