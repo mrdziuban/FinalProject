@@ -5,7 +5,10 @@ GameDay::Application.routes.draw do
   resources :users, only: [:show]
   get "/standings" => "teams#index"
   resources :players, only: :index
-  resources :players, only: :show
+  resources :players, only: :show do
+    post "fav" => "player_favorites#create"
+    delete "fav" => "player_favorites#destroy"
+  end
 
   get "/:abbrev" => "teams#show", as: "team"
   post "/:abbrev/fav" => "team_favorites#create", as: "team_favorites"

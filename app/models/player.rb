@@ -4,6 +4,8 @@ class Player < ActiveRecord::Base
   attr_accessible :a, :blocks, :fo_perc, :g, :gp, :hits, :name, :pim, :plus_minus, :ppg, :pts, :shot_perc, :shots, :team_abbrev
 
   belongs_to :team, foreign_key: "team_abbrev", primary_key: "abbrev"
+  has_many :player_favorites
+  has_many :users, through: :player_favorites
 
 
 
