@@ -1,0 +1,130 @@
+<style>
+  html {
+    background: <%= @player.team.background_color %>;
+  }
+
+  .player-header-container > h2 {
+    margin: -80px auto 0 auto;
+    color: <%= @player.team.background_color %>;
+    font-size: 70px;
+    text-shadow: 1px 1px 1px #000;
+  }
+
+  input[type=submit] {
+    <% start = @player.team.background_color %>
+    <% final = @player.team.luminance(-0.4) %>
+    border-radius: 3px;
+    width: 80px;
+    height: 30px;
+    margin: 5px auto 0 auto;
+    color: white;
+    font-size: 12px;
+    border: 1px solid #292929;
+    background: -webkit-gradient(linear, left top, left bottom, from(<%= start %>), to(<%= final %>));
+    background: -moz-linear-gradient(top, <%= start %>, <%= final %>);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='<%= start %>', endColorstr='<%= final %>');
+  }
+
+  input[type=submit]:hover {
+    <% start = @player.team.luminance(-0.15) %>
+    <% final = @player.team.luminance(-0.4) %>
+    background: -webkit-gradient(linear, left top, left bottom, from(<%= final %>), to(<%= start %>));
+    background: -moz-linear-gradient(top, <%= final %>, <%= start %>);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='<%= final %>', endColorstr='<%= start %>');
+  }
+
+  .navbar a {
+    color: <%= @player.team.luminance(0.3) %>;
+  }
+
+  table#player-stats th {
+    padding: 25px 10px 3px 10px;
+    font-weight: bold;
+    font-size: 25px;
+    color: <%= @player.team.background_color %>;
+    text-shadow: 1px 1px 1px #000;
+  }
+
+  table#player-stats td, table#player-stats a {
+    color: #292929;
+    font-weight: 600;
+    font-size: 20px;
+  }
+</style>
+
+<a href="<%= team_url(@player.team) %>"><img class="team-background" src="<%= @player.team.background.url %>"></a>
+
+<section class="player-container group">
+  <section class="player-header-container">
+    <h2><%= @player.name.upcase %></h2>
+    <div class="favorite-buttons<%= current_user.players.include?(@player) ? ' favorited' : '' %>">
+      <input class="favorite" type="submit" value="FAVORITE">
+      <input class="unfavorite" type="submit" value="UNFAVORITE">
+    </div>
+    <section class="player-stats-table">
+      <table id="player-stats">
+        <thead>
+          <% stats_keys = ["TEAM", "GP", "G", "A", "PTS", "+/-", "PIM", "PPG", "HITS", "BLOCKS", "FO%", "SHOTS", "S%"] %>
+          <tr>
+            <% stats_keys.each do |key| %>
+              <th><%= key %></th>
+            <% end %>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td><a href="<%= team_url(@player.team) %>"><%= @player.team_abbrev %></a></td>
+            <td><%= @player.gp %></td>
+            <td><%= @player.g %></td>
+            <td><%= @player.a %></td>
+            <td><%= @player.pts %></td>
+            <td><%= @player.plus_minus %></td>
+            <td><%= @player.pim %></td>
+            <td><%= @player.ppg %></td>
+            <td><%= @player.hits %></td>
+            <td><%= @player.blocks %></td>
+            <td><%= @player.fo_perc %></td>
+            <td><%= @player.shots %></td>
+            <td><%= @player.shot_perc %></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </section>
+</section>
+
+<script>
+  $(window).load(function () {
+    $(window).scrollTo(400)
+  })
+
+  $("input[type=submit]").on("click", function(event) {
+    if (event.currentTarget.className === "favorite") {
+      var buttonClicked = "favorite"
+      var meth = "POST"
+    }
+    else {
+      var buttonClicked = "unfavorite"
+      var meth = "DELETE"
+    }
+
+    $.ajax({
+      url: "<%= player_fav_url(@player.id) %>",
+      type: meth,
+      success: function() {
+        $(".favorite-buttons").toggleClass("favorited", buttonClicked == "favorite");
+      },
+      error: function() {
+        alert("Request failed");
+        console.log("error");
+      }
+    });
+  });
+
+</script>
+
+
+
+
+
