@@ -1,0 +1,236 @@
+<style>
+  html {
+    background: <%= @team.background_color %>;
+  }
+
+  .header-container > h2 {
+    margin: -190px 0 0 260px;
+    color: <%= @team.background_color %>;
+    font-size: 50px;
+    text-shadow: 1px 1px 1px #000;
+  }
+
+  input[type=submit] {
+    <% start = @team.background_color %>
+    <% final = @team.luminance(-0.4) %>
+    border-radius: 3px;
+    width: 80px;
+    height: 30px;
+    margin: 5px 0 0 554px;
+    color: white;
+    font-size: 12px;
+    border: 1px solid #292929;
+    background: -webkit-gradient(linear, left top, left bottom, from(<%= start %>), to(<%= final %>));
+    background: -moz-linear-gradient(top, <%= start %>, <%= final %>);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='<%= start %>', endColorstr='<%= final %>');
+  }
+
+  input[type=submit]:hover {
+    <% start = @team.luminance(-0.15) %>
+    <% final = @team.luminance(-0.4) %>
+    background: -webkit-gradient(linear, left top, left bottom, from(<%= final %>), to(<%= start %>));
+    background: -moz-linear-gradient(top, <%= final %>, <%= start %>);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='<%= final %>', endColorstr='<%= start %>');
+  }
+
+  table#team-stats th {
+    padding: 10px 10px 3px 10px;
+    font-weight: bold;
+    font-size: 25px;
+    color: <%= @team.background_color %>;
+    text-shadow: 1px 1px 1px #000;
+  }
+
+  .roster h2, .div-standings h2, .upcoming-games h2 {
+    color: <%= @team.background_color %>;
+    font-size: 30px;
+    text-shadow: 1px 1px 1px #000;
+    margin-bottom: 10px;
+  }
+
+  #roster-table th, #standings-table th, #goalies-roster-table th, #games-table th {
+    padding: 0 10px 3px 10px;
+    font-weight: bold;
+    font-size: 23px;
+    color: <%= @team.background_color %>;
+    text-shadow: 1px 1px 1px #000;
+  }
+
+  .navbar a {
+    color: <%= @team.luminance(0.3) %>;
+  }
+
+  table a {
+    color: #292929;
+    font-weight: 800;
+  }
+
+  table a.current {
+    color: <%= @team.background_color %>;
+    text-shadow: 1px 1px 1px #000;
+  }
+</style>
+
+<img class="team-background" src="<%= @team.background.url %>">
+
+<section class="team-container group">
+  <section class="header-container">
+    <img class="team-players-pic" src="<%= @team.players_pic.url %>">
+    <h2><%= @team.name.upcase %></h2>
+    <div class="favorite-buttons<%= current_user.teams.include?(@team) ? ' favorited' : '' %>">
+      <input class="favorite" type="submit" value="FAVORITE">
+      <input class="unfavorite" type="submit" value="UNFAVORITE">
+    </div>
+    <section class="team-stats-table">
+      <table id="team-stats">
+        <thead>
+          <% stats_keys = ["GP", "W", "L", "OT", "PTS", "PT%", "G/G", "GA/G", "PP%", "PK%", "S/G", "SA/G", "FO%"] %>
+          <tr>
+            <% stats_keys.each do |key| %>
+              <th><%= key %></th>
+            <% end %>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <% @team.attributes.values[3..15].each do |val| %>
+              <td><%= val %></td>
+            <% end %>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </section>
+
+  <section class="roster">
+    <h2>FORWARDS</h2>
+
+    <table id="roster-table">
+      <thead>
+        <% roster_keys = ["NAME", "G", "A", "PTS", "+/-"] %>
+        <tr>
+          <% roster_keys.each do |key| %>
+            <th><%= key %></th>
+          <% end %>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @players.each do |p| %>
+          <tr>
+            <td><a href="#"><%= p.name %></a></td>
+            <td><%= p.g %></td>
+            <td><%= p.a %></td>
+            <td><%= p.pts %></td>
+            <td><%= p.plus_minus %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <h2>GOALIES</h2>
+    <table id="goalies-roster-table">
+      <thead>
+        <% goalie_roster_keys = ["NAME", "W", "L", "OTL", "GAA", "SV%"] %>
+        <tr>
+          <% goalie_roster_keys.each do |key| %>
+            <th><%= key %></th>
+          <% end %>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @goalies.each do |g| %>
+          <tr>
+            <td><a href="#"><%= g.name %></a></td>
+            <td><%= g.w %></td>
+            <td><%= g.l %></td>
+            <td><%= g.otl %></td>
+            <td><%= g.gaa %></td>
+            <td><%= g.sv_perc %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="div-standings">
+    <h2><%= @standings[:division].to_s.upcase %> DIVISION STANDINGS</h2>
+
+    <table id="standings-table">
+      <% standings_keys = ["TEAM", "GP", "W", "L", "OTL", "PTS"] %>
+      <thead>
+        <% standings_keys.each do |key| %>
+          <th><%= key %></th>
+        <% end %>
+      </thead>
+
+      <tbody>
+        <% @standings.each do |abbrev, stats_hash| %>
+          <% next if abbrev.to_s == "division" %>
+          <tr>
+            <td><a href="<%= team_url(abbrev) %>" <%= "class=current" if params[:abbrev] == abbrev.to_s %>><%= Team.find_by_abbrev(abbrev.to_s).name %></a></td>
+            <td><%= stats_hash[:GP] %></td>
+            <td><%= stats_hash[:W] %></td>
+            <td><%= stats_hash[:L] %></td>
+            <td><%= stats_hash[:OT] %></td>
+            <td><%= stats_hash[:P] %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="upcoming-games">
+    <h2>GAMES</h2>
+
+    <table id="games-table">
+      <thead>
+        <% game_keys = ["TEAMS", "DATE", "TIME", "RESULT"] %>
+        <tr>
+          <% game_keys.each do |key| %>
+            <th><%= key %></th>
+          <% end %>
+        </tr>
+      </thead>
+      <% @games.each do |game| %>
+        <tr>
+          <td><a href="#"><%= game.away %> @ <%= game.home %></a></td>
+          <td><a href="#"><%= Date::MONTHNAMES[game.date.month] %> <%= game.date.day %>, <%= game.date.year %></a></td>
+          <td><a href="#"><%= game.time %> ET</a></td>
+          <td><a href="#"><%= game.result %></a></td>
+        </tr>
+      <% end %>
+    </table>
+  </section>
+</section>
+
+<script>
+  $(window).load(function () {
+    $(window).scrollTo(400)
+  })
+
+  $("input[type=submit]").on("click", function(event) {
+    if (event.currentTarget.className === "favorite") {
+      var buttonClicked = "favorite"
+      var meth = "POST"
+    }
+    else {
+      var buttonClicked = "unfavorite"
+      var meth = "DELETE"
+    }
+
+    $.ajax({
+      url: "/WAS/fav",
+      type: meth,
+      success: function() {
+        $(".favorite-buttons").toggleClass("favorited", buttonClicked == "favorite");
+      },
+      error: function() {
+        alert("Request failed");
+        console.log("error");
+      }
+    });
+  });
+</script>
