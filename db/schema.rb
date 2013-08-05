@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130805203030) do
+ActiveRecord::Schema.define(:version => 20130805204649) do
 
   create_table "games", :force => true do |t|
     t.date     "date"
@@ -23,6 +23,9 @@ ActiveRecord::Schema.define(:version => 20130805203030) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  add_index "games", ["away"], :name => "index_games_on_away"
+  add_index "games", ["home"], :name => "index_games_on_home"
 
   create_table "goalies", :force => true do |t|
     t.string   "name"
@@ -43,12 +46,17 @@ ActiveRecord::Schema.define(:version => 20130805203030) do
     t.datetime "updated_at",  :null => false
   end
 
+  add_index "goalies", ["team_abbrev"], :name => "index_goalies_on_team_abbrev"
+
   create_table "player_favorites", :force => true do |t|
     t.integer  "user_id"
     t.integer  "player_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  add_index "player_favorites", ["player_id"], :name => "index_player_favorites_on_player_id"
+  add_index "player_favorites", ["user_id"], :name => "index_player_favorites_on_user_id"
 
   create_table "players", :force => true do |t|
     t.string   "name"
@@ -69,12 +77,17 @@ ActiveRecord::Schema.define(:version => 20130805203030) do
     t.datetime "updated_at",  :null => false
   end
 
+  add_index "players", ["team_abbrev"], :name => "index_players_on_team_abbrev"
+
   create_table "team_favorites", :force => true do |t|
     t.integer  "user_id"
     t.string   "team_abbrev"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
+
+  add_index "team_favorites", ["team_abbrev"], :name => "index_team_favorites_on_team_abbrev"
+  add_index "team_favorites", ["user_id"], :name => "index_team_favorites_on_user_id"
 
   create_table "teams", :force => true do |t|
     t.string   "name"
@@ -104,6 +117,8 @@ ActiveRecord::Schema.define(:version => 20130805203030) do
     t.integer  "players_pic_file_size"
     t.datetime "players_pic_updated_at"
   end
+
+  add_index "teams", ["abbrev"], :name => "index_teams_on_abbrev"
 
   create_table "users", :force => true do |t|
     t.string   "username",               :default => "", :null => false
