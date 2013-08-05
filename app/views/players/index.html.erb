@@ -1,0 +1,37 @@
+<style>
+  html { 
+    background: url("hockey_sticks.jpg") no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+</style>
+
+<section class="players-container">
+  <div class="paginator"><%= paginate @players, remote: true %></div>
+  <table id="players-index">
+    <thead>
+        <th><%= sortable "name" %></th>
+        <th><%= sortable "team_abbrev" %></th>
+        <th><%= sortable "gp" %></th>
+        <th><%= sortable "g" %></th>
+        <th><%= sortable "a" %></th>
+        <th><%= sortable "pts" %></th>
+        <th><%= sortable "plus_minus" %></th>
+        <th><%= sortable "pim" %></th>
+        <th><%= sortable "ppg" %></th>
+        <th><%= sortable "hits" %></th>
+        <th><%= sortable "blocks" %></th>
+        <th><%= sortable "fo_perc" %></th>
+        <th><%= sortable "shots" %></th>
+        <th><%= sortable "shot_perc" %></th>
+      </tr>
+    </thead>
+
+    <tbody id="players">
+      <%= render @players %>
+    </tbody>
+  </table>
+  <div class="paginator"><%= paginate @players, remote: true %></div>
+</section>

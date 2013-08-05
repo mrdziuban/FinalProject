@@ -174,7 +174,7 @@ section.container {
 }
 
 section#teams-home {
-  background: url("ice_texture.png") no-repeat;
+  background: url("ice_texture.jpg") no-repeat;
   float: left;
   height: 380px;
   border: 3px solid #99000A;
@@ -188,7 +188,7 @@ section#teams-home {
 
 section#players-home {
   position: relative;
-  background: url("ice_texture.png") no-repeat;
+  background: url("ice_texture.jpg") no-repeat;
   background-position: -472px 0;
   float: left;
   height: 185px;
@@ -204,7 +204,7 @@ section#players-home {
 
 section#games-home {
   position: relative;
-  background: url("ice_texture.png") no-repeat;
+  background: url("ice_texture.jpg") no-repeat;
   background-position: -472px -195px;
   float: left;
   height: 185px;
@@ -323,7 +323,7 @@ a.games-pic:hover span.games-hidden {
 }
 
 .header-container {
-  background: url("ice_texture.png") no-repeat;
+  background: url("ice_texture.jpg") no-repeat;
   width: 944px;
   border: 3px solid #292929;
   padding: 100px 0 25px 0;
@@ -372,7 +372,7 @@ table#team-stats td {
   width: 467px;
   border: 3px solid #292929;
   border-radius: 3px;
-  background: url("ice_texture.png");
+  background: url("ice_texture.jpg");
   background-position: 0 -306px;
   margin: 4px 2px 4px 0;
 }
@@ -411,7 +411,7 @@ table#team-stats td {
   float: right;
   border: 3px solid #292929;
   border-radius: 3px;
-  background: url("ice_texture.png");
+  background: url("ice_texture.jpg");
   background-position: -480px -306px;
   margin: 4px 0 4px 2px;
 }
@@ -421,7 +421,7 @@ table#team-stats td {
   width: 944px;
   border: 3px solid #292929;
   border-radius: 3px;
-  background: url("ice_texture.png");
+  background: url("ice_texture.jpg");
   background-position: 0 -719px;
   margin-bottom: 40px;
 }
@@ -433,7 +433,7 @@ table#team-stats td {
 }
 
 .player-header-container {
-  background: url("ice_texture.png") no-repeat;
+  background: url("ice_texture.jpg") no-repeat;
   width: 944px;
   border: 3px solid #292929;
   padding: 100px 0 25px 0;
@@ -442,7 +442,54 @@ table#team-stats td {
 }
 
 table#player-stats td, table#player-stats a {
-    color: #292929;
-    font-weight: 600;
-    font-size: 20px;
-  }
+  color: #292929;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.players-container {
+  color: white;
+  width: 1000px;
+  border: 3px solid #99000A;
+  border-radius: 3px;
+  background: #292929;
+  margin: 8% auto 5% auto;
+}
+
+#players-index th {
+  padding: 7px 5px 3px 5px;
+  font-weight: bold;
+  font-size: 23px;
+  color: #99000A;
+  text-shadow: 1px 1px 1px #000;
+}
+
+#players-index th .current.asc:after {
+  content: " ▴";
+  color: white;
+  font-size: 15px;
+}
+
+#players-index th .current.desc:after {
+  content: " ▾";
+  color: white;
+  font-size: 15px;
+}
+
+#players-index th > a {
+  color: #99000A;
+}
+
+#players-index td {
+  color: white;
+  padding-bottom: 8px;
+}
+
+#players-index a {
+  color: white;
+}
+
+.paginator {
+  margin: 8px auto 8px auto;
+  text-align: center;
+}
