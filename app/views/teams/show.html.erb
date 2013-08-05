@@ -119,7 +119,7 @@
       <tbody>
         <% @players.each do |p| %>
           <tr>
-            <td><a href="#"><%= p.name %></a></td>
+            <td><a href="<%= player_url(p) %>"><%= p.name %></a></td>
             <td><%= p.g %></td>
             <td><%= p.a %></td>
             <td><%= p.pts %></td>
