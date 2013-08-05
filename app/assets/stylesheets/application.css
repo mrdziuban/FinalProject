@@ -158,10 +158,19 @@ a {
   font-weight: bold;
 }
 
+h1.home-header {
+  margin-left: 0;
+  font-size: 150px;
+  font-weight: 800;
+  color: #99000A;
+  margin-top: 65px;
+  text-align: center;
+}
+
 section.container {
   width: 940px;
   margin: auto;
-  margin-top: 20%;
+  margin-top: 5%;
 }
 
 section#teams-home {
@@ -383,7 +392,7 @@ table#team-stats td {
 
 #standings-table td {
   font-weight: 500;
-  padding-top: 8px;
+  padding-top: 15px;
   color: #292929;
 }
 
