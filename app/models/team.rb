@@ -7,9 +7,21 @@ class Team < ActiveRecord::Base
   has_attached_file :players_pic, styles: {original: "222x125"}
   has_many :players, foreign_key: "team_abbrev", primary_key: "abbrev"
   has_many :goalies, class_name: "Goalie", foreign_key: "team_abbrev", primary_key: "abbrev"
+  has_many :home_games, class_name: "Game", foreign_key: "home", primary_key: "abbrev"
+  has_many :away_games, class_name: "Game", foreign_key: "away", primary_key: "abbrev"
 
   def to_param
     abbrev
+  end
+
+  def games
+    (self.home_games + self.away_games).sort_by &:date
+  end
+
+  def recent_and_upcoming_games
+    next_3 = self.games.select {|g| g.date >= Date.today}[0..2]
+    last_3 = self.games.select {|g| g.date < Date.today}[0..2]
+    last_3 + next_3
   end
 
 
