@@ -22,7 +22,7 @@ class Team < ActiveRecord::Base
 
   def recent_and_upcoming_games
     next_3 = self.games.select {|g| g.date >= Date.today}[0..2]
-    last_3 = self.games.select {|g| g.date < Date.today}[0..2]
+    last_3 = self.games.select {|g| g.date < Date.today}[-3..-1]
     last_3 + next_3
   end
 
