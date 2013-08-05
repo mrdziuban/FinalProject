@@ -279,6 +279,7 @@ a.games-pic:hover span.games-hidden {
 }
 
 .standings-table {
+  width: 950px;
   margin: 5px auto 12px auto;
   text-align: center;
 }
@@ -297,15 +298,26 @@ a.games-pic:hover span.games-hidden {
 }
 
 .standings > .standings-table > .standings-header th {
-  padding: 10px 10px 0 10px;
+  padding: 20px 8px 0 8px;
+  font-size: 20px;
 }
 
-.standings > .standings-table > td {
-  padding: 5px 10px 10px 10px;
+.standings > .standings-table td {
+  padding-bottom: 15px;
+}
+
+.standings h2 {
+  text-align: center;
+  margin-bottom: -10px;
+  text-shadow: 1px 1px 1px #99000A;
 }
 
 .standings a {
   color: white;
+}
+
+.standings a:hover {
+  color: #99000A;
 }
 
 .team-background {
