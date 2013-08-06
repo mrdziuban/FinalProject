@@ -607,7 +607,7 @@ h3.location {
   border-radius: 3px;
   background: url("ice_texture.jpg");
   background-position: 0 -454px;
-  margin: 4px auto 40px auto;
+  margin: 4px auto 0 auto;
 }
 
 .tickets-container > h2 {
@@ -657,5 +657,27 @@ h2.tickets-link > a:hover {
   color: #99000A;
 }
 
+.discussion-container {
+  width: 900px;
+  border: 3px solid #292929;
+  border-radius: 3px;
+  background: url("ice_texture.jpg");
+  margin: 4px auto 40px auto;
+}
+
+.discussion-container > h2.discussion-header {
+  font-size: 35px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  color: #292929;
+  text-align: center;
+  text-shadow: 1px 1px 1px #000;
+}
+
+.discussion-container h2.discussion-not-yet {
+  text-align: center;
+  color: #292929;
+  margin-top: 10px;
+}
 
 

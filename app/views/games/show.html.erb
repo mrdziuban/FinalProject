@@ -83,6 +83,16 @@
   </section>
 <% end %>
 
+<section class="discussion-container">
+  <h2 class="discussion-header">DISCUSS</h2>
+
+  <% if @game.date == Date.today %>
+
+  <% else %>
+    <h2 class="discussion-not-yet">Discussion will be available the day of the game</h2>
+  <% end %>
+</section>
+
 
 
 
