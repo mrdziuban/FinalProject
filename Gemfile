@@ -27,6 +27,8 @@ gem 'nokogiri'
 gem 'i18n'
 gem 'paperclip'
 gem 'kaminari'
+gem 'stubhub'
+gem 'httparty'
 
 group :development do
   gem 'better_errors'
