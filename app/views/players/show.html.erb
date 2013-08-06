@@ -4,7 +4,7 @@
   }
 
   .player-header-container > h2 {
-    margin: -80px auto 0 auto;
+    margin: 15px auto 0 auto;
     color: <%= @player.team.background_color %>;
     font-size: 70px;
     text-shadow: 1px 1px 1px #000;
@@ -56,6 +56,9 @@
 <section class="player-container group">
   <section class="player-header-container">
     <h2><%= @player.name.upcase %></h2>
+    <% unless @player.image_file_name.nil? %>
+      <img class="player-pic" src="<%= @player.image.url %>">
+    <% end %>
     <div class="favorite-buttons<%= current_user.players.include?(@player) ? ' favorited' : '' %>">
       <input class="favorite" type="submit" value="FAVORITE">
       <input class="unfavorite" type="submit" value="UNFAVORITE">

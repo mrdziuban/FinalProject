@@ -1,8 +1,9 @@
 require 'open-uri'
 
 class Player < ActiveRecord::Base
-  attr_accessible :a, :blocks, :fo_perc, :g, :gp, :hits, :name, :pim, :plus_minus, :ppg, :pts, :shot_perc, :shots, :team_abbrev
+  attr_accessible :a, :blocks, :fo_perc, :g, :gp, :hits, :image, :name, :pim, :plus_minus, :ppg, :pts, :shot_perc, :shots, :team_abbrev
 
+  has_attached_file :image, styles: {original: "65x90"}
   belongs_to :team, foreign_key: "team_abbrev", primary_key: "abbrev"
   has_many :player_favorites
   has_many :users, through: :player_favorites
@@ -68,6 +69,34 @@ class Player < ActiveRecord::Base
         p = Player.new(val)
         p.name = name
         p.save
+      end
+    end
+  end
+
+  def self.scrape_images
+    Player.all.each do |player|
+      begin
+        name = player.name.split(" ").join("-")
+        url = "http://search.espn.go.com/#{name}"
+        page = Nokogiri::HTML(open(url))
+        img = page.at(".span-5 > .col-results > ol > li.result.mod-smart-card > div.card-img > a > img")
+        next if img.nil?
+        src = img["src"]
+        File.open("lib/player_profile_pics/#{name}.png", "wb") do |f|
+          f.write(open(src).read)
+        end
+      rescue OpenURI::HTTPError
+        next
+      end
+    end
+  end
+
+  def self.populate_images
+    Player.all.each do |player|
+      name = player.name.split(" ").join("-")
+      if File.file?("lib/player_profile_pics/#{name}.png")
+        player.image = File.open("lib/player_profile_pics/#{name}.png", "r")
+        player.save
       end
     end
   end

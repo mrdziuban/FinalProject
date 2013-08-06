@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130805204649) do
+ActiveRecord::Schema.define(:version => 20130806222421) do
 
   create_table "games", :force => true do |t|
     t.date     "date"
@@ -73,8 +73,12 @@ ActiveRecord::Schema.define(:version => 20130805204649) do
     t.float    "shot_perc"
     t.float    "fo_perc"
     t.integer  "hits"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   add_index "players", ["team_abbrev"], :name => "index_players_on_team_abbrev"
