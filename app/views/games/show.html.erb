@@ -1,0 +1,34 @@
+<style>
+  html {
+    background: -webkit-gradient(linear, left top, right top, from(<%= @game.away_team.background_color %>), to(<%= @game.home_team.background_color %>));
+    background: -moz-linear-gradient(top, <%= @game.home_team.background_color %>, <%= @game.away_team.background_color %>);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='<%= @game.home_team.background_color %>', endColorstr='<%= @game.away_team.background_color %>');
+  }
+
+  img.away-team-logo {
+    border: 2px solid <%= @away_team.background_color %>;
+    border-radius: 2px;
+    margin-right: 75px;
+  }
+
+  img.home-team-logo {
+    border: 2px solid <%= @home_team.background_color %>;
+    border-radius: 2px;
+    margin-left: 75px;
+  }
+</style>
+
+<section class="games-container group">
+  <ul class="game-teams-list">
+    <li class="away-team-img">
+      <a href="<%= team_url(@away_team) %>"><img class="away-team-logo"  src="<%= @away_team.background.url(:medium) %>"></a>
+
+      <h2><%= @away_team.name.upcase %></h2>
+    </li>
+    <li><h1 class="at-symbol">@</h1></li>
+    <li class="home-team-img">
+      <a href="<%= team_url(@home_team) %>"><img class="home-team-logo"  src="<%= @home_team.background.url(:medium) %>"></a>
+
+      <h2><%= @home_team.name.upcase %></h2>
+    </li>
+  </ul>

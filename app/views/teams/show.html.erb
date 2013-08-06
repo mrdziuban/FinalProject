@@ -200,10 +200,10 @@
       </thead>
       <% @games.each do |game| %>
         <tr>
-          <td><a href="#"><%= game.away %> @ <%= game.home %></a></td>
-          <td><a href="#"><%= Date::MONTHNAMES[game.date.month] %> <%= game.date.day %>, <%= game.date.year %></a></td>
-          <td><a href="#"><%= game.time %> ET</a></td>
-          <td><a href="#"><%= game.result %></a></td>
+          <td><a href="<%= game_url(game) %>"><%= game.away %> @ <%= game.home %></a></td>
+          <td><a href="<%= game_url(game) %>"><%= Date::MONTHNAMES[game.date.month] %> <%= game.date.day %>, <%= game.date.year %></a></td>
+          <td><a href="<%= game_url(game) %>"><%= game.time %> ET</a></td>
+          <td><a href="<%= game_url(game) %>"><%= game.result %></a></td>
         </tr>
       <% end %>
     </table>

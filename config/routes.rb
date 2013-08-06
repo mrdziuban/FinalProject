@@ -9,6 +9,7 @@ GameDay::Application.routes.draw do
     post "fav" => "player_favorites#create"
     delete "fav" => "player_favorites#destroy"
   end
+  resources :games, only: [:index, :show]
 
   get "/:abbrev" => "teams#show", as: "team"
   post "/:abbrev/fav" => "team_favorites#create", as: "team_favorites"
