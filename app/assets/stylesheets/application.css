@@ -173,6 +173,12 @@ section.container {
   margin-top: 5%;
 }
 
+.container h2 {
+  font-size: 35px;
+  margin: 15px auto;
+  text-shadow: 1px 1px 1px #000;
+}
+
 section#teams-home {
   background: url("ice_texture.jpg") no-repeat;
   float: left;
@@ -223,7 +229,7 @@ a.teams-sprite {
   width: 416px;
   height: 234px;
   background: url("teams_sprite.jpg") repeat 0 0;
-  margin-top: 25px;
+  margin-top: 20px;
   border: 2px solid #292929;
   border-radius: 2px;
 }
