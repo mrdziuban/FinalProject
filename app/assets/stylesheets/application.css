@@ -513,27 +513,37 @@ table#player-stats td, table#player-stats a {
 .games-container {
   position: relative;
   width: 900px;
-  border: 3px solid white;
+  border: 3px solid #292929;
   border-radius: 3px;
-  background: #292929;
+  background: url("ice_texture.jpg") no-repeat;
   margin: 100px auto;
   text-align: center;
 }
 
-ul.game-teams-list {
-  width: 687px;
+.games-inner-container {
+  width: 700px;
   margin: 30px auto;
 }
 
-.game-teams-list > li {
+.away-team {
   float: left;
+}
+
+.home-team {
+  float: right;
 }
 
 h1.at-symbol {
   margin: 0;
+  padding: 0 82px;
+  float: left;
 }
 
-
+h2.team-names {
+  padding-top: 15px;
+  clear: both;
+  margin: auto;
+}
 
 
 

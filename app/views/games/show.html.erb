@@ -8,27 +8,41 @@
   img.away-team-logo {
     border: 2px solid <%= @away_team.background_color %>;
     border-radius: 2px;
-    margin-right: 75px;
+    margin-bottom: 10px;
   }
 
   img.home-team-logo {
     border: 2px solid <%= @home_team.background_color %>;
     border-radius: 2px;
-    margin-left: 75px;
+    margin-bottom: 10px;
+  }
+
+  div.away-team-name {
+    color: <%= @away_team.background_color %>;
+  }
+
+  div.home-team-name {
+    color: <%= @home_team.background_color %>;
+    margin-bottom: 20px;
   }
 </style>
 
 <section class="games-container group">
-  <ul class="game-teams-list">
-    <li class="away-team-img">
+  <section class="games-inner-container">
+    <div class="away-team">
       <a href="<%= team_url(@away_team) %>"><img class="away-team-logo"  src="<%= @away_team.background.url(:medium) %>"></a>
+    </div>
 
-      <h2><%= @away_team.name.upcase %></h2>
-    </li>
-    <li><h1 class="at-symbol">@</h1></li>
-    <li class="home-team-img">
+    <h1 class="at-symbol">@</h1> 
+
+    <div class="home-team">
       <a href="<%= team_url(@home_team) %>"><img class="home-team-logo"  src="<%= @home_team.background.url(:medium) %>"></a>
+    </div>
+  </section>
 
-      <h2><%= @home_team.name.upcase %></h2>
-    </li>
-  </ul>
+  <h2 class="team-names">
+    <div class="away-team-name"><%= @away_team.name.upcase %></div> 
+    vs. 
+    <div class="home-team-name"><%= @home_team.name.upcase %></div>
+  </h2>
+</section>
