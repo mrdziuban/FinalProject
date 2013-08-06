@@ -537,9 +537,11 @@ h1.at-symbol {
   margin: 0;
   padding: 0 82px;
   float: left;
+  color: black;
 }
 
 h2.team-names {
+  font-size: 35px;
   padding-top: 15px;
   clear: both;
   margin: auto;
