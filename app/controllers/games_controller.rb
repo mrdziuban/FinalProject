@@ -9,6 +9,29 @@ class GamesController < ApplicationController
     @game = Game.find(params[:id])
     @home_team = @game.home_team
     @away_team = @game.away_team
-    @tickets = @game.stubhub
+    @tickets = get_seat_geek(@game)
+  end
+
+  private
+
+  def get_seat_geek(game)
+    url = Addressable::URI.new(
+      scheme: "http",
+      host: "api.seatgeek.com",
+      path: "2/events",
+      query_values: {"performers.slug" => game.home_team.name.split(" ").join("-").downcase,
+                     datetime_local: game.date.to_s}).to_s
+
+    puts url
+
+    results = JSON.parse(RestClient.get(url))
+    event = results["events"][0]
+    tickets_hash = {min_price: event["stats"]["lowest_price"],
+                    max_price: event["stats"]["highest_price"],
+                    remaining_tickets: event["stats"]["listing_count"],
+                    venue: event["venue"]["name"],
+                    location: event["venue"]["display_location"],
+                    link: event["url"]
+                  }
   end
 end

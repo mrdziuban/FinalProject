@@ -27,8 +27,8 @@ gem 'nokogiri'
 gem 'i18n'
 gem 'paperclip'
 gem 'kaminari'
-gem 'stubhub'
-gem 'httparty'
+gem 'rest-client'
+require 'addressable/uri'
 
 group :development do
   gem 'better_errors'

@@ -621,7 +621,7 @@ h3.location {
 
 .tickets-inner-container {
   width: 600px;
-  margin: 0px auto;
+  margin: 0 auto;
 }
 
 .tickets-left {
@@ -634,6 +634,12 @@ h3.location {
 
 .tickets-inner-container h2 {
   color: #292929;
+}
+
+div.seatgeek-img {
+  clear: both;
+  margin: -10px auto 15px auto;
+  text-align: center;
 }
 
 h2.tickets-link {

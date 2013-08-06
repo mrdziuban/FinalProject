@@ -74,39 +74,6 @@ class Game < ActiveRecord::Base
     :NSH => "nashville predators"
   }
 
-  def stubhub
-    date = self.date
-
-    home = self.home
-    home = TEAMS[home.to_sym]
-
-    away = self.away
-    away = TEAMS[away.to_sym]
-
-    events = Stubhub::Event.search("#{home} #{away} NHL")
-    event = events.select {|ev| date.to_s == ev.event_date_local}[0]
-
-    if event
-      if event.venue_name == "Verizon Center Washington DC"
-        venue = "Verizon Center"
-      elsif event.venue_name == "Wells Fargo Center Philadelphia"
-        venue = "Wells Fargo Center"
-      else
-        venue = event.venue_name
-      end
-      tickets_hash = {}
-      tickets_hash[:min_price] = event.minPrice
-      tickets_hash[:remaining_tickets] = event.totalTickets
-      tickets_hash[:venue] = venue
-      tickets_hash[:location] = "#{event.city}, #{event.state}"
-      tickets_hash[:link] = "http://www.stubhub.com/#{event.urlpath}"
-
-      return tickets_hash
-    end
-
-    nil
-  end
-
   def self.scrape1213
     game_stats_url = "http://www.nhl.com/ice/schedulebyseason.htm?season=20122013&gameType=2&team=&network=&venue="
     game_stats_page = Nokogiri::HTML(open(game_stats_url))
