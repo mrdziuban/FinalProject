@@ -537,7 +537,8 @@ h1.at-symbol {
   margin: 0;
   padding: 0 82px;
   float: left;
-  color: black;
+  color: #292929;
+  text-shadow: 1px 1px 1px #000;
 }
 
 h2.team-names {
@@ -545,6 +546,22 @@ h2.team-names {
   padding-top: 15px;
   clear: both;
   margin: auto;
+  color: #292929;
+  text-shadow: 1px 1px 1px #000;
+}
+
+h2.game-date {
+  color: #292929;
+}
+
+h3.venue {
+  margin-bottom: 5px;
+  color: #292929;
+}
+
+h3.location {
+  margin-top: 0;
+  color: #292929;
 }
 
 

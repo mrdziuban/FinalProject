@@ -58,7 +58,7 @@ class Game < ActiveRecord::Base
     :PHI => "philadelphia flyers",
     :PIT => "pittsburgh penguins",
     :COL => "colorado avalanche",
-    :STL => "st. louis blues",
+    :STL => "st louis blues",
     :TOR => "toronto maple leafs",
     :VAN => "vancouver canucks",
     :WAS => "washington capitals",
@@ -84,13 +84,20 @@ class Game < ActiveRecord::Base
     away = TEAMS[away.to_sym]
 
     events = Stubhub::Event.search("#{home} #{away} NHL")
-    event = events.select {|ev| date == Date.parse(ev.event_date)}[0]
+    event = events.select {|ev| date.to_s == ev.event_date_local}[0]
 
     if event
+      if event.venue_name == "Verizon Center Washington DC"
+        venue = "Verizon Center"
+      elsif event.venue_name == "Wells Fargo Center Philadelphia"
+        venue = "Wells Fargo Center"
+      else
+        venue = event.venue_name
+      end
       tickets_hash = {}
       tickets_hash[:min_price] = event.minPrice
       tickets_hash[:remaining_tickets] = event.totalTickets
-      tickets_hash[:venue] = event.venue_name
+      tickets_hash[:venue] = venue
       tickets_hash[:location] = "#{event.city}, #{event.state}"
       tickets_hash[:link] = "http://www.stubhub.com/#{event.urlpath}"
 

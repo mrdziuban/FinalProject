@@ -1,8 +1,8 @@
 <style>
   html {
-    background: -webkit-gradient(linear, left top, right top, from(<%= @game.away_team.background_color %>), to(<%= @game.home_team.background_color %>));
-    background: -moz-linear-gradient(top, <%= @game.home_team.background_color %>, <%= @game.away_team.background_color %>);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='<%= @game.home_team.background_color %>', endColorstr='<%= @game.away_team.background_color %>');
+    background: -webkit-gradient(linear, left top, right top, from(<%= @away_team.background_color %>), to(<%= @home_team.background_color %>));
+    background: -moz-linear-gradient(top, <%= @home_team.background_color %>, <%= @away_team.background_color %>);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='<%= @home_team.background_color %>', endColorstr='<%= @away_team.background_color %>');
   }
 
   img.away-team-logo {
@@ -17,11 +17,11 @@
     margin-bottom: 10px;
   }
 
-  div.away-team-name {
+  div.away-team-name > a {
     color: <%= @away_team.background_color %>;
   }
 
-  div.home-team-name {
+  div.home-team-name > a {
     color: <%= @home_team.background_color %>;
     margin-bottom: 20px;
   }
@@ -41,8 +41,14 @@
   </section>
 
   <h2 class="team-names">
-    <div class="away-team-name"><%= @away_team.name.upcase %></div> 
+    <div class="away-team-name"><a href="<%= team_url(@away_team) %>"><%= @away_team.name.upcase %></a></div> 
     vs. 
-    <div class="home-team-name"><%= @home_team.name.upcase %></div>
+    <div class="home-team-name"><a href="<%= team_url(@home_team) %>"><%= @home_team.name.upcase %></a></div>
   </h2>
+
+  <h2 class="game-date"><%=l @game.date, format: "%B %d, %Y" %><%= " - #{@game.time} ET" if @game.date > Date.today %></h2>
+  <% if @tickets %>
+    <h3 class="venue"><%= @tickets[:venue] %></h3>
+    <h3 class="location"><%= @tickets[:location] %></h3>
+  <% end %>
 </section>
