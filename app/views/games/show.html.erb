@@ -27,8 +27,8 @@
   }
 </style>
 
-<section class="games-container group">
-  <section class="games-inner-container">
+<section class="game-container group">
+  <section class="game-inner-container">
     <div class="away-team">
       <a href="<%= team_url(@away_team) %>"><img class="away-team-logo"  src="<%= @away_team.background.url(:medium) %>"></a>
     </div>
@@ -51,4 +51,8 @@
     <h3 class="venue"><%= @tickets[:venue] %></h3>
     <h3 class="location"><%= @tickets[:location] %></h3>
   <% end %>
+</section>
+
+<section class="tickets-container">
+
 </section>
