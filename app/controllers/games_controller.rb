@@ -22,16 +22,19 @@ class GamesController < ApplicationController
       query_values: {"performers.slug" => game.home_team.name.split(" ").join("-").downcase,
                      datetime_local: game.date.to_s}).to_s
 
-    puts url
-
     results = JSON.parse(RestClient.get(url))
-    event = results["events"][0]
-    tickets_hash = {min_price: event["stats"]["lowest_price"],
-                    max_price: event["stats"]["highest_price"],
-                    remaining_tickets: event["stats"]["listing_count"],
-                    venue: event["venue"]["name"],
-                    location: event["venue"]["display_location"],
-                    link: event["url"]
-                  }
+    puts results
+    unless results["events"].empty?
+      event = results["events"][0]
+      tickets_hash = {min_price: event["stats"]["lowest_price"],
+                      max_price: event["stats"]["highest_price"],
+                      remaining_tickets: event["stats"]["listing_count"],
+                      venue: event["venue"]["name"],
+                      location: event["venue"]["display_location"],
+                      link: event["url"]
+                    }
+      return tickets_hash
+    end
+    nil
   end
 end
