@@ -551,7 +551,7 @@ table#player-stats td, table#player-stats a {
   border: 3px solid #292929;
   border-radius: 3px;
   background: url("ice_texture.jpg") no-repeat;
-  margin: 100px auto;
+  margin: 100px auto 0 auto;
   text-align: center;
 }
 
@@ -585,18 +585,70 @@ h2.team-names {
   text-shadow: 1px 1px 1px #000;
 }
 
-h2.game-date {
+.game-container h2 {
   color: #292929;
+}
+
+h2.game-result {
+  font-size: 35px;
 }
 
 h3.venue {
   margin-bottom: 5px;
-  color: #292929;
 }
 
 h3.location {
   margin-top: 0;
+}
+
+.tickets-container {
+  width: 900px;
+  border: 3px solid #292929;
+  border-radius: 3px;
+  background: url("ice_texture.jpg");
+  background-position: 0 -454px;
+  margin: 4px auto 40px auto;
+}
+
+.tickets-container > h2 {
+  margin-top: 15px;
+  margin-bottom: 10px;
+  text-align: center;
+  font-size: 35px;
   color: #292929;
+  text-shadow: 1px 1px 1px #000;
+}
+
+.tickets-inner-container {
+  width: 600px;
+  margin: 0px auto;
+}
+
+.tickets-left {
+  float: left;
+}
+
+.min-price {
+  float: right;
+}
+
+.tickets-inner-container h2 {
+  color: #292929;
+}
+
+h2.tickets-link {
+  clear: both;
+  margin-bottom: 14px;
+}
+
+h2.tickets-link > a {
+  font-size: 25px;
+  color: #292929;
+  text-shadow: none;
+}
+
+h2.tickets-link > a:hover {
+  color: #99000A;
 }
 
 

@@ -1,7 +1,7 @@
 <style>
   html {
-    background: -webkit-gradient(linear, left top, right top, from(<%= @away_team.background_color %>), to(<%= @home_team.background_color %>));
-    background: -moz-linear-gradient(top, <%= @home_team.background_color %>, <%= @away_team.background_color %>);
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%, <%= @away_team.background_color %>), color-stop(40%, <%= @away_team.background_color %>), color-stop(60%, <%= @home_team.background_color %>), color-stop(100%, <%= @home_team.background_color %>));
+    background: -moz-linear-gradient(left, <%= @away_team.background_color %> 0%, <%= @away_team.background_color %> 40%, <%= @home_team.background_color %> 60%, <%= @home_team.background_color %> 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='<%= @home_team.background_color %>', endColorstr='<%= @away_team.background_color %>');
   }
 
@@ -46,13 +46,50 @@
     <div class="home-team-name"><a href="<%= team_url(@home_team) %>"><%= @home_team.name.upcase %></a></div>
   </h2>
 
+  <% if @game.result %>
+    <h2 class="game-result"><%= @game.result.gsub(/[()]/, " ") %></h2>
+  <% end %>
+
   <h2 class="game-date"><%=l @game.date, format: "%B %d, %Y" %><%= " - #{@game.time} ET" if @game.date > Date.today %></h2>
+
+
+
   <% if @tickets %>
     <h3 class="venue"><%= @tickets[:venue] %></h3>
     <h3 class="location"><%= @tickets[:location] %></h3>
   <% end %>
 </section>
 
-<section class="tickets-container">
+<% if @tickets %>
+  <section class="tickets-container group">
+    <h2 class="tickets-header">TICKETS</h2>
 
-</section>
+    <section class="tickets-inner-container">
+      <div class="tickets-left">
+        <h2><%= @tickets[:remaining_tickets].to_i %> tickets left</h2>
+      </div>
+
+      <div class="min-price">
+        <h2>Minimum $<%= "%.2f" % @tickets[:min_price] %></h2>
+      </div>
+    </section>
+
+    <h2 class="tickets-link"><a href="<%= @tickets[:link] %>">Browse tickets on StubHub</a></h2>
+  </section>
+<% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
