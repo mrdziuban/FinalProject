@@ -1,0 +1,34 @@
+<div class="paginator"><%= paginate games %></div>
+
+<div class="season-selector">
+  <ul>
+    <li>Choose season
+      <ul>
+        <% if params[:sort] %>
+          <li><%= link_to "2012-2013", games_url(sort: params[:sort], direction: params[:direction], season: "12-13") %></li>
+          <li><%= link_to "2013-2014", games_url(sort: params[:sort], direction: params[:direction], season: "13-14") %></li>
+        <% else %>
+          <li><%= link_to "2012-2013", games_url(season: "12-13") %></li>
+          <li><%= link_to "2013-2014", games_url(season: "13-14") %></li>
+        <% end %>
+      </ul>
+    </li>
+  </ul>
+</div>
+
+<table id="games-index">
+  <thead>
+    <tr>
+      <th><%= sortable "date" %></th>
+      <th><%= sortable "away" %></th>
+      <th><%= sortable "home" %></th>
+      <th>TIME</th>
+      <th>RESULT</th>
+    </tr>
+  </thead>
+
+  <tbody id="games">
+    <%= render games %>
+  </tbody>
+</table>
+<div class="paginator"><%= paginate games %></div>

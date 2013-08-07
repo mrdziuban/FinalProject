@@ -1,5 +1,5 @@
 <style>
-  html { 
+  body { 
     background: url("parade.jpg") no-repeat center center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -9,21 +9,38 @@
 </style>
 
 <section class="games-container">
-  <div class="paginator"><%= paginate @games, remote: true %></div>
-  <table id="games-index">
-    <thead>
-      <tr>
-        <th><%= sortable "date" %></th>
-        <th><%= sortable "away" %></th>
-        <th><%= sortable "home" %></th>
-        <th>TIME</th>
-        <th>RESULT</th>
-      </tr>
-    </thead>
-
-    <tbody id="games">
-      <%= render @games %>
-    </tbody>
-  </table>
-  <div class="paginator"><%= paginate @games, remote: true %></div>
+  <%= render partial: "games", locals: {games: @games} %>
 </section>
+
+<script>
+  $(document).ready(function () {
+    var games = $(".games-container");
+
+    games.on("click", ".paginator a", function (event) {
+      event.preventDefault();
+      var a = $(this);
+
+      $.get(a.attr("href"), function (data) {
+        games.html(data);
+      });
+    });
+
+    games.on("click", "thead a", function (event) {
+      event.preventDefault();
+      var a = $(this);
+
+      $.get(a.attr("href"), function (data) {
+        games.html(data);
+      });
+    });
+    
+    games.on("click", ".season-selector a", function (event) {
+      event.preventDefault();
+      var a = $(this);
+
+      $.get(a.attr("href"), function (data) {
+        games.html(data);
+      })
+    });
+  });
+</script>

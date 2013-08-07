@@ -1,9 +1,12 @@
 class GamesController < ApplicationController
   before_filter :authenticate_user!
-  helper_method :sort_column, :sort_direction
+  helper_method :sort_column, :sort_direction, :season
   
   def index
-    @games = Game.order(sort_column + " " + sort_direction).page(params[:page]).per(50)
+    @games = Game.where(season: season).order(sort_column + " " + sort_direction).page(params[:page]).per(50)
+    if request.xhr?
+      render partial: "games", locals: {games: @games}
+    end
   end
 
   def show
@@ -21,6 +24,10 @@ class GamesController < ApplicationController
 
   def sort_direction
     %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+  end
+
+  def season
+    params[:season] ? params[:season] : "13-14"
   end
 
   def get_seat_geek(game)
