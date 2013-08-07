@@ -82,6 +82,14 @@
     color: <%= @team.background_color %>;
     text-shadow: 1px 1px 1px #000;
   }
+
+  .schedule-link {
+    color: <%= @team.background_color %>;
+  }
+
+  .schedule-link:hover {
+    color: #99000A;
+  }
 </style>
 
 <img class="team-background" src="<%= @team.background.url %>">
@@ -216,6 +224,8 @@
         </tr>
       <% end %>
     </table>
+
+    <h3><%= link_to "Full schedule", team_games_url(@team), :class => "schedule-link" %></h3>
   </section>
 </section>
 
