@@ -1,0 +1,27 @@
+<div class="paginator"><%= paginate players %></div>
+
+<table id="players-index">
+  <thead>
+      <th><%= sortable "id", "NAME" %></th>
+      <th><%= sortable "team_abbrev", "TEAM" %></th>
+      <th><%= sortable "gp" %></th>
+      <th><%= sortable "g" %></th>
+      <th><%= sortable "a" %></th>
+      <th><%= sortable "pts" %></th>
+      <th><%= sortable "plus_minus", "+/-" %></th>
+      <th><%= sortable "pim" %></th>
+      <th><%= sortable "ppg" %></th>
+      <th><%= sortable "hits" %></th>
+      <th><%= sortable "blocks" %></th>
+      <th><%= sortable "fo_perc", "FO%" %></th>
+      <th><%= sortable "shots" %></th>
+      <th><%= sortable "shot_perc", "S%" %></th>
+    </tr>
+  </thead>
+
+  <tbody id="players">
+    <%= render players %>
+  </tbody>
+</table>
+
+<div class="paginator"><%= paginate players %></div>
