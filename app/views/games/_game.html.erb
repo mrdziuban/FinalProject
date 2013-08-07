@@ -1,9 +1,9 @@
 <tr>
-  <td><a href="<%= game_url(game) %>"><%= game.date %></a></td>
+  <td class="font-tds"><a href="<%= game_url(game) %>"><%= game.date %></a></td>
   <td><a class="away-game <%= game.away_team.abbrev %>" href="<%= team_url(game.away_team) %>"><%= game.away %></a></td>
   <td><a class="home-game <%= game.home_team.abbrev %>" href="<%= team_url(game.home_team) %>"><%= game.home %></a></td>
-  <td><a href="<%= game_url(game) %>"><%= game.time %></a></td>
-  <td><a href="<%= game_url(game) %>"><%= game.result %></a></td>
+  <td class="font-tds"><a href="<%= game_url(game) %>"><%= game.time %></a></td>
+  <td class="font-tds"><a href="<%= game_url(game) %>"><%= game.result %></a></td>
 </tr>
 
 <style>
