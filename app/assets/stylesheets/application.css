@@ -688,4 +688,63 @@ h2.tickets-link > a:hover {
   margin-top: 10px;
 }
 
+/*============================================================================*/
+/* Games index (schedule) => views/games/index.html.erb */
+
+.games-container {
+  color: white;
+  width: 800px;
+  border: 3px solid #99000A;
+  border-radius: 3px;
+  background: #292929;
+  margin: 9% auto 5% auto;
+}
+
+#games-index {
+  margin: auto;
+  text-align: center;
+}
+
+#games-index th {
+  padding: 7px 25px 3px 25px;
+  font-weight: bold;
+  font-size: 23px;
+  color: #99000A;
+  text-shadow: 1px 1px 1px #000;
+}
+
+#games-index th .current.asc:after {
+  content: " ▴";
+  color: white;
+  font-size: 15px;
+}
+
+#games-index th .current.desc:after {
+  content: " ▾";
+  color: white;
+  font-size: 15px;
+}
+
+#games-index th > a {
+  color: #99000A;
+}
+
+#games-index td {
+  color: white;
+  padding-bottom: 8px;
+}
+
+#games-index a {
+  color: white;
+}
+
+#games-index td > a:hover {
+  color: #99000A;
+}
+
+.paginator {
+  margin: 8px auto 8px auto;
+  text-align: center;
+}
+
 

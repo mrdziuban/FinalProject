@@ -1,8 +1,9 @@
 class GamesController < ApplicationController
   before_filter :authenticate_user!
+  helper_method :sort_column, :sort_direction
   
   def index
-
+    @games = Game.order(sort_column + " " + sort_direction).page(params[:page]).per(50)
   end
 
   def show
@@ -13,6 +14,14 @@ class GamesController < ApplicationController
   end
 
   private
+
+  def sort_column
+    Game.column_names.include?(params[:sort]) ? params[:sort] : "date"
+  end
+
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+  end
 
   def get_seat_geek(game)
     url = Addressable::URI.new(

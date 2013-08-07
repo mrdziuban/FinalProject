@@ -1,0 +1,25 @@
+<style>
+  html {
+    background: ;
+  }
+</style>
+
+<section class="games-container">
+  <div class="paginator"><%= paginate @games, remote: true %></div>
+  <table id="games-index">
+    <thead>
+      <tr>
+        <th><%= sortable "date" %></th>
+        <th><%= sortable "away" %></th>
+        <th><%= sortable "home" %></th>
+        <th>TIME</th>
+        <th>RESULT</th>
+      </tr>
+    </thead>
+
+    <tbody id="games">
+      <%= render @games %>
+    </tbody>
+  </table>
+  <div class="paginator"><%= paginate @games, remote: true %></div>
+</section>
