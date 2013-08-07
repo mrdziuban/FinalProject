@@ -39,7 +39,7 @@ class GamesController < ApplicationController
                      datetime_local: game.date.to_s}).to_s
 
     results = JSON.parse(RestClient.get(url))
-    puts results
+
     unless results["events"].empty?
       event = results["events"][0]
       tickets_hash = {min_price: event["stats"]["lowest_price"],
