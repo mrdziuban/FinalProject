@@ -743,15 +743,17 @@ h2.tickets-link > a:hover {
 
 #games-index th > a {
   color: #99000A;
+  font-weight: bold;
 }
 
 #games-index td {
   color: white;
-  padding-bottom: 8px;
+  padding-bottom: 10px;
 }
 
 #games-index a {
   color: white;
+  font-weight: normal;
 }
 
 #games-index td > a:hover {
