@@ -1,9 +1,15 @@
 class GamesController < ApplicationController
   before_filter :authenticate_user!
-  helper_method :sort_column, :sort_direction, :season
+  helper_method :sort_column, :sort_direction, :season, :team_id
   
   def index
-    @games = Game.where(season: season).order(sort_column + " " + sort_direction).page(params[:page]).per(50)
+    if params[:team_id]
+      puts "yes"
+      @games = Game.where(['(home = ? OR away = ?) AND season = ?', params[:team_id], params[:team_id], season]).order(sort_column + " " + sort_direction).page(params[:page]).per(50)
+    else
+      @games = Game.where(season: season).order(sort_column + " " + sort_direction).page(params[:page]).per(50)
+    end
+
     if request.xhr?
       render partial: "games", locals: {games: @games}
     end
@@ -28,6 +34,10 @@ class GamesController < ApplicationController
 
   def season
     params[:season] ? params[:season] : "13-14"
+  end
+
+  def team_id
+    params[:team_id] ? params[:team_id] : nil
   end
 
   def get_seat_geek(game)

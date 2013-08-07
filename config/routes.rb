@@ -16,9 +16,9 @@ GameDay::Application.routes.draw do
   end
   resources :games, only: [:index, :show]
 
-  get "/:abbrev" => "teams#show", as: "team"
-  post "/:abbrev/fav" => "team_favorites#create", as: "team_favorites"
-  delete "/:abbrev/fav" => "team_favorites#destroy"
+  resources :teams, only: :show, path: "" do
+    resources :games, only: [:index]
+  end
 
   root to: "home#index"
 end

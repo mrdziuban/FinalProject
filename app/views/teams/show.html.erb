@@ -183,7 +183,7 @@
         <% @standings.each do |abbrev, stats_hash| %>
           <% next if abbrev.to_s == "division" %>
           <tr>
-            <td><a href="<%= team_url(abbrev) %>" <%= "class=current" if params[:abbrev] == abbrev.to_s %>><%= Team.find_by_abbrev(abbrev.to_s).name %></a></td>
+            <td><a href="<%= team_url(abbrev) %>" <%= "class=current" if params[:id] == abbrev.to_s %>><%= Team.find_by_abbrev(abbrev.to_s).name %></a></td>
             <td><%= stats_hash[:GP] %></td>
             <td><%= stats_hash[:W] %></td>
             <td><%= stats_hash[:L] %></td>

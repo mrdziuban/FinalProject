@@ -6,7 +6,7 @@ class TeamsController < ApplicationController
   end
 
   def show
-    @team = Team.find_by_abbrev(params[:abbrev].upcase)
+    @team = Team.find_by_abbrev(params[:id].upcase)
     unless @team
       redirect_to standings_url
     else
