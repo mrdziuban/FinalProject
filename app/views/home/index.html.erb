@@ -40,24 +40,10 @@
   $("a.teams-sprite").mouseenter(function () {
     var i = Math.floor(Math.random() * positions.length)
     pos = positions[i]
-    $(this).stop(true).fadeOut(150);
-
-    var that = this;
-    var t = setTimeout(function () {
-      $(that).css("background-position", pos[0] + "px " + pos[1] + "px")
-      $(that).fadeIn(150);
-      clearTimeout(t);
-    }, 151);
+    $(this).css("background-position", pos[0] + "px " + pos[1] + "px")
   });
 
   $("a.teams-sprite").mouseleave(function () {
-    $(this).stop(true).fadeOut(150);
-
-    var that = this;
-    var t = setTimeout(function () {
-      $(that).css("background-position", "0 0")
-      $(that).fadeIn(150)
-      clearTimeout(t);
-    }, 151);
+    $(this).css("background-position", "0 0")
   })
 </script>
