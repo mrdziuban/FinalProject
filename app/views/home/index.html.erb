@@ -15,6 +15,7 @@
   <section id="teams-home">
     <h2><a href="<%= standings_url %>">STANDINGS</a></h2>
     <a class="teams-sprite" href="<%= standings_url %>"></a>
+    <span class="hidden-block"></span>
   </section>
 
   <section id="players-home">
@@ -39,10 +40,22 @@
   $("a.teams-sprite").mouseenter(function () {
     var i = Math.floor(Math.random() * positions.length)
     pos = positions[i]
+    $(this).fadeOut(70);
 
-    $(this).css("background-position", pos[0] + "px " + pos[1] + "px")
+    var that = this;
+    setTimeout(function () {
+      $(that).css("background-position", pos[0] + "px " + pos[1] + "px")
+      $(that).fadeIn(70);
+    }, 71);
   });
+
   $("a.teams-sprite").mouseleave(function () {
-    $(this).css("background-position", "0 0")
+    $(this).fadeOut(70);
+
+    var that = this;
+    setTimeout(function () {
+      $(that).css("background-position", "0 0")
+      $(that).fadeIn(70)
+    }, 71);
   })
 </script>
