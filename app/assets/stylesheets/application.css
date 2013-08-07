@@ -753,7 +753,7 @@ h2.tickets-link > a:hover {
 
 #games-index a {
   color: white;
-  font-weight: normal;
+  font-weight: 500;
 }
 
 #games-index td > a:hover {
@@ -763,6 +763,28 @@ h2.tickets-link > a:hover {
 .paginator {
   margin: 8px auto 8px auto;
   text-align: center;
+}
+
+.paginator a {
+  font-size: 15px;
+}
+
+.paginator a:hover {
+  color: white;
+}
+
+.season-selector {
+  margin: auto;
+  text-align: center;
+}
+
+.season-selector a {
+  font-size: 20px;
+  text-shadow: 1px 1px 1px #000;
+}
+
+.season-selector a:hover {
+  color: white;
 }
 
 
