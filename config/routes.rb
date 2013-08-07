@@ -18,6 +18,8 @@ GameDay::Application.routes.draw do
 
   resources :teams, only: :show, path: "" do
     resources :games, only: [:index]
+    post "fav" => "team_favorites#create", as: "fav"
+    delete "fav" => "team_favorites#destroy"
   end
 
   root to: "home#index"

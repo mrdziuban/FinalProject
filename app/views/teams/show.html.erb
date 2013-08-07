@@ -245,7 +245,7 @@
     }
 
     $.ajax({
-      url: "/WAS/fav",
+      url: "<%= team_fav_url(@team) %>",
       type: meth,
       success: function() {
         $(".favorite-buttons").toggleClass("favorited", buttonClicked == "favorite");
