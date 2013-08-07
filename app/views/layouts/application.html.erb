@@ -20,7 +20,12 @@
 
             <ul class="dropdown group">
               <li><a href="<%= standings_url %>">STANDINGS</a></li>
-              <li><a href="<%= players_url %>">PLAYERS</a></li>
+              <li class="players-option">PLAYERS
+                <ul class="players-sidedrop">
+                  <li><a href="<%= players_url %>">FORWARDS</a></li>
+                  <li><a href="#">GOALIES</a></li>
+                </ul>
+              </li>
               <li><a href="<%= games_url %>">SCHEDULE</a></li>
               <li><a href="#">ANALYSIS</a></li>
             </ul>
@@ -44,4 +49,11 @@
   $(".stats").mouseleave(function () {
     $(".dropdown").slideUp("fast");
   });
+
+  $(".players-option").mouseenter(function () {
+    $(".players-sidedrop").animate({width: "toggle"}, "fast");
+  });
+  $(".players-option").mouseleave(function () {
+    $(".players-sidedrop").animate({width: "toggle"}, "fast");
+  })
 </script>
