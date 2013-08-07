@@ -99,10 +99,6 @@ header > nav li:hover > a {
   color: #99000A;
 }
 
-/*.players-option:hover > .players-sidedrop {
-  display: block;
-}*/
-
 .players-option:hover {
   cursor: pointer;
   color: white;
@@ -128,6 +124,9 @@ h1 {
   font-weight: 800;
   color: #99000A;
   margin-left: 50px;
+  -webkit-user-select: none;       
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
 
 .sign-up, .sign-in {
