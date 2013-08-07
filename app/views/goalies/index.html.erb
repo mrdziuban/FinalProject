@@ -1,0 +1,27 @@
+<section class="goalies-container">
+  <%= render partial: "goalies", locals: {goalies: @goalies} %>
+</section>
+
+<script>
+  $(document).ready(function () {
+    var goalies = $(".goalies-container");
+
+    goalies.on("click", ".paginator a", function (event) {
+      event.preventDefault();
+      var a = $(this);
+
+      $.get(a.attr("href"), function (data) {
+        goalies.html(data);
+      });
+    });
+
+    goalies.on("click", "thead a", function (event) {
+      event.preventDefault();
+      var a = $(this);
+
+      $.get(a.attr("href"), function (data) {
+        goalies.html(data);
+      });
+    });
+  });
+</script>

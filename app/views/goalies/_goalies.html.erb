@@ -1,0 +1,26 @@
+<div class="paginator"><%= paginate goalies %></div>
+
+<table id="goalies-index">
+  <thead>
+      <th><%= sortable "id", "NAME" %></th>
+      <th><%= sortable "team_abbrev", "TEAM" %></th>
+      <th><%= sortable "gp" %></th>
+      <th><%= sortable "w" %></th>
+      <th><%= sortable "l" %></th>
+      <th><%= sortable "otl", "OT" %></th>
+      <th><%= sortable "ga" %></th>
+      <th><%= sortable "gaa" %></th>
+      <th><%= sortable "sa" %></th>
+      <th><%= sortable "sv" %></th>
+      <th><%= sortable "sv_perc", "SV%" %></th>
+      <th><%= sortable "shutouts", "SO" %></th>
+      <th><%= sortable "min" %></th>
+    </tr>
+  </thead>
+
+  <tbody id="goalies">
+    <%= render goalies %>
+  </tbody>
+</table>
+
+<div class="paginator"><%= paginate goalies %></div>

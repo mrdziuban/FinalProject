@@ -586,6 +586,11 @@ table#player-stats td, table#player-stats a {
 #players-index td {
   color: white;
   padding-bottom: 8px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+#players-index td.first-two-tds {
+  font-family: 'Raleway', sans-serif;
 }
 
 #players-index a {
@@ -786,6 +791,10 @@ h2.tickets-link > a:hover {
   padding-bottom: 10px;
 }
 
+#games-index td.font-tds {
+  font-family: 'Open Sans', sans-serif;
+}
+
 #games-index a {
   color: white;
   font-weight: 500;
@@ -856,5 +865,70 @@ table#goalie-stats td, table#goalie-stats a {
   font-weight: 600;
   font-size: 20px;
 }
+
+/*============================================================================*/
+/* Goalies index page => views/goalies/index.html.erb */
+
+.goalies-container {
+  color: white;
+  width: 1000px;
+  border: 3px solid #99000A;
+  border-radius: 3px;
+  background: #292929;
+  margin: 8% auto 5% auto;
+}
+
+#goalies-index {
+  margin: auto;
+  text-align: center;
+}
+
+#goalies-index th {
+  padding: 7px 12px 3px 12px;
+  font-weight: bold;
+  font-size: 23px;
+  color: #99000A;
+  text-shadow: 1px 1px 1px #000;
+}
+
+#goalies-index th .current.asc:after {
+  content: " ▴";
+  color: white;
+  font-size: 15px;
+}
+
+#goalies-index th .current.desc:after {
+  content: " ▾";
+  color: white;
+  font-size: 15px;
+}
+
+#goalies-index th > a {
+  color: #99000A;
+}
+
+#goalies-index td {
+  color: white;
+  padding-bottom: 8px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+#goalies-index td.first-two-tds {
+  font-family: 'Raleway', sans-serif;
+}
+
+#goalies-index a {
+  color: white;
+}
+
+#goalies-index td > a:hover {
+  color: #99000A;
+}
+
+.paginator {
+  margin: 8px auto 8px auto;
+  text-align: center;
+}
+
 
 
