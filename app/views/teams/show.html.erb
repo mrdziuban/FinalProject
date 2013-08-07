@@ -156,7 +156,7 @@
       <tbody>
         <% @goalies.each do |g| %>
           <tr>
-            <td><a href="#"><%= g.name %></a></td>
+            <td><a href="<%= goalie_url(g) %>"><%= g.name %></a></td>
             <td><%= g.w %></td>
             <td><%= g.l %></td>
             <td><%= g.otl %></td>

@@ -818,4 +818,39 @@ h2.tickets-link > a:hover {
   color: white;
 }
 
+/*============================================================================*/
+/* Goalie show page => views/goalies/show.html.erb */
+
+.goalie-container {
+  margin: 3% auto 0 auto;
+  text-align: center;
+  width: 950px;
+}
+
+.goalie-header-container {
+  position: relative;
+  background: url("ice_texture.jpg") no-repeat;
+  width: 944px;
+  border: 3px solid #292929;
+  padding: 0 0 15px 0;
+  margin-top: 30px;
+  border-radius: 3px;
+  margin-bottom: 38px;
+}
+
+img.goalie-pic {
+  border: 2px solid #292929;
+  border-radius: 2px;
+}
+
+#goalie-stats {
+  margin: auto;
+}
+
+table#goalie-stats td, table#goalie-stats a {
+  color: #292929;
+  font-weight: 600;
+  font-size: 20px;
+}
+
 

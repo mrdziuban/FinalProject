@@ -1,18 +1,18 @@
 <style>
   body {
-    background: <%= @player.team.background_color %>;
+    background: <%= @goalie.team.background_color %>;
   }
 
-  .player-header-container > h2 {
+  .goalie-header-container > h2 {
     margin: 15px auto 0 auto;
-    color: <%= @player.team.background_color %>;
+    color: <%= @goalie.team.background_color %>;
     font-size: 70px;
     text-shadow: 1px 1px 1px #000;
   }
 
   input[type=submit] {
-    <% start = @player.team.background_color %>
-    <% final = @player.team.luminance(-0.4) %>
+    <% start = @goalie.team.background_color %>
+    <% final = @goalie.team.luminance(-0.4) %>
     border-radius: 3px;
     width: 80px;
     height: 30px;
@@ -26,51 +26,51 @@
   }
 
   input[type=submit]:active {
-    <% start = @player.team.luminance(-0.15) %>
-    <% final = @player.team.luminance(-0.4) %>
+    <% start = @goalie.team.luminance(-0.15) %>
+    <% final = @goalie.team.luminance(-0.4) %>
     background: -webkit-gradient(linear, left top, left bottom, from(<%= final %>), to(<%= start %>));
     background: -moz-linear-gradient(top, <%= final %>, <%= start %>);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='<%= final %>', endColorstr='<%= start %>');
   }
 
   .navbar a {
-    color: <%= @player.team.luminance(0.3) %>;
+    color: <%= @goalie.team.luminance(0.3) %>;
   }
 
-  .navbar .players-option {
-    color: <%= @player.team.luminance(0.3) %>;
+  .navbar .goalies-option {
+    color: <%= @goalie.team.luminance(0.3) %>;
   }
 
-  table#player-stats th {
-    padding: 25px 10px 3px 10px;
+  table#goalie-stats th {
+    padding: 25px 15px 3px 15px;
     font-weight: bold;
     font-size: 25px;
-    color: <%= @player.team.background_color %>;
+    color: <%= @goalie.team.background_color %>;
     text-shadow: 1px 1px 1px #000;
   }
 
-  table#player-stats td a:hover {
-    color: <%= @player.team.background_color %>;
+  table#goalie-stats td a:hover {
+    color: <%= @goalie.team.background_color %>;
     font-weight: bold;
   }
 </style>
 
-<a href="<%= team_url(@player.team) %>"><img class="team-background" src="<%= @player.team.background.url %>"></a>
+<a href="<%= team_url(@goalie.team) %>"><img class="team-background" src="<%= @goalie.team.background.url %>"></a>
 
-<section class="player-container group">
-  <section class="player-header-container">
-    <h2><%= @player.name.upcase %></h2>
-    <% unless @player.image_file_name.nil? %>
-      <img class="player-pic" src="<%= @player.image.url %>">
-    <% end %>
-    <div class="favorite-buttons<%= current_user.players.include?(@player) ? ' favorited' : '' %>">
+<section class="goalie-container group">
+  <section class="goalie-header-container">
+    <h2><%= @goalie.name.upcase %></h2>
+<!--     <%# unless @goalie.image_file_name.nil? %>
+      <img class="goalie-pic" src="<%#= @goalie.image.url %>">
+    <%# end %> -->
+    <div class="favorite-buttons<%= current_user.goalies.include?(@goalie) ? ' favorited' : '' %>">
       <input class="favorite" type="submit" value="FAVORITE">
       <input class="unfavorite" type="submit" value="UNFAVORITE">
     </div>
-    <section class="player-stats-table">
-      <table id="player-stats">
+    <section class="goalie-stats-table">
+      <table id="goalie-stats">
         <thead>
-          <% stats_keys = ["TEAM", "GP", "G", "A", "PTS", "+/-", "PIM", "PPG", "HITS", "BLOCKS", "FO%", "SHOTS", "S%"] %>
+          <% stats_keys = ["TEAM", "GP", "W", "L", "OT", "GA", "GAA", "SA", "SV", "SV%", "SO", "MIN"] %>
           <tr>
             <% stats_keys.each do |key| %>
               <th><%= key %></th>
@@ -80,19 +80,18 @@
 
         <tbody>
           <tr>
-            <td><a href="<%= team_url(@player.team) %>"><%= @player.team_abbrev %></a></td>
-            <td><%= @player.gp %></td>
-            <td><%= @player.g %></td>
-            <td><%= @player.a %></td>
-            <td><%= @player.pts %></td>
-            <td><%= @player.plus_minus %></td>
-            <td><%= @player.pim %></td>
-            <td><%= @player.ppg %></td>
-            <td><%= @player.hits %></td>
-            <td><%= @player.blocks %></td>
-            <td><%= @player.fo_perc %></td>
-            <td><%= @player.shots %></td>
-            <td><%= @player.shot_perc %></td>
+            <td><a href="<%= team_url(@goalie.team) %>"><%= @goalie.team_abbrev %></a></td>
+            <td><%= @goalie.gp %></td>
+            <td><%= @goalie.w %></td>
+            <td><%= @goalie.l %></td>
+            <td><%= @goalie.otl %></td>
+            <td><%= @goalie.ga %></td>
+            <td><%= @goalie.gaa %></td>
+            <td><%= @goalie.sa %></td>
+            <td><%= @goalie.sv %></td>
+            <td><%= @goalie.sv_perc %></td>
+            <td><%= @goalie.shutouts %></td>
+            <td><%= @goalie.min %></td>
           </tr>
         </tbody>
       </table>
@@ -116,7 +115,7 @@
     }
 
     $.ajax({
-      url: "<%= player_fav_url(@player.id) %>",
+      url: "<%= goalie_fav_url(@goalie.id) %>",
       type: meth,
       success: function() {
         $(".favorite-buttons").toggleClass("favorited", buttonClicked == "favorite");
