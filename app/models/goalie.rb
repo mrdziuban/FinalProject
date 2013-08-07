@@ -1,8 +1,9 @@
 require 'open-uri'
 
 class Goalie < ActiveRecord::Base
-  attr_accessible :age, :ga, :gaa, :gp, :l, :min, :name, :otl, :sa, :shutouts, :sv, :sv_perc, :team_abbrev, :w
+  attr_accessible :age, :ga, :gaa, :gp, :image, :l, :min, :name, :otl, :sa, :shutouts, :sv, :sv_perc, :team_abbrev, :w
 
+  has_attached_file :image, styles: {original: "65x90"}
   belongs_to :team, foreign_key: "team_abbrev", primary_key: "abbrev"
 
 
@@ -60,6 +61,41 @@ class Goalie < ActiveRecord::Base
         g.save
       end
       i += 1
+    end
+  end
+
+  def self.scrape_images
+    Goalie.all.each do |goalie|
+      begin
+        name = goalie.name.split(" ").join("-")
+        url = "http://search.espn.go.com/#{name}"
+        page = Nokogiri::HTML(open(url))
+        img = page.at(".span-5 > .col-results > ol > li.result.mod-smart-card > div.card-img > a > img")
+        next if img.nil?
+        src = img["src"]
+        File.open("lib/goalie_profile_pics/#{name}.png", "wb") do |f|
+          f.write(open(src).read)
+        end
+      rescue OpenURI::HTTPError
+        next
+      end
+    end
+
+    # Delete the default "no photo" image based on file size
+    Dir.foreach("lib/goalie_profile_pics") do |f|
+      if File.size("lib/goalie_profile_pics/#{f}") == 2422
+        File.delete("lib/goalie_profile_pics/#{f}")
+      end
+    end
+  end
+
+  def self.populate_images
+    Goalie.all.each do |goalie|
+      name = goalie.name.split(" ").join("-")
+      if File.file?("lib/goalie_profile_pics/#{name}.png")
+        goalie.image = File.open("lib/goalie_profile_pics/#{name}.png", "r")
+        goalie.save
+      end
     end
   end
 end
