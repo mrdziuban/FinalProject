@@ -1,23 +1,26 @@
-<style>
-  #games-index tr > td > a.away-game-<%= game.away_team.abbrev %> {
-    color: <%= game.away_team.luminance(0.3) %>;
-    text-shadow: 1px 1px 1px #000;
-  }
-
-  #games-index tr > td > a.home-game-<%= game.home_team.abbrev %>{
-    color: <%= game.home_team.luminance(0.3) %>;
-    text-shadow: 1px 1px 1px #000;
-  }
-
-  #games-index tr > td > a:hover {
-    color: white;
-  }
-</style>
-
 <tr>
   <td><a href="<%= game_url(game) %>"><%= game.date %></a></td>
-  <td><a class="away-game-<%= game.away_team.abbrev %>" href="<%= team_url(game.away_team) %>"><%= game.away %></a></td>
-  <td><a class="home-game-<%= game.home_team.abbrev %>" href="<%= team_url(game.home_team) %>"><%= game.home %></a></td>
+  <td><a class="away-game <%= game.away_team.abbrev %>" href="<%= team_url(game.away_team) %>"><%= game.away %></a></td>
+  <td><a class="home-game <%= game.home_team.abbrev %>" href="<%= team_url(game.home_team) %>"><%= game.home %></a></td>
   <td><a href="<%= game_url(game) %>"><%= game.time %></a></td>
   <td><a href="<%= game_url(game) %>"><%= game.result %></a></td>
 </tr>
+
+<style>
+  #games-index tr > td > a.away-game.<%= game.away_team.abbrev %> {
+    color: <%= game.away_team.luminance(0.3) %>;
+    text-shadow: 1px 1px 1px #000;
+    font-weight: bold;
+  }
+
+  #games-index tr > td > a.home-game.<%= game.home_team.abbrev %>{
+    color: <%= game.home_team.luminance(0.3) %>;
+    text-shadow: 1px 1px 1px #000;
+    font-weight: bold;
+  }
+
+  #games-index tr > td > a.away-game:hover,
+  #games-index tr > td > a.home-game:hover {
+    color: white;
+  }
+</style>
