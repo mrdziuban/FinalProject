@@ -60,9 +60,9 @@
 <section class="goalie-container group">
   <section class="goalie-header-container">
     <h2><%= @goalie.name.upcase %></h2>
-<!--     <%# unless @goalie.image_file_name.nil? %>
-      <img class="goalie-pic" src="<%#= @goalie.image.url %>">
-    <%# end %> -->
+    <% unless @goalie.image_file_name.nil? %>
+      <img class="goalie-pic" src="<%= @goalie.image.url %>">
+    <% end %>
     <div class="favorite-buttons<%= current_user.goalies.include?(@goalie) ? ' favorited' : '' %>">
       <input class="favorite" type="submit" value="FAVORITE">
       <input class="unfavorite" type="submit" value="UNFAVORITE">

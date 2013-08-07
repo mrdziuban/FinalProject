@@ -464,7 +464,7 @@ table#team-stats td {
 }
 
 #roster-table, #standings-table, #goalies-roster-table, #games-table, 
-#player-stats, #players-index {
+#player-stats, #players-index, #goalie-stats {
   margin: auto;
   margin-bottom: 10px;
   text-align: center;
@@ -519,6 +519,10 @@ table#team-stats td {
   margin: 3% auto 0 auto;
   text-align: center;
   width: 950px;
+}
+
+#player-stats {
+  margin-bottom: 5px;
 }
 
 .player-header-container {
