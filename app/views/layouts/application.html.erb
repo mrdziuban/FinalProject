@@ -45,17 +45,19 @@
 </html>
 
 <script>
-  $(".stats").mouseenter(function () {
-    $(".dropdown").slideDown("fast");
-  });
-  $(".stats").mouseleave(function () {
-    $(".dropdown").slideUp("fast");
-  });
+  $(document).ready(function () {
+    $(".stats").mouseenter(function () {
+      $(".dropdown").slideDown("fast");
+    });
+    $(".stats").mouseleave(function () {
+      $(".dropdown").slideUp("fast");
+    });
 
-  $(".players-option").mouseenter(function () {
-    $(".players-sidedrop").animate({width: "toggle"}, "fast");
+    $(".players-option").mouseenter(function () {
+      $(".players-sidedrop").animate({width: "toggle"}, "fast");
+    });
+    $(".players-option").mouseleave(function () {
+      $(".players-sidedrop").animate({width: "toggle"}, "fast");
+    })
   });
-  $(".players-option").mouseleave(function () {
-    $(".players-sidedrop").animate({width: "toggle"}, "fast");
-  })
 </script>
