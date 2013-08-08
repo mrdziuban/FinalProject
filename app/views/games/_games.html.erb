@@ -1,5 +1,5 @@
 <% if params[:team_id] %>
-  <% team = Team.find_by_abbrev(params[:team_id]) %>
+  <% team = Team.find_by_abbrev(params[:team_id].upcase) %>
 <% end %>
 
 <% if params[:team_id] %>

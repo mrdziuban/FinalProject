@@ -4,8 +4,11 @@ class GamesController < ApplicationController
   
   def index
     if params[:team_id]
-      puts "yes"
-      @games = Game.where(['(home = ? OR away = ?) AND season = ?', params[:team_id], params[:team_id], season]).order(sort_column + " " + sort_direction).page(params[:page]).per(50)
+      @games = Game.where(['(home = ? OR away = ?) AND season = ?',
+                          params[:team_id].upcase,
+                          params[:team_id].upcase,
+                          season]).order(sort_column + " " + sort_direction)
+                          .page(params[:page]).per(50)
     else
       @games = Game.where(season: season).order(sort_column + " " + sort_direction).page(params[:page]).per(50)
     end
