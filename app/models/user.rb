@@ -6,12 +6,10 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   attr_accessible :username, :email, :password, :password_confirmation, :remember_me
 
-  has_many :team_favorites
-  has_many :teams, through: :team_favorites
-  has_many :player_favorites
-  has_many :players, through: :player_favorites
-  has_many :goalie_favorites
-  has_many :goalies, through: :goalie_favorites, source: :goalie
+  has_many :favorites
+  has_many :teams, through: :favorites, class_name: "Team", foreign_key: :favoritable_id
+  has_many :players, through: :favorites, class_name: "Player", foreign_key: :favoritable_id
+  has_many :goalies, through: :favorites, class_name: "Goalie", foreign_key: :favoritable_id
 
   def to_param
     username
