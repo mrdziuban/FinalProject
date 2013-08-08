@@ -13,4 +13,21 @@ module ApplicationHelper
       link_to title, {sort: column, direction: direction}, {:class => css_class}
     end
   end
+
+  def season_url_builder(params, season)
+    if params[:sort]
+      if params[:team_id]
+        return {sort: params[:sort], direction: params[:direction],
+                season: season, team_id: params[:team_id]}
+      else
+        return {sort: params[:sort], direction: params[:direction], season: season}
+      end
+    else
+      if params[:team_id]
+        return {season: season, team_id: params[:team_id]}
+      else
+        return {season: season}
+      end
+    end
+  end
 end

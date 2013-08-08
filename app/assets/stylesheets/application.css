@@ -734,8 +734,9 @@ h2.tickets-link > a:hover {
 /* Games index (schedule) => views/games/index.html.erb */
 
 .games-container {
+  position: relative;
   color: white;
-  width: 800px;
+  width: 850px;
   border: 3px solid #99000A;
   border-radius: 3px;
   background: #292929;
@@ -745,6 +746,7 @@ h2.tickets-link > a:hover {
 #games-index {
   margin: auto;
   text-align: center;
+  padding-top: 10px;
 }
 
 #games-index th {
@@ -804,17 +806,40 @@ h2.tickets-link > a:hover {
 }
 
 .season-selector {
-  margin: auto;
-  text-align: center;
+  position: absolute;
+  left: 10px;
+  top: 15px;
 }
 
 .season-selector a {
   font-size: 20px;
   text-shadow: 1px 1px 1px #000;
+  display: none;
 }
 
 .season-selector a:hover {
   color: white;
+}
+
+.season-selector h3 {
+  margin-bottom: 0;
+  margin-top: 5px;
+  color: #99000A;
+  text-shadow: 1px 1px 1px #000;
+  margin-bottom: 10px;
+}
+
+.season-selector h3:hover {
+  cursor: pointer;
+  color: white;
+}
+
+.season-selector h3:hover ul a {
+  display: block;
+}
+
+ul.season-list {
+  margin-top: 0;
 }
 
 /*============================================================================*/
