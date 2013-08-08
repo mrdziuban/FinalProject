@@ -115,9 +115,15 @@
       var meth = "DELETE"
     }
 
+    var params = {
+      id: "<%= @player.id %>",
+      type: "Player"
+    };
+
     $.ajax({
-      url: "<%= player_fav_url(@player.id) %>",
+      url: "<%= favorites_url %>",
       type: meth,
+      data: params,
       success: function() {
         $(".favorite-buttons").toggleClass("favorited", buttonClicked == "favorite");
       },
