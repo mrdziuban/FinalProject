@@ -19,12 +19,12 @@
 
   <section id="players-home">
     <h2><a href="<%= players_url %>">PLAYERS</a></h2>
-    <a class="players-pic" href="<%= players_url %>"><img class="players-pic" src="players.jpg"><span class="players-hidden">PLAYER STATS</span></a>
+    <a class="players-pic" href="<%= players_url %>"><%= image_tag "players.jpg", :class => "players-pic" %><span class="players-hidden">PLAYER STATS</span></a>
   </section>
 
   <section id="games-home">
     <h2><a href="#">GAMES</a></h2>
-    <a class="games-pic" href="<%= games_url %>"><img class="games-pic" src="games.jpg"><span class="games-hidden">SCHEDULE</span></a>
+    <a class="games-pic" href="<%= games_url %>"><%= image_tag "games.jpg", :class => "games-pic" %><span class="games-hidden">SCHEDULE</span></a>
   </section>
 </section>
 
