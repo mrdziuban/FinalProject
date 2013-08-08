@@ -282,8 +282,16 @@ a.teams-sprite {
   border-radius: 2px;
 }
 
-img.players-pic, img.games-pic {
+img.games-pic {
   width: 416px;
+  height: 88px;
+  margin-top: 0px;
+  border: 2px solid #292929;
+  border-radius: 2px;
+}
+
+img.players-pic, img.goalies-pic {
+  width: 208px;
   height: 88px;
   margin-top: 0px;
   border: 2px solid #292929;
@@ -293,13 +301,29 @@ img.players-pic, img.games-pic {
 span.players-hidden {
   -webkit-transition: all 0.2s ease-in-out;
   opacity: 0;
-  padding: 21px 64px;
+  padding: 26px 12px;
   position: absolute;
-  font-size: 40px;
-  left: 23px;
+  left: 19px;
   top: 73px;
   z-index: 1000;
   background: #292929;
+  font-size: 32px;
+}
+
+span.goalies-hidden {
+  -webkit-transition: all 0.2s ease-in-out;
+  opacity: 0;
+  padding: 26px 36px;
+  position: absolute;
+  left: 236px;
+  top: 73px;
+  z-index: 1000;
+  background: #292929;
+  font-size: 32px;
+}
+
+a.goalies-pic:hover span.goalies-hidden {
+  opacity: 0.9;
 }
 
 a.players-pic:hover span.players-hidden {
