@@ -4,23 +4,18 @@ GameDay::Application.routes.draw do
 
   resources :users, only: [:show]
   get "/standings" => "teams#index"
-  resources :players, only: :index
-  resources :players, only: :show do
-    post "fav" => "player_favorites#create"
-    delete "fav" => "player_favorites#destroy"
-  end
+  resources :players, only: [:index, :show]
+
   resources :goalies, only: :index
-  resources :goalies, only: :show, as: "goalie" do
-    post "fav" => "goalie_favorites#create", as: "fav"
-    delete "fav" => "goalie_favorites#destroy"
-  end
+  resources :goalies, only: :show, as: "goalie"
+
   resources :games, only: [:index, :show]
 
   resources :teams, only: :show, path: "" do
     resources :games, only: [:index]
-    post "fav" => "team_favorites#create", as: "fav"
-    delete "fav" => "team_favorites#destroy"
   end
+
+  resource :favorites, only: [:create, :destroy]
 
   root to: "home#index"
 end
