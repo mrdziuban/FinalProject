@@ -9,7 +9,7 @@ class Team < ActiveRecord::Base
   has_many :goalies, class_name: "Goalie", foreign_key: "team_abbrev", primary_key: "abbrev"
   has_many :home_games, class_name: "Game", foreign_key: "home", primary_key: "abbrev"
   has_many :away_games, class_name: "Game", foreign_key: "away", primary_key: "abbrev"
-  has_many :favorites, foreign_key: :favoritable_id, conditions: {favoritable_type: "Team"}
+  has_many :favorites, foreign_key: :favoritable_id, conditions: {favoritable_type: "Team"}, dependent: :destroy
   has_many :users, through: :favorites
 
   def to_param
