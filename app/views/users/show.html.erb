@@ -8,7 +8,17 @@
   }
 </style>
 
-<h1>User show page</h1>
+<% if @user.profile_background_file_name.nil? %>
+  <%= image_tag "default_user_background.jpg", :class => "default-user-background" %>
+<% else %>
+  <%= image_tag @user.profile_background.url, :class => "user-background" %>
+<% end %>
+
+<%= form_for @user, html: {:class => "user-background-upload"} do |f| %>
+  <%= f.label :background_image, "Upload background image (larger than 1920x1080 for best results)" %><br>
+  <%= f.file_field :profile_background %><br>
+  <%= f.submit "Update" %>
+<% end %>
 
 <% if @user.favorites.empty? %>
   <section class="no-favorites group">

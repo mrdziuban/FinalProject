@@ -349,6 +349,21 @@ a.games-pic:hover span.games-hidden {
 /*============================================================================*/
 /* Profile page => views/users/show.html.erb */
 
+.default-user-background, .user-background {
+  width: 100%;
+  margin-top: 51px;
+  -moz-box-shadow: 0px 3px 2px #000;
+  -webkit-box-shadow: 0px 3px 2px #000;
+  box-shadow: 0px 3px 2px #000;
+}
+
+.user-background-upload {
+  position: absolute;
+  top: 65px;
+  color: white;
+  left: 15px;
+}
+
 .no-favorites {
   width: 900px;
   margin: auto;
