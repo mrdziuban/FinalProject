@@ -1,6 +1,11 @@
+<<<<<<< HEAD
+source 'http://rubygems.org'
+=======
 source 'https://rubygems.org'
-ruby '1.9.3'
+ruby "1.9.3"
+>>>>>>> a0e1117767a60b673df9a6798375384fe0e7bed7
 
+ruby '1.9.3'
 gem 'rails', '3.2.13'
 
 # Bundle edge Rails instead:
