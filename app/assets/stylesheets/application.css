@@ -352,6 +352,7 @@ a.games-pic:hover span.games-hidden {
 .image-link-container {
   position: relative;
   width: 100%;
+  margin-bottom: 35px;
 }
 
 .user-background {
@@ -440,6 +441,93 @@ a.games-pic:hover span.games-hidden {
 
 .no-favorites li a:hover {
   color: white;
+}
+
+.user-team-container {
+  position: relative;
+  background: rgba(41, 41, 41, 0.95);
+  width: 944px;
+  border: 3px solid #99000A;
+  border-radius: 3px;
+  margin: 0 auto 4px auto;
+}
+
+.user-team-container > h2 {
+  margin: 60px 0 0 251px;
+  font-size: 50px;
+  text-shadow: 1px 1px 1px #000;
+  text-align: center;
+}
+
+img.user-team-pic {
+  border: 2px solid white;
+  border-radius: 3px;
+  width: 222px;
+  position: absolute;
+  top: 25px;
+  left: 25px;
+}
+
+table.user-team-stats {
+  margin: 60px auto 0 auto;
+  text-align: center;
+}
+
+table.user-team-stats th {
+  padding: 10px 10px 3px 10px;
+  font-weight: bold;
+  font-size: 25px;
+  text-shadow: 1px 1px 1px #000;
+}
+
+table.user-team-stats td {
+  font-size: 20px;
+  font-weight: 500;
+  color: white;
+  padding-bottom: 18px;
+}
+
+.user-player-container {
+  background: rgba(41, 41, 41, 0.95);
+  width: 944px;
+  border: 3px solid #99000A;
+  border-radius: 3px;
+  margin: 0 auto 4px auto;
+}
+
+.user-player-container > h2 {
+  margin-top: 15px;
+  margin-bottom: 10px;
+  font-size: 50px;
+  text-align: center;
+  text-shadow: 1px 1px 1px #000;
+}
+
+table.user-player-stats {
+  margin: 0 auto 0 auto;
+  text-align: center;
+}
+
+table.user-player-stats th {
+  padding: 9px 9px 3px 9px;
+  font-weight: bold;
+  font-size: 25px;
+  text-shadow: 1px 1px 1px #000;
+}
+
+table.user-player-stats td {
+  font-size: 20px;
+  font-weight: 500;
+  color: white;
+  padding-bottom: 18px;
+}
+
+table.user-player-stats a {
+  color: white;
+}
+
+table.user-player-stats a:hover {
+  color: #99000A;
 }
 
 /*============================================================================*/

@@ -37,25 +37,94 @@
       <li><%= link_to "GOALIES", goalies_url %></li>
     </ul>
   </section>
+<% else %>
+  <% @user.teams.each do |team| %>
+    <section class="user-team-container">
+      <a href="<%= team_url(team) %>"><img class="user-team-pic" src="<%= team.background.url(:medium) %>"></a>
+      <h2><a href="<%= team_url(team) %>" style="color:<%= team.background_color %>"><%= team.name.upcase %></a></h2>
+      <section class="user-team-stats-table">
+        <table class="user-team-stats">
+          <thead>
+            <% stats_keys = ["GP", "W", "L", "OT", "PTS", "PT%", "G/G", "GA/G", "PP%", "PK%", "S/G", "SA/G", "FO%"] %>
+            <tr>
+              <% stats_keys.each do |key| %>
+                <th style="color: <%= team.background_color %>"><%= key %></th>
+              <% end %>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <% team.attributes.values[3..15].each do |val| %>
+                <td><%= val %></td>
+              <% end %>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </section>
+  <% end %>
+
+  <% @user.players.each do |player| %>
+    <section class="user-player-container">
+      <h2><a style="color:<%= player.team.background_color %>" href="<%= player_url(player) %>"><%= player.name.upcase %></a></h2>
+      <section class="user-player-stats-table">
+        <table class="user-player-stats">
+          <thead>
+            <% stats_keys = ["TEAM", "GP", "G", "A", "PTS", "+/-", "PIM", "PPG", "HITS", "BLOCKS", "FO%", "SHOTS", "S%"] %>
+            <tr>
+              <% stats_keys.each do |key| %>
+                <th style="color:<%= player.team.background_color %>"><%= key %></th>
+              <% end %>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td><a href="<%= team_url(player.team) %>"><%= player.team_abbrev %></a></td>
+              <td><%= player.gp %></td>
+              <td><%= player.g %></td>
+              <td><%= player.a %></td>
+              <td><%= player.pts %></td>
+              <td><%= player.plus_minus %></td>
+              <td><%= player.pim %></td>
+              <td><%= player.ppg %></td>
+              <td><%= player.hits %></td>
+              <td><%= player.blocks %></td>
+              <td><%= player.fo_perc %></td>
+              <td><%= player.shots %></td>
+              <td><%= player.shot_perc %></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </section>
+  <% end %>
 <% end %>
 
 <script>
-  $(".image-link-container").mouseenter(function () {
-    $(".photo-upload-link").fadeIn("fast");
-  });
-  $(".image-link-container").mouseleave(function () {
-    $(".photo-upload-link").fadeOut("fast");
+  $(window).load(function () {
+    $(window).scrollTo(400);
   });
 
-  $(".photo-upload-link").on("click", function () {
-    $("div.photo-upload-hidden").fadeIn("fast");
-  });
+  $(document).ready(function () {
+    $(".image-link-container").mouseenter(function () {
+      $(".photo-upload-link").fadeIn("fast");
+    });
+    $(".image-link-container").mouseleave(function () {
+      $(".photo-upload-link").fadeOut("fast");
+    });
 
-  $(".photo-upload-form").on("click", function (event) {
-    event.stopPropagation();
-  });
+    $(".photo-upload-link").on("click", function () {
+      $("div.photo-upload-hidden").fadeIn("fast");
+    });
 
-  $("div.photo-upload-hidden").on("click", function(event) {
-    $(this).fadeOut("fast");
-  });
+    $(".photo-upload-form").on("click", function (event) {
+      event.stopPropagation();
+    });
+
+    $("div.photo-upload-hidden").on("click", function(event) {
+      $(this).fadeOut("fast");
+    });
+  })
 </script>
