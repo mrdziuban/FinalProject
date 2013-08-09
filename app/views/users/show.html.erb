@@ -38,103 +38,105 @@
     </ul>
   </section>
 <% else %>
-  <% @user.teams.each do |team| %>
-    <section class="user-team-container">
-      <a href="<%= team_url(team) %>"><img class="user-team-pic" src="<%= team.background.url(:medium) %>"></a>
-      <h2><a href="<%= team_url(team) %>" style="color:<%= team.background_color %>"><%= team.name.upcase %></a></h2>
-      <section class="user-team-stats-table">
-        <table class="user-team-stats">
-          <thead>
-            <% stats_keys = ["GP", "W", "L", "OT", "PTS", "PT%", "G/G", "GA/G", "PP%", "PK%", "S/G", "SA/G", "FO%"] %>
-            <tr>
-              <% stats_keys.each do |key| %>
-                <th style="color: <%= team.background_color %>"><%= key %></th>
-              <% end %>
-            </tr>
-          </thead>
+  <section class="favorites-container">
+    <% @user.teams.each do |team| %>
+      <section class="user-team-container">
+        <a href="<%= team_url(team) %>"><img class="user-team-pic" src="<%= team.background.url(:medium) %>"></a>
+        <h2><a href="<%= team_url(team) %>" style="color:<%= team.background_color %>"><%= team.name.upcase %></a></h2>
+        <section class="user-team-stats-table">
+          <table class="user-team-stats">
+            <thead>
+              <% stats_keys = ["GP", "W", "L", "OT", "PTS", "PT%", "G/G", "GA/G", "PP%", "PK%", "S/G", "SA/G", "FO%"] %>
+              <tr>
+                <% stats_keys.each do |key| %>
+                  <th style="color: <%= team.background_color %>"><%= key %></th>
+                <% end %>
+              </tr>
+            </thead>
 
-          <tbody>
-            <tr>
-              <% team.attributes.values[3..15].each do |val| %>
-                <td><%= val %></td>
-              <% end %>
-            </tr>
-          </tbody>
-        </table>
+            <tbody>
+              <tr>
+                <% team.attributes.values[3..15].each do |val| %>
+                  <td><%= val %></td>
+                <% end %>
+              </tr>
+            </tbody>
+          </table>
+        </section>
       </section>
-    </section>
-  <% end %>
+    <% end %>
 
-  <% @user.players.each do |player| %>
-    <section class="user-player-container">
-      <h2><a style="color:<%= player.team.background_color %>" href="<%= player_url(player) %>"><%= player.name.upcase %></a></h2>
-      <section class="user-player-stats-table">
-        <table class="user-player-stats">
-          <thead>
-            <% stats_keys = ["TEAM", "GP", "G", "A", "PTS", "+/-", "PIM", "PPG", "HITS", "BLOCKS", "FO%", "SHOTS", "S%"] %>
-            <tr>
-              <% stats_keys.each do |key| %>
-                <th style="color:<%= player.team.background_color %>"><%= key %></th>
-              <% end %>
-            </tr>
-          </thead>
+    <% @user.players.each do |player| %>
+      <section class="user-player-container">
+        <h2><a style="color:<%= player.team.background_color %>" href="<%= player_url(player) %>"><%= player.name.upcase %></a></h2>
+        <section class="user-player-stats-table">
+          <table class="user-player-stats">
+            <thead>
+              <% stats_keys = ["TEAM", "GP", "G", "A", "PTS", "+/-", "PIM", "PPG", "HITS", "BLOCKS", "FO%", "SHOTS", "S%"] %>
+              <tr>
+                <% stats_keys.each do |key| %>
+                  <th style="color:<%= player.team.background_color %>"><%= key %></th>
+                <% end %>
+              </tr>
+            </thead>
 
-          <tbody>
-            <tr>
-              <td><a href="<%= team_url(player.team) %>"><%= player.team_abbrev %></a></td>
-              <td><%= player.gp %></td>
-              <td><%= player.g %></td>
-              <td><%= player.a %></td>
-              <td><%= player.pts %></td>
-              <td><%= player.plus_minus %></td>
-              <td><%= player.pim %></td>
-              <td><%= player.ppg %></td>
-              <td><%= player.hits %></td>
-              <td><%= player.blocks %></td>
-              <td><%= player.fo_perc %></td>
-              <td><%= player.shots %></td>
-              <td><%= player.shot_perc %></td>
-            </tr>
-          </tbody>
-        </table>
+            <tbody>
+              <tr>
+                <td><a href="<%= team_url(player.team) %>"><%= player.team_abbrev %></a></td>
+                <td><%= player.gp %></td>
+                <td><%= player.g %></td>
+                <td><%= player.a %></td>
+                <td><%= player.pts %></td>
+                <td><%= player.plus_minus %></td>
+                <td><%= player.pim %></td>
+                <td><%= player.ppg %></td>
+                <td><%= player.hits %></td>
+                <td><%= player.blocks %></td>
+                <td><%= player.fo_perc %></td>
+                <td><%= player.shots %></td>
+                <td><%= player.shot_perc %></td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
       </section>
-    </section>
-  <% end %>
+    <% end %>
 
-  <% @user.goalies.each do |goalie| %>
-    <section class="user-goalie-container">
-      <h2><a style="color:<%= goalie.team.background_color %>" href="<%= goalie_url(goalie) %>"><%= goalie.name.upcase %></a></h2>
-      <section class="user-goalie-stats-table">
-        <table class="user-goalie-stats">
-          <thead>
-            <% stats_keys = ["TEAM", "GP", "W", "L", "OT", "GA", "GAA", "SA", "SV", "SV%", "SO", "MIN"] %>
-            <tr>
-              <% stats_keys.each do |key| %>
-                <th style="color:<%= goalie.team.background_color %>"><%= key %></th>
-              <% end %>
-            </tr>
-          </thead>
+    <% @user.goalies.each do |goalie| %>
+      <section class="user-goalie-container">
+        <h2><a style="color:<%= goalie.team.background_color %>" href="<%= goalie_url(goalie) %>"><%= goalie.name.upcase %></a></h2>
+        <section class="user-goalie-stats-table">
+          <table class="user-goalie-stats">
+            <thead>
+              <% stats_keys = ["TEAM", "GP", "W", "L", "OT", "GA", "GAA", "SA", "SV", "SV%", "SO", "MIN"] %>
+              <tr>
+                <% stats_keys.each do |key| %>
+                  <th style="color:<%= goalie.team.background_color %>"><%= key %></th>
+                <% end %>
+              </tr>
+            </thead>
 
-          <tbody>
-            <tr>
-              <td><a href="<%= team_url(goalie.team) %>"><%= goalie.team_abbrev %></a></td>
-              <td><%= goalie.gp %></td>
-              <td><%= goalie.w %></td>
-              <td><%= goalie.l %></td>
-              <td><%= goalie.otl %></td>
-              <td><%= goalie.ga %></td>
-              <td><%= goalie.gaa %></td>
-              <td><%= goalie.sa %></td>
-              <td><%= goalie.sv %></td>
-              <td><%= goalie.sv_perc %></td>
-              <td><%= goalie.shutouts %></td>
-              <td><%= goalie.min %></td>
-            </tr>
-          </tbody>
-        </table>
+            <tbody>
+              <tr>
+                <td><a href="<%= team_url(goalie.team) %>"><%= goalie.team_abbrev %></a></td>
+                <td><%= goalie.gp %></td>
+                <td><%= goalie.w %></td>
+                <td><%= goalie.l %></td>
+                <td><%= goalie.otl %></td>
+                <td><%= goalie.ga %></td>
+                <td><%= goalie.gaa %></td>
+                <td><%= goalie.sa %></td>
+                <td><%= goalie.sv %></td>
+                <td><%= goalie.sv_perc %></td>
+                <td><%= goalie.shutouts %></td>
+                <td><%= goalie.min %></td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
       </section>
-    </section>
-  <% end %>
+    <% end %>
+  </section>
 <% end %>
 
 <script>

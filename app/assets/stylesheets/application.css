@@ -537,6 +537,10 @@ table.user-goalie-stats th {
   text-shadow: 1px 1px 1px #000;
 }
 
+section.favorites-container {
+  margin-bottom: 35px;
+}
+
 /*============================================================================*/
 /* Standings => views/teams/index.html.erb */
 
