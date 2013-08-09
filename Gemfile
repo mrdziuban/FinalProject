@@ -27,9 +27,11 @@ gem 'devise'
 gem 'nokogiri'
 gem 'i18n'
 gem 'paperclip'
+gem 'aws-sdk'
 gem 'kaminari'
 gem 'rest-client'
 gem 'addressable'
+gem 'figaro'
 
 group :development do
   gem 'better_errors'
