@@ -100,6 +100,41 @@
       </section>
     </section>
   <% end %>
+
+  <% @user.goalies.each do |goalie| %>
+    <section class="user-goalie-container">
+      <h2><a style="color:<%= goalie.team.background_color %>" href="<%= goalie_url(goalie) %>"><%= goalie.name.upcase %></a></h2>
+      <section class="user-goalie-stats-table">
+        <table class="user-goalie-stats">
+          <thead>
+            <% stats_keys = ["TEAM", "GP", "W", "L", "OT", "GA", "GAA", "SA", "SV", "SV%", "SO", "MIN"] %>
+            <tr>
+              <% stats_keys.each do |key| %>
+                <th style="color:<%= goalie.team.background_color %>"><%= key %></th>
+              <% end %>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td><a href="<%= team_url(goalie.team) %>"><%= goalie.team_abbrev %></a></td>
+              <td><%= goalie.gp %></td>
+              <td><%= goalie.w %></td>
+              <td><%= goalie.l %></td>
+              <td><%= goalie.otl %></td>
+              <td><%= goalie.ga %></td>
+              <td><%= goalie.gaa %></td>
+              <td><%= goalie.sa %></td>
+              <td><%= goalie.sv %></td>
+              <td><%= goalie.sv_perc %></td>
+              <td><%= goalie.shutouts %></td>
+              <td><%= goalie.min %></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </section>
+  <% end %>
 <% end %>
 
 <script>
