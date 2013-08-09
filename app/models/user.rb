@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  attr_accessible :username, :email, :password, :password_confirmation, :remember_me
+  attr_accessible :username, :email, :password, :password_confirmation, :remember_me, :background_image
 
   has_many :team_favorites, class_name: "Favorite", foreign_key: :user_id, conditions: {favoritable_type: "Team"}, dependent: :destroy
   has_many :teams, through: :team_favorites, foreign_key: :favoritable_id
@@ -14,6 +14,8 @@ class User < ActiveRecord::Base
 
   has_many :goalie_favorites, class_name: "Favorite", foreign_key: :user_id, conditions: {favoritable_type: "Goalie"}, dependent: :destroy
   has_many :goalies, through: :goalie_favorites, foreign_key: :favoritable_id, source: :goalie
+
+  has_attached_file :background_image, styles: {original: "1920x1080>"}
 
   def to_param
     username
