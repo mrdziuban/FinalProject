@@ -29,7 +29,7 @@ gem 'i18n'
 gem 'paperclip'
 gem 'kaminari'
 gem 'rest-client'
-require 'addressable/uri'
+gem 'addressable'
 
 group :development do
   gem 'better_errors'
