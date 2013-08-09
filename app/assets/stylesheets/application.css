@@ -301,7 +301,7 @@ img.players-pic, img.goalies-pic {
 span.players-hidden {
   -webkit-transition: all 0.2s ease-in-out;
   opacity: 0;
-  padding: 26px 12px;
+  padding: 26px 32px;
   position: absolute;
   left: 19px;
   top: 73px;
