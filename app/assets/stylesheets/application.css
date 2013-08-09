@@ -347,6 +347,41 @@ a.games-pic:hover span.games-hidden {
 }
 
 /*============================================================================*/
+/* Profile page => views/users/show.html.erb */
+
+.no-favorites {
+  width: 900px;
+  margin: auto;
+  background: rgba(41, 41, 41, 0.95);
+  text-align: center;
+  border: 3px solid #99000A;
+  border-radius: 3px;
+  margin-top: 10%;
+}
+
+.no-favorites h2 {
+  width: 700px;
+  margin: 15px auto;
+  color: white;
+  text-shadow: 1px 1px 1px #000;
+}
+
+.no-favorites ul {
+  width: 570px;
+  margin: auto;
+}
+
+.no-favorites li {
+  float: left;
+  padding: 0 35px 15px 35px;
+  font-size: 30px;
+}
+
+.no-favorites li a:hover {
+  color: white;
+}
+
+/*============================================================================*/
 /* Standings => views/teams/index.html.erb */
 
 .standings {

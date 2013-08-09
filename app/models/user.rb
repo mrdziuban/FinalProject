@@ -18,4 +18,8 @@ class User < ActiveRecord::Base
   def to_param
     username
   end
+
+  def favorites
+    team_favorites + player_favorites + goalie_favorites
+  end
 end

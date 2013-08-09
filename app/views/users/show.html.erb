@@ -1,6 +1,6 @@
 <style>
   body { 
-    background: url(<%= asset_path "parade.jpg" %>) no-repeat center center fixed; 
+    background: url(<%= asset_path "olympics.jpg" %>) no-repeat center center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -10,3 +10,13 @@
 
 <h1>User show page</h1>
 
+<% if @user.favorites.empty? %>
+  <section class="no-favorites group">
+    <h2>Stats for teams and players you favorite will show up here. Go favorite some!</h2>
+    <ul>
+      <li><%= link_to "TEAMS", standings_url %></li>
+      <li><%= link_to "SKATERS", players_url %></li>
+      <li><%= link_to "GOALIES", goalies_url %></li>
+    </ul>
+  </section>
+<% end %>
