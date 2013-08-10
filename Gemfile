@@ -32,6 +32,7 @@ gem 'kaminari'
 gem 'rest-client'
 gem 'addressable'
 gem 'figaro'
+gem 'pg_search', '~> 0.5.7'
 
 group :development do
   gem 'better_errors'

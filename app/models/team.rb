@@ -1,6 +1,7 @@
 require 'open-uri'
 
 class Team < ActiveRecord::Base
+  include PgSearch
   attr_accessible :abbrev, :background, :background_color, :faceoff_perc, :gapg, :gp, :gpg, :losses, :name, :ot_losses, :pk_perc, :players_pic, :point_perc, :points, :pp_perc, :sapg, :spg, :wins
 
   has_attached_file :background, styles: {icon: "39x22", medium: "222x125"}
@@ -11,6 +12,7 @@ class Team < ActiveRecord::Base
   has_many :away_games, class_name: "Game", foreign_key: "away", primary_key: "abbrev"
   has_many :favorites, foreign_key: :favoritable_id, conditions: {favoritable_type: "Team"}, dependent: :destroy
   has_many :users, through: :favorites
+  multisearchable against: [:name]
 
   def to_param
     abbrev

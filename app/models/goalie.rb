@@ -1,12 +1,14 @@
 require 'open-uri'
 
 class Goalie < ActiveRecord::Base
+  include PgSearch
   attr_accessible :age, :ga, :gaa, :gp, :image, :l, :min, :name, :otl, :sa, :shutouts, :sv, :sv_perc, :team_abbrev, :w
 
   has_attached_file :image, styles: {original: "65x90"}
   belongs_to :team, foreign_key: "team_abbrev", primary_key: "abbrev"
   has_many :favorites, foreign_key: :favoritable_id, conditions: {favoritable_type: "Goalie"}, dependent: :destroy
   has_many :users, through: :favorites
+  multisearchable against: [:name]
 
 
 
