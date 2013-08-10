@@ -1,6 +1,7 @@
 GameDay::Application.routes.draw do
   devise_for :users, path: ""
   match "user_root" => "home#index", :path => ""
+  post "/search" => "home#search", as: "search"
 
   resources :users, only: [:show, :update]
   get "/standings" => "teams#index"
