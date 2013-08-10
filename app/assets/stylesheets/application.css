@@ -1294,5 +1294,20 @@ table#goalie-stats td, table#goalie-stats a {
   text-align: center;
 }
 
+.analyses-list {
+  margin: 50px 30px;
+  border-bottom: 1px solid #99000A;
+}
+
+.analyses-list > li {
+  border-top: 1px solid #99000A;
+  padding: 10px;
+  font-size: 22px;
+}
+
+.analyses-list > li > a:hover {
+  color: white;
+}
+
 
 

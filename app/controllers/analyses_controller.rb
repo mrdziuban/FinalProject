@@ -1,6 +1,6 @@
 class AnalysesController < ApplicationController
   def index
-    @analyses = Analysis.page(params[:page]).per(50)
+    @analyses = Analysis.all
   end
 
   def new
