@@ -124,12 +124,18 @@ span.navbar-float-right > li {
 }
 
 span.navbar-float-right > li > input {
-  width: 200px;
+  width: 190px;
   margin: 10px 20px;
   text-align: left;
   padding: 0 5px;
   background: rgba(140, 130, 134, 0.3);
   color: white;
+  -moz-transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+}
+
+span.navbar-float-right > li > input:focus {
+  width: 230px;
 }
 
 .search-results-hidden {
