@@ -1,0 +1,39 @@
+<div class="new-analysis-hidden">
+  <section class="new-analysis">
+    <h2>New analysis</h2>
+    <%= form_for :analysis do |f| %>
+      <h3>Title</h3>
+      <%= f.text_field :title %>
+
+      <h3>Upload PDF (no spaces in file name)</h3>
+      <%= f.file_field :pdf, :class => "pdf-upload" %><br>
+      <%= f.submit "Create" %>
+    <% end %>
+  </section>
+</div>
+
+<section class="analyses-container">
+  <h3 class="add-analysis-link">Add your own analysis</h3>
+
+  <ul>
+    <% @analyses.each do |a| %>
+      <li><%= link_to a.title, analysis_url(a) %></li>
+    <% end %>
+  </ul>
+</section>
+
+<script>
+  $(document).ready(function () {
+    $("h3.add-analysis-link").on("click", function () {
+      $("div.new-analysis-hidden").fadeIn("fast");
+    });
+
+    $(".new-analysis").on("click", function (event) {
+      event.stopPropagation();
+    });
+
+    $("div.new-analysis-hidden").on("click", function () {
+      $(this).fadeOut("fast");
+    });
+  });
+</script>

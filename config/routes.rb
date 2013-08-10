@@ -12,13 +12,13 @@ GameDay::Application.routes.draw do
 
   resources :games, only: [:index, :show]
 
+  resources :analyses, except: [:new, :edit]
+
   resources :teams, only: :show, path: "" do
     resources :games, only: [:index]
   end
 
   resource :favorites, only: [:create, :destroy]
-
-  resources :analyses
 
   root to: "home#index"
 end
