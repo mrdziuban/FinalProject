@@ -70,6 +70,7 @@
 
     $("span.navbar-float-right > li > input").keypress(function (event) {
       if (event.which === 13) {
+        var that = this;
         var data = {query: $(this).val()};
 
         $.ajax({
@@ -78,6 +79,7 @@
           data: data,
           success: function (data) {
             $(".search-results").html(data);
+            $(that).blur();
             $(".search-results-hidden").fadeIn("fast");
           },
           error: function () {
