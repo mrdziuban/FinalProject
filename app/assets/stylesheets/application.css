@@ -1254,6 +1254,7 @@ table#goalie-stats td, table#goalie-stats a {
 
 .analyses-container {
   width: 900px;
+  min-height: 100px;
   margin: 8% auto;
   border: 3px solid #99000A;
   border-radius: 3px;
@@ -1261,14 +1262,20 @@ table#goalie-stats td, table#goalie-stats a {
 }
 
 .add-analysis-link {
-  margin-top: 10px;
-  margin-left: 10px;
+  position: absolute;
+  top: 85px;
+  margin-left: 148px;
   color: #99000A;
+  font-size: 18px;
 }
 
 .add-analysis-link:hover {
   color: white;
   cursor: pointer;
+}
+
+.analyses-header {
+  text-align: center;
 }
 
 

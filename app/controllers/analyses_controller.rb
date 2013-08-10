@@ -10,10 +10,9 @@ class AnalysesController < ApplicationController
   def create
     @analysis = Analysis.new(params[:analysis])
     @analysis.user_id = current_user.id
-    if @analysis.save
-      redirect_to analysis_url(@analysis)
-    else
-      render :new
+    @analysis.save
+    if request.xhr?
+      render partial: "analyses", locals: {analyses: Analysis.all}
     end
   end
 
