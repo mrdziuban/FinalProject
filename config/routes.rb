@@ -18,5 +18,7 @@ GameDay::Application.routes.draw do
 
   resource :favorites, only: [:create, :destroy]
 
+  resources :analyses
+
   root to: "home#index"
 end
