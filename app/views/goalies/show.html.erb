@@ -1,18 +1,20 @@
+<% team = @goalie.team %>
+
 <style>
   body {
-    background: <%= @goalie.team.background_color %>;
+    background: <%= team.background_color %>;
   }
 
   .goalie-header-container > h2 {
     margin: 15px auto 0 auto;
-    color: <%= @goalie.team.background_color %>;
+    color: <%= team.background_color %>;
     font-size: 70px;
     text-shadow: 1px 1px 1px #000;
   }
 
   input[type=submit] {
-    <% start = @goalie.team.background_color %>
-    <% final = @goalie.team.luminance(-0.4) %>
+    <% start = team.background_color %>
+    <% final = team.luminance(-0.4) %>
     border-radius: 3px;
     width: 80px;
     height: 30px;
@@ -26,32 +28,36 @@
   }
 
   input[type=submit]:active {
-    <% start = @goalie.team.luminance(-0.15) %>
-    <% final = @goalie.team.luminance(-0.4) %>
+    <% start = team.luminance(-0.15) %>
+    <% final = team.luminance(-0.4) %>
     background: -webkit-gradient(linear, left top, left bottom, from(<%= final %>), to(<%= start %>));
     background: -moz-linear-gradient(top, <%= final %>, <%= start %>);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='<%= final %>', endColorstr='<%= start %>');
   }
 
   .navbar a {
-    color: <%= @goalie.team.luminance(0.3) %>;
+    color: <%= team.luminance(0.3) %>;
   }
 
   .navbar .players-option {
-    color: <%= @goalie.team.luminance(0.3) %>;
+    color: <%= team.luminance(0.3) %>;
   }
 
   table#goalie-stats th {
     padding: 25px 15px 3px 15px;
     font-weight: bold;
     font-size: 25px;
-    color: <%= @goalie.team.background_color %>;
+    color: <%= team.background_color %>;
     text-shadow: 1px 1px 1px #000;
   }
 
   table#goalie-stats td a:hover {
-    color: <%= @goalie.team.background_color %>;
+    color: <%= team.background_color %>;
     font-weight: bold;
+  }
+
+  input[type=text] {
+    border: 1px solid <%= team.background_color %>;
   }
 </style>
 

@@ -90,6 +90,10 @@
   .schedule-link:hover {
     color: #292929;
   }
+
+  input[type=text] {
+    border: 1px solid <%= @team.background_color %>;
+  }
 </style>
 
 <img class="team-background" src="<%= @team.background.url %>">
