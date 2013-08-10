@@ -33,11 +33,19 @@
             </ul>
           </li>
           <li><a href="#">FORUM</a></li>
-          <li><%= link_to "SIGN OUT", destroy_user_session_url, method: :delete %></li>
+          <span class="navbar-float-right">
+            <li><input type="text" placeholder="Search teams and players..." class="search-bar"></li>
+            <li><%= link_to "SIGN OUT", destroy_user_session_url, method: :delete %></li>
+          </span>
         </ul>
       </nav>
     </header>
   <% end %>
+
+  <div class="search-results-hidden">
+    <section class="search-results">
+    </section>
+  </div>
 
 <%= yield %>
 
@@ -58,6 +66,33 @@
     });
     $(".players-option").mouseleave(function () {
       $(".players-sidedrop").animate({width: "toggle"}, "fast");
+    });
+
+    $("span.navbar-float-right > li > input").keypress(function (event) {
+      if (event.which === 13) {
+        var data = {query: $(this).val()};
+
+        $.ajax({
+          url: "<%= search_url %>",
+          type: "POST",
+          data: data,
+          success: function (data) {
+            $(".search-results").html(data);
+            $(".search-results-hidden").fadeIn("fast");
+          },
+          error: function () {
+            console.log("error");
+          }
+        });
+      }
+    });
+
+    $(".search-results").on("click", function (event) {
+      event.stopPropagation();
+    });
+
+    $("div.search-results-hidden").on("click", function () {
+      $(this).fadeOut("fast");
     })
   });
 </script>

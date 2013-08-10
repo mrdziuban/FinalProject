@@ -1,0 +1,33 @@
+<h2 class="search-header">Search results for "<%= query %>"</h2>
+
+<div class="search-results-container">
+  <% if teams.length > 0 %>
+    <h3 class="search-header">Teams</h3>
+    <ul>
+      <% teams.each do |team| %>
+        <% team = team.searchable %>
+        <li><%= link_to team.name, team_url(team), :class => "search-link" %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <% if players.length > 0 %>
+    <h3 class="search-header">Skaters</h3>
+    <ul>
+      <% players.each do |player| %>
+        <% player = player.searchable %>
+        <li><%= link_to player.name, player_url(player), :class => "search-link" %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <% if goalies.length > 0 %>
+    <h3 class="search-header">Goalies</h3>
+    <ul>
+      <% goalies.each do |goalie| %>
+        <% goalie = goalie.searchable %>
+        <li><%= link_to goalie.name, goalie_url(goalie), :class => "search-link" %></li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
