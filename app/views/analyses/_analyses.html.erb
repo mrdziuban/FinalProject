@@ -1,5 +1,5 @@
 <ul class="analyses-list">
   <% analyses.each do |a| %>
-    <li><%= link_to a.title, analysis_url(a) %></li>
+    <li><%= link_to a.title, analysis_url(a) %><span class="analysis-author"><%= link_to a.user.username, user_url(a.user) %></span></li>
   <% end %>
 </ul>

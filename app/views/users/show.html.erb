@@ -15,7 +15,9 @@
     <%= image_tag @user.profile_background.url, :class => "user-background" %>
   <% end %>
 
-  <h2 class="photo-upload-link">Edit photo</a>
+  <% if @user == current_user %>
+    <h2 class="photo-upload-link">Edit photo</a>
+  <% end %>
 </div>
 
 <div class="photo-upload-hidden">
