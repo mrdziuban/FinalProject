@@ -1,3 +1,20 @@
+<section class="analysis-header-container">
+  <h2><%= @analysis.title %></h2>
+  <h3>by <%= @analysis.user.username %></h3>
+  <% if @analysis.user == current_user %>
+    <ul class="edit-delete-analysis">
+      <li><%= button_to "EDIT", :class => "edit-analysis" %></li>
+      <li><%= button_to "DELETE", analysis_url(@analysis), method: :delete %></li>
+    </ul>
+  <% end %>
+</section>
+
 <div class="pdf-container">
   <object class="analysis-pdf" type="application/pdf" data="<%= @analysis.pdf.url %>"></object>
 </div>
+
+<script>
+  $(document).ready(function () {
+
+  });
+</script>

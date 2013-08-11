@@ -36,5 +36,6 @@ class AnalysesController < ApplicationController
   def destroy
     @analysis = Analysis.find(params[:id])
     @analysis.destroy
+    redirect_to analyses_url
   end
 end
