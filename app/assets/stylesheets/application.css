@@ -1309,5 +1309,18 @@ table#goalie-stats td, table#goalie-stats a {
   color: white;
 }
 
+.pdf-container {
+  position: fixed;
+  left: 0;
+  top: 52px;
+  width: 100%;
+  height: 100%;
+}
+
+.analysis-pdf {
+  width: 100%;
+  height: 92.8%;
+}
+
 
 
