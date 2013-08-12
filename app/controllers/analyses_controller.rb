@@ -26,15 +26,23 @@ class AnalysesController < ApplicationController
 
   def update
     @analysis = Analysis.find(params[:id])
-    @analysis.update_attributes(params[:analysis])
-    if request.xhr?
-      render partial: "analysis", locals: {analysis: @analysis}
+    if @analysis.user != current_user
+      render nothing: true
+    else
+      @analysis.update_attributes(params[:analysis])
+      if request.xhr?
+        render partial: "analysis", locals: {analysis: @analysis}
+      end
     end
   end
 
   def destroy
     @analysis = Analysis.find(params[:id])
-    @analysis.destroy
-    redirect_to analyses_url
+    if @analysis.user != current_user
+      render nothing: true
+    else
+      @analysis.destroy
+      redirect_to analyses_url
+    end
   end
 end
