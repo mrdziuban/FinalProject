@@ -1,20 +1,61 @@
-<section class="analysis-header-container">
-  <h2><%= @analysis.title %></h2>
-  <h3>by <%= @analysis.user.username %></h3>
-  <% if @analysis.user == current_user %>
-    <ul class="edit-delete-analysis">
-      <li><%= button_to "EDIT", :class => "edit-analysis" %></li>
-      <li><%= button_to "DELETE", analysis_url(@analysis), method: :delete %></li>
-    </ul>
-  <% end %>
-</section>
+<div class="edit-analysis-hidden">
+  <section class="edit-analysis">
+    <div class="form-submitting-hidden"></div>
+    <h2>Edit analysis</h2>
+    <%= form_for :analysis do |f| %>
+      <h3>Title</h3>
+      <input type="text" name="analysis[title]" value="<%= @analysis.title %>">
 
-<div class="pdf-container">
-  <object class="analysis-pdf" type="application/pdf" data="<%= @analysis.pdf.url %>"></object>
+      <h3>Upload PDF (no spaces in file name)</h3>
+      <%= f.file_field :pdf, :class => "pdf-upload" %><br>
+      <input type="hidden" name="_method" value="put">
+      <%= f.submit "Update", :class => "update-analysis" %>
+    <% end %>
+  </section>
 </div>
+
+<section class="analysis-container">
+  <%= render partial: "analysis", locals: {analysis: @analysis} %>
+</section>
 
 <script>
   $(document).ready(function () {
+    $(".edit-analysis-button").on("click", function () {
+      $("div.edit-analysis-hidden").fadeIn("fast");
+    });
 
+    $(".edit-analysis").on("click", function (event) {
+      event.stopPropagation();
+    });
+
+    $("div.edit-analysis-hidden").on("click", function () {
+      $(this).fadeOut("fast");
+    });
+
+    $(".update-analysis").on("click", function (event) {
+      $(".form-submitting-hidden").html('<%= image_tag "loading.gif", :class => "loading-gif" %>');
+      $(".form-submitting-hidden").fadeIn("fast");
+      event.preventDefault();
+
+      var that = this;
+      var formData = new FormData(that.form);
+
+      $.ajax({
+        url: that.form.action,
+        contentType: false,
+        processData: false,
+        type: "PUT",
+        data: formData,
+        success: function (data) {
+          $("div.edit-analysis-hidden").fadeOut("fast");
+          $(".form-submitting-hidden").html("");
+          $(that.form).each(function () {this.reset()});
+          $(".analysis-container").html(data);
+        },
+        error: function () {
+          console.log("error");
+        }
+      })
+    })
   });
 </script>

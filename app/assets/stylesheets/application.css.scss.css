@@ -236,7 +236,7 @@ input[type=submit] {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#99000A', endColorstr='#66000A');
 }
 
-input[type=submit]:active {
+input[type=submit]:active, .fake-button:active {
   background: -webkit-gradient(linear, left top, left bottom, from(#66000A), to(#88000A));
   background: -moz-linear-gradient(top,  #66000A,  #88000A);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#66000A', endColorstr='#88000A');
@@ -1232,7 +1232,7 @@ table#goalie-stats td, table#goalie-stats a {
 /*============================================================================*/
 /* Analyses index => views/analyses/index.html.erb */
 
-.new-analysis-hidden {
+.new-analysis-hidden, .edit-analysis-hidden {
   display: none;
   position: fixed;
   width: 100%;
@@ -1243,7 +1243,7 @@ table#goalie-stats td, table#goalie-stats a {
   z-index: 2000;
 }
 
-.new-analysis {
+.new-analysis, .edit-analysis {
   position: relative;
   text-align: center;
   border: 3px solid #99000A;
@@ -1253,16 +1253,16 @@ table#goalie-stats td, table#goalie-stats a {
   background: #292929;
 }
 
-.new-analysis h2 {
+.new-analysis h2, .edit-analysis h2 {
   color: #99000A;
 }
 
-.new-analysis h3 {
+.new-analysis h3, .edit-analysis h3 {
   margin-bottom: 5px;
   color: white;
 }
 
-.new-analysis .pdf-upload {
+.new-analysis .pdf-upload, .edit-analysis .pdf-upload {
   color: white;
 }
 
@@ -1351,6 +1351,21 @@ table#goalie-stats td, table#goalie-stats a {
   color: #99000A;
   padding: 5px;
   margin: 0;
+}
+
+.edit-item {
+  margin-top: 24px;
+}
+
+.fake-button {
+  border-radius: 3px;
+  color: white;
+  font-size: 12px;
+  border: 1px solid #66000A;
+  background: -webkit-gradient(linear, left top, left bottom, from(#99000A), to(#66000A));
+  background: -moz-linear-gradient(top,  #99000A,  #66000A);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#99000A', endColorstr='#66000A');
+  padding: 7px 15px;
 }
 
 .edit-delete-analysis {

@@ -26,10 +26,9 @@ class AnalysesController < ApplicationController
 
   def update
     @analysis = Analysis.find(params[:id])
-    if @analysis.update_attributes(params[:analysis])
-      redirect_to analysis_url(@analysis)
-    else
-      render :edit
+    @analysis.update_attributes(params[:analysis])
+    if request.xhr?
+      render partial: "analysis", locals: {analysis: @analysis}
     end
   end
 
