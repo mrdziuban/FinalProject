@@ -33,6 +33,7 @@ gem 'rest-client'
 gem 'addressable'
 gem 'figaro'
 gem 'pg_search', '~> 0.5.7'
+gem 'chartkick'
 
 group :development do
   gem 'better_errors'
