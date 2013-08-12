@@ -1369,6 +1369,15 @@ table#goalie-stats td, table#goalie-stats a {
   margin: 0;
 }
 
+.analysis-header-container > .charts-link {
+  padding: 0;
+}
+
+.analysis-header-container > .charts-link:hover {
+  color: white;
+  cursor: pointer;
+}
+
 .edit-item {
   margin-top: 24px;
 }

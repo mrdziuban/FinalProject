@@ -1,10 +1,14 @@
 <section class="analysis-header-container">
-  <h2><%= @analysis.title %></h2>
-  <h3>by <%= @analysis.user.username %></h3>
-  <% if @analysis.user == current_user %>
+  <h2><%= analysis.title %></h2>
+  <h3>by <%= analysis.user.username %></h3>
+  <% if analysis.id == 1  %>
+    <h3 class="charts-link">View charts</h3>
+  <% end %>
+  <h3></h3>
+  <% if analysis.user == current_user %>
     <ul class="edit-delete-analysis">
       <li class="edit-item"><span class="edit-analysis-button fake-button">EDIT</span></li>
-      <li><%= button_to "DELETE", analysis_url(@analysis), method: :delete %></li>
+      <li><%= button_to "DELETE", analysis_url(analysis), method: :delete %></li>
     </ul>
   <% end %>
 </section>
