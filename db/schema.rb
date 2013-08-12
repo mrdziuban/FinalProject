@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130812205119) do
+ActiveRecord::Schema.define(:version => 20130812210618) do
 
   create_table "analyses", :force => true do |t|
     t.string   "title"
@@ -38,6 +38,8 @@ ActiveRecord::Schema.define(:version => 20130812205119) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
+
+  add_index "forums", ["team_abbrev"], :name => "index_forums_on_team_abbrev"
 
   create_table "games", :force => true do |t|
     t.date     "date"
