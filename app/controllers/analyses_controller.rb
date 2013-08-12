@@ -3,10 +3,6 @@ class AnalysesController < ApplicationController
     @analyses = Analysis.all
   end
 
-  def new
-    @analysis = Analysis.new
-  end
-
   def create
     @analysis = Analysis.new(params[:analysis])
     @analysis.user_id = current_user.id
@@ -17,10 +13,6 @@ class AnalysesController < ApplicationController
   end
 
   def show
-    @analysis = Analysis.find(params[:id])
-  end
-
-  def edit
     @analysis = Analysis.find(params[:id])
   end
 
