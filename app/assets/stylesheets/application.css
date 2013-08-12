@@ -1373,9 +1373,8 @@ table#goalie-stats td, table#goalie-stats a {
   padding: 0;
 }
 
-.analysis-header-container > .charts-link:hover {
+.analysis-header-container > .charts-link > a:hover {
   color: white;
-  cursor: pointer;
 }
 
 .edit-item {

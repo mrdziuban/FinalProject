@@ -13,6 +13,9 @@ GameDay::Application.routes.draw do
   resources :games, only: [:index, :show]
 
   resources :analyses, except: [:new, :edit]
+  resources :analyses, only: [:show] do
+    get "/charts" => "analyses#charts"
+  end
 
   resources :teams, only: :show, path: "" do
     resources :games, only: [:index]

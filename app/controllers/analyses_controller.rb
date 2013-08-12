@@ -37,4 +37,7 @@ class AnalysesController < ApplicationController
       redirect_to analyses_url
     end
   end
+
+  def charts
+  end
 end
