@@ -12,6 +12,7 @@ class Team < ActiveRecord::Base
   has_many :away_games, class_name: "Game", foreign_key: "away", primary_key: "abbrev"
   has_many :favorites, foreign_key: :favoritable_id, conditions: {favoritable_type: "Team"}, dependent: :destroy
   has_many :users, through: :favorites
+  has_one :forum, foreign_key: :team_abbrev, primary_key: :abbrev
   multisearchable against: [:name]
 
   def to_param
