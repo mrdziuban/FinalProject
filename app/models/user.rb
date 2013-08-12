@@ -19,6 +19,8 @@ class User < ActiveRecord::Base
 
   has_many :analyses
 
+  validates :username, presence: true, uniqueness: true
+
   def to_param
     username
   end

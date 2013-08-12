@@ -4,4 +4,6 @@ class Analysis < ActiveRecord::Base
   validates_attachment_content_type :pdf, content_type: ["application/pdf"]
 
   belongs_to :user
+
+  validates :title, :pdf, presence: true
 end
