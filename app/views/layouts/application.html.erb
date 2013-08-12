@@ -69,9 +69,7 @@
       $(".players-sidedrop").animate({width: "toggle"}, "fast");
     });
 
-    var names = <%= raw Team.pluck("name") %>;
-    names = names.concat(<%= raw Player.pluck("name") %>);
-    names = names.concat(<%= raw Goalie.pluck("name") %>);
+    var names = <%= raw Team.pluck("name") + Player.pluck("name") + Goalie.pluck("name") %>;
 
     $(".search-bar").typeahead({
       name: "names",
