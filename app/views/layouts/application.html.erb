@@ -69,7 +69,16 @@
       $(".players-sidedrop").animate({width: "toggle"}, "fast");
     });
 
-    $("span.navbar-float-right > li > input").keypress(function (event) {
+    var names = <%= raw Team.pluck("name") %>;
+    names = names.concat(<%= raw Player.pluck("name") %>);
+    names = names.concat(<%= raw Goalie.pluck("name") %>);
+
+    $(".search-bar").typeahead({
+      name: "names",
+      local: names
+    });
+
+    $("span.navbar-float-right > li input").keypress(function (event) {
       if (event.which === 13) {
         var that = this;
         var data = {query: $(this).val()};

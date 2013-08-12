@@ -136,7 +136,7 @@ span.navbar-float-right > li {
   float: left;
 }
 
-span.navbar-float-right > li > input {
+span.navbar-float-right > li input {
   width: 190px;
   margin: 10px 20px;
   text-align: left;
@@ -147,7 +147,7 @@ span.navbar-float-right > li > input {
   -webkit-transition: all 0.5s;
 }
 
-span.navbar-float-right > li > input:focus {
+span.navbar-float-right > li input:focus {
   width: 230px;
 }
 
