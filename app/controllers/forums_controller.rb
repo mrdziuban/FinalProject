@@ -4,6 +4,6 @@ class ForumsController < ApplicationController
   end
 
   def show
-
+    @forum = Forum.find(params[:id])
   end
 end

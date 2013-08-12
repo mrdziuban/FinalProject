@@ -1346,6 +1346,9 @@ table#goalie-stats td, table#goalie-stats a {
   font-size: 18px;
 }
 
+/*============================================================================*/
+/* Analysis show => views/analyses/show.html.erb */
+
 .analysis-header-container {
   position: relative;
   margin-top: 50px;
@@ -1446,5 +1449,26 @@ table#goalie-stats td, table#goalie-stats a {
 }
 
 .forums-list > li a:hover {
+  color: white;
+}
+
+/*============================================================================*/
+/* Forums show => views */
+
+.forum-container {
+  width: 900px;
+  margin: 8% auto 50px auto;
+  border: 3px solid white;
+  border-radius: 3px;
+  background: rgba(41, 41, 41, 0.95);
+}
+
+.forum-container h2 {
+  margin: 20px 30px;
+  font-size: 30px;
+  color: #99000A;
+}
+
+.forum-container h2 a:hover {
   color: white;
 }

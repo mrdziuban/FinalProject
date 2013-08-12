@@ -1,0 +1,36 @@
+<% team = @forum.team %>
+
+<style>
+  body {
+    <% if team %>
+      background: <%= team.background_color %>;
+    <% else %>
+      background: #454545;
+    <% end %>
+  }
+
+  <% if @forum.team %>
+    .navbar a {
+      color: <%= team.luminance(0.3) %>;
+    }
+
+    .players-option {
+      color: <%= team.luminance(0.3) %>;
+    }
+
+    .forum-container h2 a {
+      color: <%= team.background_color %>;
+      text-shadow: 1px 1px 1px #000;
+    }
+  <% end %>
+</style>
+
+<section class="forum-container">
+  <h2>
+    <% if team %>
+      <%= link_to team.name, team_url(team) %>
+    <% else %>
+      <%= @forum.title %>
+    <% end %>
+  </h2>
+</section>
