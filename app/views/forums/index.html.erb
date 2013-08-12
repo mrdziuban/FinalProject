@@ -1,0 +1,18 @@
+<style>
+  body { 
+    background: url(<%= asset_path "miracle.jpg" %>) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+</style>
+
+<section class="forums-container">
+  <ul class="forums-list">
+    <li><%= link_to @forums[0].title, forum_url(@forums[0]) %></li>
+    <% @forums[1..-1].sort_by{|f| f.title}.each do |forum| %>
+      <li><%= link_to forum.title, forum_url(forum) %></li>
+    <% end %>
+  </ul>
+</section>

@@ -1420,5 +1420,31 @@ table#goalie-stats td, table#goalie-stats a {
   height: 80%;
 }
 
+/*============================================================================*/
+/* Forums index => views/forums/index.html.erb */
 
+.forums-container {
+  width: 900px;
+  min-height: 100px;
+  margin: 8% auto 50px auto;
+  border: 3px solid #99000A;
+  border-radius: 3px;
+  background: rgba(41, 41, 41, 0.95);
+}
 
+.forums-list {
+  margin: 20px 30px;
+  border-bottom: 1px solid #99000A;
+}
+
+.forums-list > li {
+  border-top: 1px solid #99000A;
+  padding: 10px;
+  font-size: 22px;
+  color: #99000A;
+  font-weight: 600;
+}
+
+.forums-list > li a:hover {
+  color: white;
+}
