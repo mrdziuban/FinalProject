@@ -7,6 +7,7 @@
   <%= csrf_meta_tags %>
   <link href='http://fonts.googleapis.com/css?family=Raleway:400,800,500,600' rel='stylesheet' type='text/css'>
   <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+  <link rel="shortcut icon" href="/favicon.png"
   <meta name="google" value="notranslate">
 </head>
 <body>
@@ -15,7 +16,7 @@
     <header>
       <nav class="navbar">
         <ul class="options group">
-          <li><a href="<%= user_root_url %>">HOME</a></li>
+          <li class="logo"><a href="<%= user_root_url %>">HOME</a></li>
           <li><a href="<%= user_url(current_user.username) %>">PROFILE</a></li>
           <li class="stats">
             <a href="#">STATS</a>
