@@ -6,16 +6,16 @@ class TopicsController < ApplicationController
     if @topic.save
       redirect_to forum_topic_url(@topic.forum, @topic)
     else
-      render nothing: true
+      redirect_to forum_url(@topic.forum, topic: "invalid")
     end
   end
 
   def show
-    @topic = Topic.search_by_title(params[:id].gsub("_", " "))
+    @topic = Topic.find(params[:id])
   end
 
   def update
-    @topic = Topic.search_by_title(params[:id].gsub("_", " "))
+    @topic = Topic.find(params[:id])
     if @topic.user != current_user
       render nothing: true
     else
@@ -27,7 +27,7 @@ class TopicsController < ApplicationController
   end
 
   def destroy
-    @topic = Topic.search_by_title(params[:id].gsub("_", " "))
+    @topic = Topic.find(params[:id])
     if @topic.user != current_user
       render nothing: true
     else

@@ -7,8 +7,4 @@ class Topic < ActiveRecord::Base
   belongs_to :user
   belongs_to :forum
   validates :title, presence: true
-
-  def to_param
-    title.downcase.gsub(" ", "_")[0..35]
-  end
 end
