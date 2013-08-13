@@ -59,6 +59,15 @@
   input[type=text] {
     border: 1px solid <%= team.background_color %>;
   }
+
+  span.tt-dropdown-menu {
+    border-bottom: 1px solid <%= team.background_color %>;
+  }
+
+  div.tt-suggestion {
+    border: 1px solid <%= team.background_color %>;
+    border-bottom: 0;
+  }
 </style>
 
 <a href="<%= team_url(@goalie.team) %>"><img class="team-background" src="<%= @goalie.team.background.url %>"></a>
