@@ -258,6 +258,18 @@ input[type=submit]:active, .fake-button:active {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#66000A', endColorstr='#88000A');
 }
 
+input[type=submit][disabled=disabled] {
+  background: -webkit-gradient(linear, left top, left bottom, from(#454545), to(#292929));
+  background: -moz-linear-gradient(top,  #454545,  #292929);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#454545', endColorstr='#292929');
+}
+
+input[type=submit][disabled=disabled]:active {
+  background: -webkit-gradient(linear, left top, left bottom, from(#454545), to(#292929));
+  background: -moz-linear-gradient(top,  #454545,  #292929);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#454545', endColorstr='#292929');
+}
+
 input[type=text], input[type=email], input[type=password] {
   text-align: center;
   border: 1px solid #99000A;
@@ -1450,6 +1462,7 @@ table#goalie-stats td, table#goalie-stats a {
   font-size: 22px;
   color: #99000A;
   font-weight: 600;
+  text-shadow: 1px 1px 1px #000;
 }
 
 .forums-list > li a:hover {
@@ -1539,4 +1552,10 @@ table#goalie-stats td, table#goalie-stats a {
 
 .topics-list > li a:hover {
   color: white;
+}
+
+.topic-user {
+  float: right;
+  font-size: 16px;
+  margin-top: 5px;
 }

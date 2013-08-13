@@ -66,7 +66,7 @@
       border-top: 1px solid <%= team.background_color %>;
     }
 
-    .topics-list > li > a {
+    .topics-list > li a {
       color: <%= team.background_color %>;
     }
   <% end %>
@@ -92,6 +92,15 @@
   $(document).ready(function () {
     $(".forum-container").on("click", ".create-topic-link", function () {
       $("div.new-topic-hidden").fadeIn("fast");
+
+      setInterval(function () {
+        if ($(".title-field").val() === "") {
+          $(".create-topic").attr("disabled", true);
+        }
+        else {
+          $(".create-topic").attr("disabled", false);
+        }
+      }, 100);
     });
 
     $(".new-topic").on("click", function (event) {
