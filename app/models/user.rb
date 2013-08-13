@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
   has_attached_file :profile_background, styles: {original: "1920x1080>"}
 
   has_many :analyses
+  has_many :topics
 
   validates :username, presence: true, uniqueness: true
 
