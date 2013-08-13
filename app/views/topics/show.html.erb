@@ -1,3 +1,82 @@
+<% team = @topic.forum.team %>
+
+<style>
+  body {
+    <% if team %>
+      background: <%= team.background_color %>;
+    <% else %>
+      background: #454545;
+    <% end %>
+  }
+
+  <% if team %>
+    .navbar a {
+      color: <%= team.luminance(0.3) %>;
+    }
+
+    .players-option {
+      color: <%= team.luminance(0.3) %>;
+    }
+
+    .topic-container h2 {
+      color: <%= team.background_color %>;
+      text-shadow: 1px 1px 1px #000;
+    }
+
+    input[type=text] {
+      border: 1px solid <%= team.background_color %>;
+      color: <%= team.background_color %>;
+    }
+
+    .new-topic, .edit-topic {
+      border: 3px solid <%= team.background_color %>;
+    }
+
+    .new-topic h2, .edit-topic h2 {
+      color: <%= team.background_color %>;
+    }
+
+    input[type=submit] {
+      <% start = team.background_color %>
+      <% final = team.luminance(-0.4) %>
+      border-radius: 3px;
+      width: 80px;
+      height: 30px;
+      color: white;
+      font-size: 12px;
+      border: 1px solid #292929;
+      background: -webkit-gradient(linear, left top, left bottom, from(<%= start %>), to(<%= final %>));
+      background: -moz-linear-gradient(top, <%= start %>, <%= final %>);
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='<%= start %>', endColorstr='<%= final %>');
+    }
+
+    input[type=submit]:active {
+      <% start = team.luminance(-0.15) %>
+      <% final = team.luminance(-0.4) %>
+      background: -webkit-gradient(linear, left top, left bottom, from(<%= final %>), to(<%= start %>));
+      background: -moz-linear-gradient(top, <%= final %>, <%= start %>);
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='<%= final %>', endColorstr='<%= start %>');
+    }
+
+    span.tt-dropdown-menu {
+      border-bottom: 1px solid <%= team.background_color %>;
+    }
+
+    div.tt-suggestion {
+      border: 1px solid <%= team.background_color %>;
+      border-bottom: 0;
+    }
+
+    .more-link {
+      color: <%= team.background_color %>;
+    }
+
+    #wmd-input {
+      border: 1px solid <%= team.background_color %>;
+    }
+  <% end %>
+</style>
+
 <section class="topic-container">
   <section class="topic-header-container">
     <h2><%= @topic.title %></h2>
