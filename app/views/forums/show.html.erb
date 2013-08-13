@@ -91,7 +91,11 @@
     <h2>New topic</h2>
     <%= form_for :topic do |f| %>
       <h3>Title</h3>
-      <%= f.text_field :title, :class => "title-field" %><br>
+      <%= f.text_field :title, :class => "title-field" %>
+      <h3>Description (optional)</h3>
+      <div id="wmd-button-bar"></div>
+      <%= f.text_area :description, id: "wmd-input" %><br>
+      <div id="wmd-preview"></div>
       <%= f.submit "Create", :class => "create-topic" %>
     <% end %>
   </section>
@@ -147,12 +151,14 @@
       $(".form-submitting-hidden").fadeIn("fast");
     });
 
-    $("p.description-hidden, .forum-container li a").on("click", function (event) {
+    var topics = $(".forum-container");
+
+    topics.on("click", "div.description-hidden, li a", function (event) {
       event.stopPropagation();
     });
 
-    $(".forum-container").on("click", "li", function () {
-      $(this).find("p.description-hidden").slideToggle("fast");
+    topics.on("click", "li", function () {
+      $(this).find("div.description-hidden").slideToggle("fast");
       if ($(this).find(".circle-plus").attr("src") == "/assets/circle_plus.png") {
         $(this).find(".circle-plus").attr("src", "/assets/circle_minus.png");
       }
@@ -160,8 +166,6 @@
         $(this).find(".circle-plus").attr("src", "/assets/circle_plus.png");
       }
     });
-
-    var topics = $(".forum-container");
 
     topics.on("click", ".more-link", function (event) {
       event.preventDefault();

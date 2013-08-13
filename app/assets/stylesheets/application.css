@@ -1519,7 +1519,7 @@ table#goalie-stats td, table#goalie-stats a {
   text-align: center;
   border: 3px solid #99000A;
   border-radius: 3px;
-  margin: 20% auto;
+  margin: 15% auto;
   width: 500px;
   background: #292929;
 }
@@ -1579,10 +1579,11 @@ table#goalie-stats td, table#goalie-stats a {
   margin-top: 5px;
 }
 
-p.description-hidden {
+div.description-hidden {
   display: none;
   margin-top: 8px;
   font-size: 15px;
+  font-weight: 500;
   color: white;
   text-shadow: none;
 }
@@ -1596,4 +1597,36 @@ p.description-hidden {
 
 .more-link:hover {
   color: white;
+}
+
+.forum-container .description-hidden ul,
+.new-topic-hidden ul,
+.comments-container ul {
+  display: block;
+  list-style-type: disc;
+  margin: 10px;
+  padding-left: 25px;
+  text-align: left;
+}
+
+.forum-container .description-hidden ol,
+.new-topic-hidden ol,
+.comments-container ol {
+  display: block;
+  list-style-type: decimal;
+  margin: 10px;
+  padding-left: 25px;
+  text-align: left;
+}
+
+.forum-container .description-hidden ol > li,
+.new-topic-hidden ol > li,
+.comments-container ol > li {
+  list-style: decimal;
+}
+
+.forum-container .description-hidden ul > li,
+.new-topic-hidden ul > li,
+.comments-container ul > li {
+  list-style: disc;
 }
