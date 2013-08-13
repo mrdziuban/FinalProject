@@ -1,4 +1,6 @@
 class FavoritesController < ApplicationController
+  before_filter :authenticate_user!
+  
   def create
     Favorite.create!(user_id: current_user.id,
                      favoritable_id: params[:id],

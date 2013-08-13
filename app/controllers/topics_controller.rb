@@ -1,4 +1,6 @@
 class TopicsController < ApplicationController
+  before_filter :authenticate_user!
+  
   def create
     @topic = Topic.new(params[:topic])
     @topic.user_id = current_user.id
