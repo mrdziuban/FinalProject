@@ -119,6 +119,8 @@ GEM
       json (~> 1.4)
     rest-client (1.6.7)
       mime-types (>= 1.16)
+    reverse_markdown (0.4.6)
+      nokogiri
     sass (3.2.10)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
@@ -162,5 +164,6 @@ DEPENDENCIES
   pg_search (~> 0.5.7)
   rails (= 3.2.13)
   rest-client
+  reverse_markdown
   sass-rails (~> 3.2.3)
   uglifier (>= 1.0.3)

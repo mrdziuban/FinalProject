@@ -34,6 +34,7 @@ gem 'addressable'
 gem 'figaro'
 gem 'pg_search', '~> 0.5.7'
 gem 'chartkick'
+gem 'reverse_markdown'
 
 group :development do
   gem 'better_errors'

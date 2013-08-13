@@ -103,7 +103,8 @@
       <%= f.text_field :title, :class => "title-field" %>
       <h3>Description (optional)</h3>
       <div id="wmd-button-bar"></div>
-      <%= f.text_area :description, id: "wmd-input" %><br>
+      <textarea id="wmd-input" name="topic[description]"><%= ReverseMarkdown.parse(@topic.description) %></textarea><br>
+      
       <div id="wmd-preview"></div>
       <%= f.submit "Update", :class => "update-topic" %>
     <% end %>
