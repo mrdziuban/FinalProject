@@ -1,3 +1,12 @@
 <% topics.each do |t| %>
-  <li><%= link_to t.title, forum_topic_url(forum, t) %><span class="topic-user"><%= link_to t.user.username, user_url(t.user) %></span></li>
+  <li>
+    <% if t.description %>
+      <%= image_tag "circle_plus.png", :class => "circle-plus" %>
+    <% end %>
+    <%= link_to t.title, forum_topic_url(forum, t) %>
+    <span class="topic-user"><%= link_to t.user.username, user_url(t.user) %></span>
+    <% if t.description %>
+      <p class="description-hidden"><%= t.description %></p>
+    <% end %>
+  </li>
 <% end %>

@@ -147,6 +147,20 @@
       $(".form-submitting-hidden").fadeIn("fast");
     });
 
+    $("p.description-hidden, .forum-container li a").on("click", function (event) {
+      event.stopPropagation();
+    });
+
+    $(".forum-container").on("click", "li", function () {
+      $(this).find("p.description-hidden").slideToggle("fast");
+      if ($(this).find(".circle-plus").attr("src") == "/assets/circle_plus.png") {
+        $(this).find(".circle-plus").attr("src", "/assets/circle_minus.png");
+      }
+      else {
+        $(this).find(".circle-plus").attr("src", "/assets/circle_plus.png");
+      }
+    });
+
     var topics = $(".forum-container");
 
     topics.on("click", ".more-link", function (event) {

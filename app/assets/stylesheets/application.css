@@ -1568,10 +1568,23 @@ table#goalie-stats td, table#goalie-stats a {
   color: white;
 }
 
+.circle-plus {
+  height: 15px;
+  margin-right: 5px;
+}
+
 .topic-user {
   float: right;
   font-size: 16px;
   margin-top: 5px;
+}
+
+p.description-hidden {
+  display: none;
+  margin-top: 8px;
+  font-size: 15px;
+  color: white;
+  text-shadow: none;
 }
 
 .more-link {
