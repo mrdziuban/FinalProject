@@ -58,6 +58,23 @@
       filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='<%= final %>', endColorstr='<%= start %>');
     }
 
+    .edit-topic-button {
+      <% start = team.background_color %>
+      <% final = team.luminance(-0.4) %>
+      border: 1px solid #292929;
+      background: -webkit-gradient(linear, left top, left bottom, from(<%= start %>), to(<%= final %>));
+      background: -moz-linear-gradient(top, <%= start %>, <%= final %>);
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='<%= start %>', endColorstr='<%= final %>');
+    }
+
+    .edit-topic-button:active {
+      <% start = team.luminance(-0.15) %>
+      <% final = team.luminance(-0.4) %>
+      background: -webkit-gradient(linear, left top, left bottom, from(<%= final %>), to(<%= start %>));
+      background: -moz-linear-gradient(top, <%= final %>, <%= start %>);
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='<%= final %>', endColorstr='<%= start %>');
+    }
+
     span.tt-dropdown-menu {
       border-bottom: 1px solid <%= team.background_color %>;
     }
@@ -77,9 +94,73 @@
   <% end %>
 </style>
 
+<div class="edit-topic-hidden">
+  <section class="edit-topic">
+    <div class="form-submitting-hidden"></div>
+    <h2>New topic</h2>
+    <%= form_for :topic do |f| %>
+      <h3>Title</h3>
+      <%= f.text_field :title, :class => "title-field" %>
+      <h3>Description (optional)</h3>
+      <div id="wmd-button-bar"></div>
+      <%= f.text_area :description, id: "wmd-input" %><br>
+      <div id="wmd-preview"></div>
+      <%= f.submit "Update", :class => "update-topic" %>
+    <% end %>
+  </section>
+</div>
+
 <section class="topic-container">
   <section class="topic-header-container">
-    <h2><%= @topic.title %></h2>
+    <h2>
+      <%= @topic.title %>
+      <span class="edit-topic-button fake-button">EDIT</span>
+      <span class="delete-topic-button"><%= button_to "DELETE", forum_topic_url(@topic), method: :delete %></span>
+    </h2>
     <div class="description-container"><%= @topic.description.html_safe %></div>
   </section>
 </section>
+
+<script>
+  $(document).ready(function () {
+    $(".topic-container").on("click", ".edit-topic-button", function () {
+      $("div.edit-topic-hidden").fadeIn("fast");
+
+      setInterval(function () {
+        if ($(".title-field").val() === "") {
+          $(".update-topic").attr("disabled", true);
+        }
+        else {
+          $(".update-topic").attr("disabled", false);
+        }
+      }, 100);
+    });
+
+    $(".edit-topic").on("click", function (event) {
+      event.stopPropagation();
+    });
+
+    $("div.edit-topic-hidden").on("click", function () {
+      $(this).fadeOut("fast");
+    });
+
+    $(".update-topic").on("click", function () {
+      $(".form-submitting-hidden").html('<%= image_tag "loading.gif", :class => "loading-gif" %>')
+      $(".form-submitting-hidden").fadeIn("fast");
+    });
+
+    var topic = $(".topic-container");
+
+    topic.on("click", ".more-link", function (event) {
+      event.preventDefault();
+      var a = $(this);
+
+      $.get(a.attr("href"), function (data) {
+        $(".topics-list").append(data)
+        if ($(".forum-container li").length % 20 !== 0) {
+          a.remove();
+        }
+      });
+    })
+  });
+</script>
