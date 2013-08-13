@@ -1602,7 +1602,7 @@ div.description-hidden {
 
 .forum-container .description-hidden ul,
 .new-topic-hidden ul,
-.comments-container ul {
+.topic-container ul {
   display: block;
   list-style-type: disc;
   margin: 10px;
@@ -1612,7 +1612,7 @@ div.description-hidden {
 
 .forum-container .description-hidden ol,
 .new-topic-hidden ol,
-.comments-container ol {
+.topic-container ol {
   display: block;
   list-style-type: decimal;
   margin: 10px;
@@ -1622,12 +1622,40 @@ div.description-hidden {
 
 .forum-container .description-hidden ol > li,
 .new-topic-hidden ol > li,
-.comments-container ol > li {
+.topic-container ol > li {
   list-style: decimal;
 }
 
 .forum-container .description-hidden ul > li,
 .new-topic-hidden ul > li,
-.comments-container ul > li {
+.topic-container ul > li {
   list-style: disc;
+}
+
+/*============================================================================*/
+/* Topic show => views/topics/show.html.erb */
+
+.topic-container {
+  width: 90%;
+  background: rgba(41, 41, 41, 0.95);
+  border: 3px solid white;
+  border-radius: 3px;
+  margin: 8% auto 50px auto;
+}
+
+.topic-header-container {
+  margin-bottom: 10px;
+  border-bottom: 1px solid white;
+  margin: 20px;
+}
+
+.topic-container h2 {
+  color: #99000A;
+  text-shadow: 1px 1px 1px #000;
+}
+
+.topic-container div.description-container {
+  margin: -10px 15px 10px 15px;
+  color: white;
+  font-size: 14px;
 }
