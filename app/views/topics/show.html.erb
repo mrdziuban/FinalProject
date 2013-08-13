@@ -123,7 +123,9 @@
 
 <script>
   $(document).ready(function () {
-    $(".topic-container").on("click", ".edit-topic-button", function () {
+    var topic = $(".topic-container");
+
+    topic.on("click", ".edit-topic-button", function () {
       $("div.edit-topic-hidden").fadeIn("fast");
 
       setInterval(function () {
@@ -148,8 +150,6 @@
       $(".form-submitting-hidden").html('<%= image_tag "loading.gif", :class => "loading-gif" %>')
       $(".form-submitting-hidden").fadeIn("fast");
     });
-
-    var topic = $(".topic-container");
 
     topic.on("click", ".more-link", function (event) {
       event.preventDefault();
