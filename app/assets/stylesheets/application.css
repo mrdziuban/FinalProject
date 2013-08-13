@@ -1471,6 +1471,7 @@ table#goalie-stats td, table#goalie-stats a {
   margin: 20px 30px;
   font-size: 30px;
   color: #99000A;
+  text-shadow: 1px 1px 1px #000;
 }
 
 .forum-container h2 a:hover {
@@ -1520,4 +1521,22 @@ table#goalie-stats td, table#goalie-stats a {
 
 .new-topic input[type=text], .edit-topic input[type=text] {
   width: 400px;
+}
+
+.topics-list {
+  margin: 20px 30px;
+  border-bottom: 1px solid #99000A;
+}
+
+.topics-list > li {
+  border-top: 1px solid #99000A;
+  padding: 10px;
+  font-size: 22px;
+  color: #99000A;
+  font-weight: 600;
+  text-shadow: 1px 1px 1px #000;
+}
+
+.topics-list > li a:hover {
+  color: white;
 }

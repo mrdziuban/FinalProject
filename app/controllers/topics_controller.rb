@@ -3,11 +3,10 @@ class TopicsController < ApplicationController
     @topic = Topic.new(params[:topic])
     @topic.user_id = current_user.id
     @topic.forum_id = params[:forum_id]
-    @topic.save
-    if request.xhr?
-      render partial: "forums/forum", locals: {forum: @topic.forum,
-                                               topics: Topic.where(forum_id: @topic.forum_id).order("id"),
-                                               team: @topic.forum.team}
+    if @topic.save
+      redirect_to forum_topic_url(@topic.forum, @topic)
+    else
+      render nothing: true
     end
   end
 

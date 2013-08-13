@@ -8,7 +8,7 @@
   <span class="create-topic-link">Start discussion</span>
 </h2>
 
-<ul>
+<ul class="topics-list">
   <% topics.each do |t| %>
     <li><%= link_to t.title, forum_topic_url(forum, t) %></li>
   <% end %>
