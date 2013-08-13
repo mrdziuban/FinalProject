@@ -25,16 +25,69 @@
 
     input[type=text] {
       border: 1px solid <%= team.background_color %>;
+      color: <%= team.background_color %>;
+    }
+
+    .new-topic, .edit-topic {
+      border: 3px solid <%= team.background_color %>;
+    }
+
+    .new-topic h2, .edit-topic h2 {
+      color: <%= team.background_color %>;
+    }
+
+    input[type=submit] {
+      <% start = team.background_color %>
+      <% final = team.luminance(-0.4) %>
+      border-radius: 3px;
+      width: 80px;
+      height: 30px;
+      color: white;
+      font-size: 12px;
+      border: 1px solid #292929;
+      background: -webkit-gradient(linear, left top, left bottom, from(<%= start %>), to(<%= final %>));
+      background: -moz-linear-gradient(top, <%= start %>, <%= final %>);
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='<%= start %>', endColorstr='<%= final %>');
+    }
+
+    input[type=submit]:active {
+      <% start = team.luminance(-0.15) %>
+      <% final = team.luminance(-0.4) %>
+      background: -webkit-gradient(linear, left top, left bottom, from(<%= final %>), to(<%= start %>));
+      background: -moz-linear-gradient(top, <%= final %>, <%= start %>);
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='<%= final %>', endColorstr='<%= start %>');
     }
   <% end %>
 </style>
 
-<section class="forum-container">
-  <h2>
-    <% if team %>
-      <%= link_to team.name, team_url(team) %>
-    <% else %>
-      <%= @forum.title %>
+<div class="new-topic-hidden">
+  <section class="new-topic">
+    <div class="form-submitting-hidden"></div>
+    <h2>New topic</h2>
+    <%= form_for :topic do |f| %>
+      <h3>Title</h3>
+      <%= f.text_field :title, :class => "title-field" %><br>
+      <%= f.submit "Create", :class => "create-topic" %>
     <% end %>
-  </h2>
+  </section>
+</div>
+
+<section class="forum-container">
+  <%= render partial: "forum", locals: {forum: @forum, topics: @topics, team: team} %>
 </section>
+
+<script>
+  $(document).ready(function () {
+    $(".create-topic-link").on("click", function () {
+      $("div.new-topic-hidden").fadeIn("fast");
+    });
+
+    $(".new-topic").on("click", function (event) {
+      event.stopPropagation();
+    });
+
+    $("div.new-topic-hidden").on("click", function () {
+      $(this).fadeOut("fast");
+    });
+  });
+</script>

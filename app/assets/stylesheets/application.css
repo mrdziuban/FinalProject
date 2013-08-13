@@ -1278,6 +1278,10 @@ table#goalie-stats td, table#goalie-stats a {
   color: white;
 }
 
+#analysis_title {
+  width: 400px;
+}
+
 .new-analysis .pdf-upload, .edit-analysis .pdf-upload {
   color: white;
 }
@@ -1471,4 +1475,49 @@ table#goalie-stats td, table#goalie-stats a {
 
 .forum-container h2 a:hover {
   color: white;
+}
+
+.create-topic-link {
+  float: right;
+  font-size: 18px;
+  margin-top: 8px;
+}
+
+.create-topic-link:hover {
+  color: white;
+  cursor: pointer;
+}
+
+.new-topic-hidden, .edit-topic-hidden {
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0px;
+  top: 0px;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 2000;
+}
+
+.new-topic, .edit-topic {
+  position: relative;
+  text-align: center;
+  border: 3px solid #99000A;
+  border-radius: 3px;
+  margin: 20% auto;
+  width: 500px;
+  background: #292929;
+}
+
+.new-topic h2, .edit-topic h2 {
+  color: #99000A;
+}
+
+.new-topic h3, .edit-topic h3 {
+  margin-bottom: 5px;
+  color: white;
+}
+
+.new-topic input[type=text], .edit-topic input[type=text] {
+  width: 400px;
 }

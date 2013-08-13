@@ -4,7 +4,7 @@
     <h2>Edit analysis</h2>
     <%= form_for :analysis do |f| %>
       <h3>Title</h3>
-      <input type="text" name="analysis[title]" value="<%= @analysis.title %>">
+      <input type="text" id="analysis_title" name="analysis[title]" value="<%= @analysis.title %>">
 
       <h3>Upload PDF (no spaces in file name)</h3>
       <%= f.file_field :pdf, :class => "pdf-upload" %><br>

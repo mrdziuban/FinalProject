@@ -17,7 +17,9 @@ GameDay::Application.routes.draw do
     get "/charts" => "analyses#charts"
   end
 
-  resources :forums, only: [:index, :show]
+  resources :forums, only: [:index, :show] do
+    resources :topics, except: [:index, :new, :edit], path: ""
+  end
 
   resources :teams, only: :show, path: "" do
     resources :games, only: [:index]
