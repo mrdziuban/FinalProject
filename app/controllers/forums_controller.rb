@@ -5,9 +5,9 @@ class ForumsController < ApplicationController
 
   def show
     @forum = Forum.find(params[:id])
-    @topics = @forum.topics
+    @topics = Topic.where(forum_id: @forum.id).order("id asc").page(params[:page]).per(20)
     if request.xhr?
-      render partial: "forum", locals: {forum: @forum, topics: @topics, team: @forum.team}
+      render partial: "forum", locals: {forum: @forum, topics: @topics}
     end
   end
 end

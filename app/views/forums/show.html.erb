@@ -94,7 +94,25 @@
 </div>
 
 <section class="forum-container">
-  <%= render partial: "forum", locals: {forum: @forum, topics: @topics.sort_by{|t| t.id}, team: team} %>
+  <h2>
+    <% if team %>
+      <%= link_to team.name, team_url(team) %>
+    <% else %>
+      <%= @forum.title %>
+    <% end %>
+
+    <span class="create-topic-link">Start discussion</span>
+  </h2>
+
+  <% if @topics.empty? %>
+    <h2 class="no-topics-header">There are no discussions yet! Why don't you start one?<span><%= image_tag "curved_arrow.png", :class => "curved-arrow" %></span></h2>
+  <% else %>
+    <ul class="topics-list">
+      <%= render partial: "forum", locals: {forum: @forum, topics: @topics.sort_by{|t| t.id}} %>
+    </ul>
+  <% end %> 
+
+  <%= link_to_next_page @topics, "More", :class => "more-link" %>
 </section>
 
 <script>
@@ -124,5 +142,19 @@
       $(".form-submitting-hidden").html('<%= image_tag "loading.gif", :class => "loading-gif" %>')
       $(".form-submitting-hidden").fadeIn("fast");
     });
+
+    var topics = $(".forum-container");
+
+    topics.on("click", ".more-link", function (event) {
+      event.preventDefault();
+      var a = $(this);
+
+      $.get(a.attr("href"), function (data) {
+        $(".topics-list").append(data)
+        if ($(".forum-container li").length % 20 !== 0) {
+          a.remove();
+        }
+      });
+    })
   });
 </script>

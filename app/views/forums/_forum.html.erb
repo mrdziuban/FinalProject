@@ -1,15 +1,3 @@
-<h2>
-  <% if team %>
-    <%= link_to team.name, team_url(team) %>
-  <% else %>
-    <%= forum.title %>
-  <% end %>
-
-  <span class="create-topic-link">Start discussion</span>
-</h2>
-
-<ul class="topics-list">
-  <% topics.each do |t| %>
-    <li><%= link_to t.title, forum_topic_url(forum, t) %><span class="topic-user"><%= link_to t.user.username, user_url(t.user) %></span></li>
-  <% end %>
-</ul>
+<% topics.each do |t| %>
+  <li><%= link_to t.title, forum_topic_url(forum, t) %><span class="topic-user"><%= link_to t.user.username, user_url(t.user) %></span></li>
+<% end %>

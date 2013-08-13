@@ -1536,6 +1536,19 @@ table#goalie-stats td, table#goalie-stats a {
   width: 400px;
 }
 
+.forum-container > .no-topics-header {
+  position: relative;
+  font-size: 20px;
+  text-align: center;
+}
+
+.curved-arrow {
+  position: absolute;
+  margin-left: 15px;
+  bottom: 9px;
+  height: 30px;
+}
+
 .topics-list {
   margin: 20px 30px;
   border-bottom: 1px solid #99000A;
@@ -1558,4 +1571,15 @@ table#goalie-stats td, table#goalie-stats a {
   float: right;
   font-size: 16px;
   margin-top: 5px;
+}
+
+.more-link {
+  display: block;
+  margin-left: 40px;
+  margin-bottom: 10px;
+  text-shadow: 1px 1px 1px #000;
+}
+
+.more-link:hover {
+  color: white;
 }
