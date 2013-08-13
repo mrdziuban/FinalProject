@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130813134304) do
+ActiveRecord::Schema.define(:version => 20130813183729) do
 
   create_table "analyses", :force => true do |t|
     t.string   "title"
@@ -148,8 +148,9 @@ ActiveRecord::Schema.define(:version => 20130813134304) do
     t.string   "title"
     t.integer  "user_id"
     t.integer  "forum_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.text     "description"
   end
 
   add_index "topics", ["forum_id"], :name => "index_topics_on_forum_id"
