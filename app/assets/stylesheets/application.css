@@ -1582,6 +1582,7 @@ table#goalie-stats td, table#goalie-stats a {
 div.description-hidden {
   display: none;
   margin-top: 8px;
+  margin-left: 25px;
   font-size: 15px;
   font-weight: 500;
   color: white;

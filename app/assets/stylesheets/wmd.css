@@ -19,6 +19,9 @@
 	height: 100px;
 	width: 400px;
 	border: 1px solid #99000A;
+	border-radius: 3px;
+	font-family: 'Raleway', sans-serif;
+	font-size: 14px;
 }
 
 #wmd-input:focus {
@@ -29,6 +32,7 @@
 	margin: auto;
 	width: 400px;
 	background-color: #C4C4C4; 
+	font-size: 14px;
 }
 
 #wmd-preview > ol > li {
