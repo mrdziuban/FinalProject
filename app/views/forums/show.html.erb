@@ -73,12 +73,12 @@
 </div>
 
 <section class="forum-container">
-  <%= render partial: "forum", locals: {forum: @forum, topics: @topics, team: team} %>
+  <%= render partial: "forum", locals: {forum: @forum, topics: @topics.sort_by{|t| t.id}, team: team} %>
 </section>
 
 <script>
   $(document).ready(function () {
-    $(".create-topic-link").on("click", function () {
+    $(".forum-container").on("click", ".create-topic-link", function () {
       $("div.new-topic-hidden").fadeIn("fast");
     });
 
@@ -88,6 +88,31 @@
 
     $("div.new-topic-hidden").on("click", function () {
       $(this).fadeOut("fast");
+    });
+
+    $(".create-topic").on("click", function () {
+      $(".form-submitting-hidden").html('<%= image_tag "loading.gif", :class => "loading-gif" %>')
+      $(".form-submitting-hidden").fadeIn("fast");
+      event.preventDefault();
+
+      var that = this;
+      var formData = $(that.form).serialize();
+
+      $.ajax({
+        url: that.form.action,
+        type: "POST",
+        data: formData,
+        success: function (data) {
+          $("div.new-topic-hidden").fadeOut("fast");
+          $(".form-submitting-hidden").html("");
+          $(".form-submitting-hidden").fadeOut("fast");
+          $(that.form).each(function () {this.reset()});
+          $(".forum-container").html(data);
+        },
+        error: function () {
+          console.log("error");
+        }
+      });
     });
   });
 </script>

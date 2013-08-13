@@ -59,6 +59,7 @@
         success: function (data) {
           $("div.new-analysis-hidden").fadeOut("fast");
           $(".form-submitting-hidden").html("");
+          $(".form-submitting-hidden").fadeOut("fast");
           $(that.form).each(function () {this.reset()});
           $(".analyses-container").html(data);
         },

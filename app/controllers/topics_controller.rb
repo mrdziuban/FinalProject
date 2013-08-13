@@ -5,7 +5,9 @@ class TopicsController < ApplicationController
     @topic.forum_id = params[:forum_id]
     @topic.save
     if request.xhr?
-      render partial: "forums/forum", locals: {topics: Topic.where(forum_id: @topic.forum_id)}
+      render partial: "forums/forum", locals: {forum: @topic.forum,
+                                               topics: Topic.where(forum_id: @topic.forum_id).order("id"),
+                                               team: @topic.forum.team}
     end
   end
 
