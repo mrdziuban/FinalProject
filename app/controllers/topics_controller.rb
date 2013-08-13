@@ -1,6 +1,6 @@
 class TopicsController < ApplicationController
   before_filter :authenticate_user!
-  
+
   def create
     @topic = Topic.new(params[:topic])
     @topic.user_id = current_user.id
@@ -22,9 +22,7 @@ class TopicsController < ApplicationController
       render nothing: true
     else
       @topic.update_attributes(params[:topic])
-      if request.xhr?
-        render partial: "topic"
-      end
+      redirect_to forum_topic_url(@topic)
     end
   end
 

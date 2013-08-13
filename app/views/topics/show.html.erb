@@ -106,20 +106,14 @@
       <textarea id="wmd-input" name="topic[description]"><%= ReverseMarkdown.parse(@topic.description) %></textarea><br>
       
       <div id="wmd-preview"></div>
+      <input type="hidden" name="_method" value="put">
       <%= f.submit "Update", :class => "update-topic" %>
     <% end %>
   </section>
 </div>
 
 <section class="topic-container">
-  <section class="topic-header-container">
-    <h2>
-      <%= @topic.title %>
-      <span class="edit-topic-button fake-button">EDIT</span>
-      <span class="delete-topic-button"><%= button_to "DELETE", forum_topic_url(@topic), method: :delete %></span>
-    </h2>
-    <div class="description-container"><%= @topic.description.html_safe %></div>
-  </section>
+  <%= render partial: "topic", locals: {topic: @topic} %>
 </section>
 
 <script>
@@ -147,9 +141,26 @@
       $(this).fadeOut("fast");
     });
 
-    $(".update-topic").on("click", function () {
+    $(".update-topic").on("click", function (event) {
       $(".form-submitting-hidden").html('<%= image_tag "loading.gif", :class => "loading-gif" %>')
       $(".form-submitting-hidden").fadeIn("fast");
+      // event.preventDefault();
+
+      // var that = this;
+      // var formData = $(that.form).serialize();
+
+      // $.ajax({
+      //   url: that.form.action,
+      //   type: "PUT",
+      //   data: formData,
+      //   success: function (data) {
+      //     $("div.edit-topic-hidden").fadeOut("fast");
+      //     $(".form-submitting-hidden").html("");
+      //     $(".form-submitting-hidden").fadeOut("fast");
+      //     $(that.form).each(function () {this.reset()});
+      //     $(".topic-container").html(data)
+      //   }
+      // });
     });
 
     topic.on("click", ".more-link", function (event) {
