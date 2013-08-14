@@ -1739,3 +1739,13 @@ div.description-hidden {
   border-left: 1px dotted #99000A;
   margin-bottom: 0;
 }
+
+.comment-reply, .comment-edit, .comment-delete {
+  margin-left: 5px;
+  font-size: 10px;
+  text-decoration: underline;
+}
+
+.comment-reply:hover, .comment-edit:hover, .comment-delete:hover {
+  cursor: pointer;
+}

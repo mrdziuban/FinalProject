@@ -234,6 +234,19 @@
           a.remove();
         }
       });
-    })
+    });
+
+    topic.on("click", ".comment-delete", function () {
+      var commentId = $(this).siblings(".comment-text").attr("id")
+      var that = this;
+      
+      $.ajax({
+        url: "/comments/" + commentId,
+        type: "DELETE",
+        success: function () {
+          $(that).closest("li").fadeOut("fast");
+        }
+      });
+    });
   });
 </script>

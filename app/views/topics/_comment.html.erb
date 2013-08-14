@@ -1,5 +1,8 @@
 <li>
-  <span class="comment-text"><%= comment.text %></span>
+  <span id="<%= comment.id %>" class="comment-text"><%= comment.text %></span>
+  <span class="comment-reply">Reply</span>
+  <span class="comment-edit">Edit</span>
+  <span class="comment-delete">Delete</span>
   <% if comments_hash[comment.id] %>
     <ul>
       <% comments_hash[comment.id].each do |c| %>
