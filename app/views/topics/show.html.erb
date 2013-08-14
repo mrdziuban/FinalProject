@@ -111,9 +111,7 @@
       <h3>Description (optional)</h3>
       <div id="wmd-button-bar"></div>
       <textarea id="wmd-input" name="topic[description]"><%= @topic.description %></textarea><br>
-      
       <div id="wmd-preview"></div>
-      <input type="hidden" name="_method" value="put">
       <%= f.submit "Update", :class => "update-topic" %>
     <% end %>
   </section>
@@ -125,7 +123,12 @@
   </section>
 
   <section class="comments-container">
-    <h3 class="comments-header">Comments</h3>
+    <h3 class="comments-header">Post comment</h3>
+    <section class="post-comment">
+      <textarea class="comment-input"></textarea><br>
+      <span class="submit-comment-button fake-button">SUBMIT</span>
+    </section>
+
     <% if @top_level %>
       <ul class="comments-list">
         <%= render partial: "comments", locals: {comments: @comments, top_level: @top_level} %>
@@ -185,6 +188,10 @@
         }
       });
     });
+
+    topic.on("click", ".comments-header", function () {
+      $(".post-comment").slideDown("fast");
+    })
 
     topic.on("click", ".more-link", function (event) {
       event.preventDefault();

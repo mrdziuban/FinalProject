@@ -1680,6 +1680,42 @@ div.description-hidden {
   margin: 0 10px;
 }
 
+.comments-header {
+  color: #99000A;
+  margin-left: 23px;
+  text-shadow: 1px 1px 1px #000;
+  margin-bottom: 5px;
+  width: 132px;
+}
+
+.comments-header:hover {
+  color: white;
+  cursor: pointer;
+}
+
+.comment-input {
+  margin-left: 23px;
+  width: 400px;
+  height: 100px;
+  border: 1px solid #99000A;
+  border-radius: 3px;
+  font-family: 'Raleway', sans-serif;
+  font-size: 13px;
+  margin-bottom: 5px;
+}
+
+.post-comment {
+  display: none;
+}
+
+.submit-comment-button {
+  margin: 23px;
+}
+
+.comment-input:focus {
+  outline: 0;
+}
+
 .comments-container ul {
   display: block;
   list-style-type: disc;

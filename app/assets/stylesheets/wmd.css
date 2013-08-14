@@ -36,6 +36,7 @@
 	background-color: #C4C4C4; 
 	font-size: 14px;
 	text-align: left;
+	border-radius: 3px;
 }
 
 #wmd-preview > ol > li {
