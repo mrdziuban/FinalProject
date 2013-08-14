@@ -181,7 +181,7 @@
 
       $.get(a.attr("href"), function (data) {
         $(".topics-list").append(data)
-        if ($(".forum-container li").length % 20 !== 0) {
+        if ($(".forum-container li").length % 20 <= 0) {
           a.remove();
         }
       });
