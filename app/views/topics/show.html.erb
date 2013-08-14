@@ -151,6 +151,11 @@
     var converter = new Attacklab.showdown.converter();
     $("div.description-container").html(converter.makeHtml(description));
 
+    $("span.comment-text").each(function (i, el) {
+      var text = $(el).text();
+      $(el).html(converter.makeHtml(text));
+    });
+
     var topic = $(".topic-container");
 
     topic.on("click", ".edit-topic-button", function () {
@@ -209,7 +214,10 @@
         type: "POST",
         data: data,
         success: function (data) {
+          $(".comment-input").val("");
           $(".comments-list").prepend(data);
+          var text = $("span.comment-text").first().text();
+          $("span.comment-text").first().html(converter.makeHtml(text));
         }
       });
     });
