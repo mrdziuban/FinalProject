@@ -5,7 +5,11 @@
     <% if team %>
       background: <%= team.background_color %>;
     <% else %>
-      background: #454545;
+      background: url(<%= asset_path "pond_hockey.jpg" %>) no-repeat center center fixed;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
     <% end %>
   }
 
