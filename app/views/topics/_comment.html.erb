@@ -3,10 +3,16 @@
   <span class="comment-reply">Reply</span>
   <span class="comment-edit">Edit</span>
   <span class="comment-delete">Delete</span>
+
+  <section class="edit-comment">
+    <textarea class="edit-comment-input"></textarea><br>
+    <span class="update-comment-button fake-button">UPDATE</span>
+  </section>
+
   <% if comments_hash[comment.id] %>
     <ul>
       <% comments_hash[comment.id].each do |c| %>
-        <%= render partial: "comment", locals: {comments_hash: comments_hash, comment: c} %>
+        <%= render partial: "topics/comment", locals: {comments_hash: comments_hash, comment: c} %>
       <% end %>
     </ul>
   <% end %>

@@ -157,11 +157,12 @@
     });
 
     var topic = $(".topic-container");
+    var editInterval;
 
     topic.on("click", ".edit-topic-button", function () {
       $("div.edit-topic-hidden").fadeIn("fast");
 
-      setInterval(function () {
+      editInterval = setInterval(function () {
         if ($(".title-field").val() === "") {
           $(".update-topic").attr("disabled", true);
         }
@@ -189,6 +190,7 @@
         type: "PUT",
         data: formData,
         success: function (data) {
+          editInterval.clearInterval();
           $("div.edit-topic-hidden").fadeOut("fast");
           $(that.form).each(function () {this.reset()});
           $(".topic-header-container").html(data);
@@ -215,6 +217,7 @@
         data: data,
         success: function (data) {
           $(".comment-input").val("");
+          $(".post-comment").slideToggle();
           $(".comments-list").prepend(data);
           var text = $("span.comment-text").first().text();
           $("span.comment-text").first().html(converter.makeHtml(text));
@@ -237,8 +240,8 @@
     });
 
     topic.on("click", ".comment-delete", function () {
-      var commentId = $(this).siblings(".comment-text").attr("id")
       var that = this;
+      var commentId = $(that).siblings(".comment-text").attr("id");
       
       $.ajax({
         url: "/comments/" + commentId,
@@ -248,5 +251,35 @@
         }
       });
     });
+
+    topic.on("click", ".comment-edit", function () {
+      $(this).siblings(".edit-comment").slideToggle("fast");
+    })
+
+    topic.on("click", ".update-comment-button", function () {
+      var that = this;
+      var commentId = $(that).closest("section").siblings(".comment-text").attr("id");
+      var editComment = $(that).siblings(".edit-comment");
+      var commentInput = $(that).siblings(".edit-comment-input");
+      var commentText = $(that).siblings(".comment-text");
+      var li = $(that).closest("li");
+
+      var data = {
+        text: $(that).siblings(".edit-comment-input").val(),
+      };
+      
+      $.ajax({
+        url: "/forums/" + "<%= params[:forum_id] %>" + "/" + "<%= params[:id] %>" + "/comments/" + commentId,
+        type: "PUT",
+        data: data,
+        success: function (data) {
+          commentInput.val("");
+          editComment.slideToggle();
+          li.html(data);
+          var text = $(that).siblings(".comment-text").text();
+          $(that).siblings(".comment-text").html(converter.makeHtml(text));
+        }
+      });
+    })
   });
 </script>

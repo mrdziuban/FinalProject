@@ -19,7 +19,7 @@ GameDay::Application.routes.draw do
 
   resources :forums, only: [:index, :show] do
     resources :topics, except: [:index, :new, :edit], path: "" do
-      resources :comments, only: :create
+      resources :comments, only: [:create, :update]
     end
   end
 

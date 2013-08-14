@@ -7,6 +7,15 @@ class CommentsController < ApplicationController
     end
   end
 
+  def update
+    @comment = Comment.find(params[:id])
+    @comment.update_attribute(:text, params[:text])
+    @comments = @comment.topic.comments_by_parent
+    if request.xhr?
+      render partial: "topics/comment", locals: {comments_hash: @comments, comment: @comment}
+    end
+  end
+
   def destroy
     comment = Comment.find(params[:id])
     comment.destroy

@@ -1693,7 +1693,7 @@ div.description-hidden {
   cursor: pointer;
 }
 
-.comment-input {
+.comment-input, .edit-comment-input {
   margin-left: 23px;
   width: 400px;
   height: 100px;
@@ -1708,7 +1708,7 @@ div.description-hidden {
   display: none;
 }
 
-.submit-comment-button {
+.submit-comment-button, .update-comment-button {
   display: block;
   text-align: center;
   width: 45px;
@@ -1748,4 +1748,16 @@ div.description-hidden {
 
 .comment-reply:hover, .comment-edit:hover, .comment-delete:hover {
   cursor: pointer;
+}
+
+.edit-comment {
+  display: none;
+}
+
+.edit-comment > textarea {
+  margin: 5px;
+}
+
+.edit-comment > .update-comment-button {
+  margin: 0 5px;
 }
