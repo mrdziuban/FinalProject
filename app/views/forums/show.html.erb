@@ -95,7 +95,6 @@
 
 <div class="new-topic-hidden">
   <section class="new-topic">
-    <div class="form-submitting-hidden"></div>
     <h2>New topic</h2>
     <%= form_for :topic do |f| %>
       <h3>Title</h3>
@@ -158,11 +157,6 @@
 
     $("div.new-topic-hidden").on("click", function () {
       $(this).fadeOut("fast");
-    });
-
-    $(".create-topic").on("click", function () {
-      $(".form-submitting-hidden").html('<%= image_tag "loading.gif", :class => "loading-gif" %>')
-      $(".form-submitting-hidden").fadeIn("fast");
     });
 
     var topics = $(".forum-container");

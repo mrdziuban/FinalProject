@@ -104,7 +104,6 @@
 
 <div class="edit-topic-hidden">
   <section class="edit-topic">
-    <div class="form-submitting-hidden"></div>
     <h2>New topic</h2>
     <%= form_for :topic do |f| %>
       <h3>Title</h3>
@@ -169,9 +168,6 @@
     });
 
     $(".update-topic").on("click", function (event) {
-      $(".form-submitting-hidden").html('<%= image_tag "loading.gif", :class => "loading-gif" %>')
-      $(".form-submitting-hidden").fadeIn("fast");
-
       event.preventDefault();
       var that = this;
       var formData = $(that.form).serialize();
@@ -182,8 +178,6 @@
         data: formData,
         success: function (data) {
           $("div.edit-topic-hidden").fadeOut("fast");
-          $(".form-submitting-hidden").html("");
-          $(".form-submitting-hidden").fadeOut("fast");
           $(that.form).each(function () {this.reset()});
           $(".topic-header-container").html(data);
           var d = $("div.description-container").text();
