@@ -111,7 +111,7 @@
       <%= f.text_field :title, :class => "title-field" %>
       <h3>Description (optional)</h3>
       <div id="wmd-button-bar"></div>
-      <textarea id="wmd-input" name="topic[description]"><%= ReverseMarkdown.parse(@topic.description) %></textarea><br>
+      <textarea id="wmd-input" name="topic[description]"><%= @topic.description %></textarea><br>
       
       <div id="wmd-preview"></div>
       <input type="hidden" name="_method" value="put">
@@ -121,7 +121,9 @@
 </div>
 
 <section class="topic-container">
-  <%= render partial: "topic", locals: {topic: @topic} %>
+  <section class="topic-header-container">
+    <%= render partial: "topic", locals: {topic: @topic} %>
+  </section>
 
   <section class="comments-container">
     <h3 class="comments-header">Comments</h3>
@@ -169,6 +171,25 @@
     $(".update-topic").on("click", function (event) {
       $(".form-submitting-hidden").html('<%= image_tag "loading.gif", :class => "loading-gif" %>')
       $(".form-submitting-hidden").fadeIn("fast");
+
+      event.preventDefault();
+      var that = this;
+      var formData = $(that.form).serialize();
+
+      $.ajax({
+        url: that.form.action,
+        type: "PUT",
+        data: formData,
+        success: function (data) {
+          $("div.edit-topic-hidden").fadeOut("fast");
+          $(".form-submitting-hidden").html("");
+          $(".form-submitting-hidden").fadeOut("fast");
+          $(that.form).each(function () {this.reset()});
+          $(".topic-header-container").html(data);
+          var d = $("div.description-container").text();
+          $("div.description-container").html(converter.makeHtml(d));
+        }
+      });
     });
 
     topic.on("click", ".more-link", function (event) {

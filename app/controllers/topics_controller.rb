@@ -30,7 +30,9 @@ class TopicsController < ApplicationController
       render nothing: true
     else
       @topic.update_attributes(params[:topic])
-      redirect_to forum_topic_url(@topic)
+      if request.xhr?
+        render partial: "topic", locals: {topic: @topic}
+      end
     end
   end
 

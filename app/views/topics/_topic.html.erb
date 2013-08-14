@@ -1,10 +1,8 @@
-<section class="topic-header-container">
-  <h2>
-    <%= topic.title %>
-    <% if topic.user == current_user %>
-      <span class="edit-topic-button fake-button">EDIT</span>
-      <span class="delete-topic-button"><%= button_to "DELETE", forum_topic_url(topic), method: :delete %></span>
-    <% end %>
-  </h2>
-  <div class="description-container"><%= topic.description %></div>
-</section>
+<h2>
+  <%= topic.title %>
+  <% if topic.user == current_user %>
+    <span class="edit-topic-button fake-button">EDIT</span>
+    <span class="delete-topic-button"><%= button_to "DELETE", forum_topic_url(topic), method: :delete %></span>
+  <% end %>
+</h2>
+<div class="description-container"><%= topic.description %></div>
