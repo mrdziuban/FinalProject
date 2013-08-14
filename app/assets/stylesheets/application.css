@@ -1583,7 +1583,7 @@ div.description-hidden {
   display: none;
   margin-top: 8px;
   margin-left: 25px;
-  font-size: 15px;
+  font-size: 13px;
   font-weight: 500;
   color: white;
   text-shadow: none;
@@ -1603,7 +1603,7 @@ div.description-hidden {
 .forum-container .description-hidden ul,
 .new-topic-hidden ul,
 .edit-topic-hidden ul,
-.topic-container ul {
+.topic-header-container ul {
   display: block;
   list-style-type: disc;
   margin: 10px;
@@ -1614,7 +1614,7 @@ div.description-hidden {
 .forum-container .description-hidden ol,
 .new-topic-hidden ol,
 .edit-topic-hidden ol,
-.topic-container ol {
+.topic-header-container ol {
   display: block;
   list-style-type: decimal;
   margin: 10px;
@@ -1625,14 +1625,14 @@ div.description-hidden {
 .forum-container .description-hidden ol > li,
 .new-topic-hidden ol > li,
 .edit-topic-hidden ol > li,
-.topic-container ol > li {
+.topic-header-container ol > li {
   list-style: decimal;
 }
 
 .forum-container .description-hidden ul > li,
 .new-topic-hidden ul > li,
 .edit-topic-hidden ul > li,
-.topic-container ul > li {
+.topic-header-container ul > li {
   list-style: disc;
 }
 
@@ -1671,7 +1671,7 @@ div.description-hidden {
 .topic-container div.description-container {
   margin: -10px 15px 10px 15px;
   color: white;
-  font-size: 14px;
+  font-size: 13px;
 }
 
 .topic-container input[type=submit] {
