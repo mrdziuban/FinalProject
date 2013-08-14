@@ -9,9 +9,9 @@ class Topic < ActiveRecord::Base
   def comments_by_parent
     topic_comments = self.comments
     comments_hash = {}
-    topic_comment.each do |c|
+    topic_comments.each do |c|
       comments_hash[c.parent_comment_id] ||= []
-      comments_hash[c.parent_comment_id] << comments
+      comments_hash[c.parent_comment_id] << c
     end
     comments_hash
   end
