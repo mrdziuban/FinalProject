@@ -1709,7 +1709,11 @@ div.description-hidden {
 }
 
 .submit-comment-button {
-  margin: 23px;
+  display: block;
+  text-align: center;
+  width: 45px;
+  margin-left: 23px;
+  margin-bottom: 10px;
 }
 
 .comment-input:focus {

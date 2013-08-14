@@ -17,7 +17,7 @@ class TopicsController < ApplicationController
     @topic = Topic.find(params[:id])
     @comments = @topic.comments_by_parent
     unless @comments == {}
-      @top_level = Kaminari.paginate_array(@comments[nil]).page(params[:page]).per(5)
+      @top_level = Kaminari.paginate_array(@comments[nil]).page(params[:page]).per(100)
     end
     if request.xhr?
       render partial: "comments", locals: {comments: @comments, top_level: @top_level}

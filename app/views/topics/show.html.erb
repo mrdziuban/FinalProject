@@ -62,7 +62,7 @@
       filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='<%= final %>', endColorstr='<%= start %>');
     }
 
-    .edit-topic-button {
+    .edit-topic-button, .submit-comment-button {
       <% start = team.background_color %>
       <% final = team.luminance(-0.4) %>
       border: 1px solid #292929;
@@ -71,7 +71,7 @@
       filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='<%= start %>', endColorstr='<%= final %>');
     }
 
-    .edit-topic-button:active {
+    .edit-topic-button:active, .submit-comment-button:active {
       <% start = team.luminance(-0.15) %>
       <% final = team.luminance(-0.4) %>
       background: -webkit-gradient(linear, left top, left bottom, from(<%= final %>), to(<%= start %>));
@@ -92,8 +92,12 @@
       color: <%= team.background_color %>;
     }
 
-    #wmd-input {
+    textarea {
       border: 1px solid <%= team.background_color %>;
+    }
+
+    .comments-header {
+      color: <%= team.background_color %>;
     }
 
     .comments-container ul ul {
@@ -190,16 +194,35 @@
     });
 
     topic.on("click", ".comments-header", function () {
-      $(".post-comment").slideDown("fast");
-    })
+      $(".post-comment").slideToggle("fast");
+    });
+
+    topic.on("click", ".submit-comment-button", function () {
+      var data = {
+        text: $(".comment-input").val(),
+        topic_id: <%= params[:id] %>,
+        user_id: <%= current_user.id %>
+      };
+      
+      $.ajax({
+        url: "<%= forum_topic_comments_url(params[:forum_id], params[:id]) %>",
+        type: "POST",
+        data: data,
+        success: function (data) {
+          $(".comments-list").prepend(data);
+        }
+      });
+    });
 
     topic.on("click", ".more-link", function (event) {
       event.preventDefault();
       var a = $(this);
 
       $.get(a.attr("href"), function (data) {
+        var tmp = $(".comments-list > li").length
         $(".comments-list").append(data)
-        if ($(".comments-list > li").length % 5 <= 0) {
+        var tmp2 = $(".comments-list > li").length
+        if (tmp2 - tmp < 100) {
           a.remove();
         }
       });

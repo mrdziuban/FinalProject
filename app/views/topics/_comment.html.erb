@@ -1,5 +1,5 @@
 <li>
-  <span class="comment-text"><%= comment.text.html_safe %></span>
+  <span class="comment-text"><%= comment.text %></span>
   <% if comments_hash[comment.id] %>
     <ul>
       <% comments_hash[comment.id].each do |c| %>
