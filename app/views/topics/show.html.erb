@@ -95,6 +95,10 @@
     #wmd-input {
       border: 1px solid <%= team.background_color %>;
     }
+
+    .comments-container ul ul {
+      border-left: 1px dotted <%= team.background_color %>;
+    }
   <% end %>
 </style>
 
@@ -120,18 +124,25 @@
   <%= render partial: "topic", locals: {topic: @topic} %>
 
   <section class="comments-container">
-    <% if @top_level.length > 0 %>
+    <h3 class="comments-header">Comments</h3>
+    <% if @top_level %>
       <ul class="comments-list">
         <%= render partial: "comments", locals: {comments: @comments, top_level: @top_level} %>
       </ul>
     <% end %>
   </section>
 
-  <%= link_to_next_page @top_level, "More", :class => "more-link" %>
+  <% if @top_level %>
+    <%= link_to_next_page @top_level, "More", :class => "more-link" %>
+  <% end %>
 </section>
 
 <script>
   $(document).ready(function () {
+    var description = $("div.description-container").text();
+    var converter = new Attacklab.showdown.converter();
+    $("div.description-container").html(converter.makeHtml(description));
+
     var topic = $(".topic-container");
 
     topic.on("click", ".edit-topic-button", function () {

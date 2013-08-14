@@ -6,5 +6,5 @@
       <span class="delete-topic-button"><%= button_to "DELETE", forum_topic_url(topic), method: :delete %></span>
     <% end %>
   </h2>
-  <div class="description-container"><%= topic.description.html_safe %></div>
+  <div class="description-container"><%= topic.description %></div>
 </section>

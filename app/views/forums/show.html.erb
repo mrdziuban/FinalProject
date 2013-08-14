@@ -133,6 +133,12 @@
 
 <script>
   $(document).ready(function () {
+    $("div.description-hidden").each(function (i, el) {
+      var description = $(el).text();
+      var converter = new Attacklab.showdown.converter();
+      $(el).html(converter.makeHtml(description));
+    });
+
     $(".forum-container").on("click", ".create-topic-link", function () {
       $("div.new-topic-hidden").fadeIn("fast");
 

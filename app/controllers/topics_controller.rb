@@ -2,6 +2,7 @@ class TopicsController < ApplicationController
   before_filter :authenticate_user!
 
   def create
+    params[:topic][:description] = ReverseMarkdown.parse(params[:topic][:description])
     @topic = Topic.new(params[:topic])
     @topic.user_id = current_user.id
     @topic.forum_id = params[:forum_id]
@@ -15,7 +16,9 @@ class TopicsController < ApplicationController
   def show
     @topic = Topic.find(params[:id])
     @comments = @topic.comments_by_parent
-    @top_level = Kaminari.paginate_array(@comments[nil]).page(params[:page]).per(5)
+    unless @comments == {}
+      @top_level = Kaminari.paginate_array(@comments[nil]).page(params[:page]).per(5)
+    end
     if request.xhr?
       render partial: "comments", locals: {comments: @comments, top_level: @top_level}
     end
