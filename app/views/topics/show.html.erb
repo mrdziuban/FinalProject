@@ -118,6 +118,16 @@
 
 <section class="topic-container">
   <%= render partial: "topic", locals: {topic: @topic} %>
+
+  <section class="comments-container">
+    <% if @top_level.length > 0 %>
+      <ul class="comments-list">
+        <%= render partial: "comments", locals: {comments: @comments, top_level: @top_level} %>
+      </ul>
+    <% end %>
+  </section>
+
+  <%= link_to_next_page @top_level, "More", :class => "more-link" %>
 </section>
 
 <script>
@@ -155,8 +165,8 @@
       var a = $(this);
 
       $.get(a.attr("href"), function (data) {
-        $(".topics-list").append(data)
-        if ($(".forum-container li").length % 20 !== 0) {
+        $(".comments-list").append(data)
+        if ($(".comments-list > li").length % 5 <= 0) {
           a.remove();
         }
       });

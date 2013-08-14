@@ -1603,9 +1603,9 @@ div.description-hidden {
 .forum-container .description-hidden ul,
 .new-topic-hidden ul,
 .edit-topic-hidden ul,
-.topic-header-container ul {
+.topic-header-container ul,
+.comment-text ul {
   display: block;
-  list-style-type: disc;
   margin: 10px;
   padding-left: 25px;
   text-align: left;
@@ -1614,9 +1614,9 @@ div.description-hidden {
 .forum-container .description-hidden ol,
 .new-topic-hidden ol,
 .edit-topic-hidden ol,
-.topic-header-container ol {
+.topic-header-container ol,
+.comment-text ol {
   display: block;
-  list-style-type: decimal;
   margin: 10px;
   padding-left: 25px;
   text-align: left;
@@ -1625,14 +1625,16 @@ div.description-hidden {
 .forum-container .description-hidden ol > li,
 .new-topic-hidden ol > li,
 .edit-topic-hidden ol > li,
-.topic-header-container ol > li {
+.topic-header-container ol > li,
+.comment-text ol > li {
   list-style: decimal;
 }
 
 .forum-container .description-hidden ul > li,
 .new-topic-hidden ul > li,
 .edit-topic-hidden ul > li,
-.topic-header-container ul > li {
+.topic-header-container ul > li,
+.comment-text ul > li {
   list-style: disc;
 }
 
@@ -1676,4 +1678,24 @@ div.description-hidden {
 
 .topic-container input[type=submit] {
   margin: 0 10px;
+}
+
+.comments-container ul {
+  display: block;
+  list-style-type: disc;
+  margin: 10px 5px;
+  padding-left: 30px;
+  text-align: left;
+  color: white;
+  font-size: 13px;
+}
+
+.comments-container li {
+  padding: 5px 0;
+}
+
+.comments-container ul ul {
+  padding-left: 15px;
+  border-left: 1px dotted #99000A;
+  margin-bottom: 0;
 }

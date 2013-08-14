@@ -14,6 +14,11 @@ class TopicsController < ApplicationController
 
   def show
     @topic = Topic.find(params[:id])
+    @comments = @topic.comments_by_parent
+    @top_level = Kaminari.paginate_array(@comments[nil]).page(params[:page]).per(5)
+    if request.xhr?
+      render partial: "comments", locals: {comments: @comments, top_level: @top_level}
+    end
   end
 
   def update

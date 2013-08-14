@@ -1,0 +1,3 @@
+<% @top_level.each do |c| %>
+  <%= render partial: "comment", locals: {comments_hash: @comments, comment: c} %>
+<% end %>

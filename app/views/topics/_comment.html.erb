@@ -1,0 +1,10 @@
+<li>
+  <span class="comment-text"><%= comment.text.html_safe %></span>
+  <% if comments_hash[comment.id] %>
+    <ul>
+      <% comments_hash[comment.id].each do |c| %>
+        <%= render partial: "comment", locals: {comments_hash: comments_hash, comment: c} %>
+      <% end %>
+    </ul>
+  <% end %>
+</li>
