@@ -148,23 +148,6 @@
     $(".update-topic").on("click", function (event) {
       $(".form-submitting-hidden").html('<%= image_tag "loading.gif", :class => "loading-gif" %>')
       $(".form-submitting-hidden").fadeIn("fast");
-      // event.preventDefault();
-
-      // var that = this;
-      // var formData = $(that.form).serialize();
-
-      // $.ajax({
-      //   url: that.form.action,
-      //   type: "PUT",
-      //   data: formData,
-      //   success: function (data) {
-      //     $("div.edit-topic-hidden").fadeOut("fast");
-      //     $(".form-submitting-hidden").html("");
-      //     $(".form-submitting-hidden").fadeOut("fast");
-      //     $(that.form).each(function () {this.reset()});
-      //     $(".topic-container").html(data)
-      //   }
-      // });
     });
 
     topic.on("click", ".more-link", function (event) {
