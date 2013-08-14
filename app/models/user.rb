@@ -19,6 +19,7 @@ class User < ActiveRecord::Base
 
   has_many :analyses
   has_many :topics
+  has_many :comments
 
   validates :username, presence: true, uniqueness: true
 

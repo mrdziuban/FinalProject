@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130813183729) do
+ActiveRecord::Schema.define(:version => 20130814133004) do
 
   create_table "analyses", :force => true do |t|
     t.string   "title"
@@ -23,6 +23,17 @@ ActiveRecord::Schema.define(:version => 20130813183729) do
     t.integer  "pdf_file_size"
     t.datetime "pdf_updated_at"
   end
+
+  create_table "comments", :force => true do |t|
+    t.integer  "topic_id"
+    t.integer  "user_id"
+    t.text     "text"
+    t.integer  "parent_comment_id"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
+  add_index "comments", ["topic_id", "user_id", "parent_comment_id"], :name => "index_comments_on_topic_id_and_user_id_and_parent_comment_id"
 
   create_table "favorites", :force => true do |t|
     t.integer  "user_id"
