@@ -4,7 +4,11 @@
       <%= image_tag "circle_plus.png", :class => "circle-plus" %>
     <% end %>
     <%= link_to t.title, forum_topic_url(forum, t) %>
-    <span class="topic-user"><%= link_to t.user.username, user_url(t.user) %></span>
+    <% if t.user %>
+      <span class="topic-user"><%= link_to t.user.username, user_url(t.user) %></span>
+    <% else %>
+      <span class="topic-user">Account deleted</span>
+    <% end %>
     <% if t.description %>
       <div class="description-hidden"><%= t.description %></div>
     <% end %>

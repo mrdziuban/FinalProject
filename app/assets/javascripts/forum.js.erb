@@ -1,0 +1,62 @@
+var Forum = function () {
+  var show = function () {
+    $("div.description-hidden").each(function (i, el) {
+      var description = $(el).text();
+      var converter = new Attacklab.showdown.converter();
+      $(el).html(converter.makeHtml(description));
+    });
+
+    $(".forum-container").on("click", ".create-topic-link", function () {
+      $("div.new-topic-hidden").fadeIn("fast");
+
+      setInterval(function () {
+        if ($(".title-field").val() === "") {
+          $(".create-topic").attr("disabled", true);
+        }
+        else {
+          $(".create-topic").attr("disabled", false);
+        }
+      }, 100);
+    });
+
+    $(".new-topic").on("click", function (event) {
+      event.stopPropagation();
+    });
+
+    $("div.new-topic-hidden").on("click", function () {
+      $(this).fadeOut("fast");
+    });
+
+    var topics = $(".forum-container");
+
+    topics.on("click", "div.description-hidden, li a", function (event) {
+      event.stopPropagation();
+    });
+
+    topics.on("click", "li", function () {
+      $(this).find("div.description-hidden").slideToggle("fast");
+      if ($(this).find(".circle-plus").attr("src") == "/assets/circle_plus.png") {
+        $(this).find(".circle-plus").attr("src", "/assets/circle_minus.png");
+      }
+      else {
+        $(this).find(".circle-plus").attr("src", "/assets/circle_plus.png");
+      }
+    });
+
+    topics.on("click", ".more-link", function (event) {
+      event.preventDefault();
+      var a = $(this);
+
+      $.get(a.attr("href"), function (data) {
+        $(".topics-list").append(data)
+        if ($(".forum-container li").length % 20 <= 0) {
+          a.remove();
+        }
+      });
+    });
+  };
+
+  return {
+    show: show
+  }
+}();
