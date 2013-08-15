@@ -1,12 +1,28 @@
-<h2>Forgot your password?</h2>
+<style>
+  body { 
+    background: url(<%= asset_path "stick_puck.jpg" %>) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+</style>
 
-<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
-  <%= devise_error_messages! %>
+<h1>GameDay</h1>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, :autofocus => true %></div>
+<section class="forgot-password">
+  <h2>Forgot your password?</h2>
 
-  <div><%= f.submit "Send me reset password instructions" %></div>
-<% end %>
+  <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
+    <%= devise_error_messages! %>
 
-<%= render "devise/shared/links" %>
+    <div><%= f.label :email %><br />
+    <%= f.email_field :email, :autofocus => true %></div>
+
+    <div><%= f.submit "Reset" %></div>
+  <% end %>
+</section>
+
+<section class="sign-links">
+  <%= render "devise/shared/links" %>
+</section>

@@ -214,7 +214,7 @@ h1 {
   -ms-user-select: none;
 }
 
-.sign-up, .sign-in {
+.sign-up, .sign-in, .forgot-password, .edit-user-container {
   border: 5px solid #99000A;
   color: white;
   background: rgba(41, 41, 41, 0.95);
@@ -474,11 +474,20 @@ a.games-pic:hover span.games-hidden {
   font-size: 15px;
 }
 
-.photo-upload-link:hover {
-  cursor: pointer;
+.edit-user-link {
+  display: none;
+  position: absolute;
+  right: -2px;
+  bottom: 3px;
+  margin-bottom: 0;
+  padding: 10px;
+  font-size: 15px;
+  background: rgba(41, 41, 41, 0.9);
+  border-radius: 2px;
 }
 
-.photo-upload-link:hover {
+.photo-upload-link:hover, .edit-user-link:hover {
+  cursor: pointer;
   color: white;
 }
 
