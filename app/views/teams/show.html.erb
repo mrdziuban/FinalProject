@@ -248,33 +248,6 @@
   })
 
   $(document).ready(function () {
-    $("input[type=submit]").on("click", function(event) {
-      if (event.currentTarget.className === "favorite") {
-        var buttonClicked = "favorite"
-        var meth = "POST"
-      }
-      else {
-        var buttonClicked = "unfavorite"
-        var meth = "DELETE"
-      }
-
-      var params = {
-        id: "<%= @team.id %>",
-        type: "Team"
-      };
-
-      $.ajax({
-        url: "<%= favorites_url %>",
-        type: meth,
-        data: params,
-        success: function() {
-          $(".favorite-buttons").toggleClass("favorited", buttonClicked == "favorite");
-        },
-        error: function() {
-          alert("Request failed");
-          console.log("error");
-        }
-      });
-    });
+    Team.show("<%= @team.id %>", "<%= favorites_url %>");
   });
 </script>
