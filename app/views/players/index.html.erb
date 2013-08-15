@@ -14,24 +14,6 @@
 
 <script>
   $(document).ready(function () {
-    var players = $(".players-container");
-
-    players.on("click", ".paginator a", function (event) {
-      event.preventDefault();
-      var a = $(this);
-
-      $.get(a.attr("href"), function (data) {
-        players.html(data);
-      });
-    });
-
-    players.on("click", "thead a", function (event) {
-      event.preventDefault();
-      var a = $(this);
-
-      $.get(a.attr("href"), function (data) {
-        players.html(data);
-      });
-    });
+    Player.index();
   });
 </script>
