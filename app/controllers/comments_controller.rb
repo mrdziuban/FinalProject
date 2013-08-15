@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   def create
-    @comment = Comment.create!(text: params[:text], topic_id: params[:topic_id], user_id: params[:user_id])
+    @comment = Comment.create!(params[:comment])
     @comments = @comment.topic.comments_by_parent
     if request.xhr?
       render partial: "topics/comment", locals: {comments_hash: @comments, comment: @comment}
@@ -9,7 +9,7 @@ class CommentsController < ApplicationController
 
   def update
     @comment = Comment.find(params[:id])
-    @comment.update_attribute(:text, params[:text])
+    @comment.update_attributes(params[:comment])
     @comments = @comment.topic.comments_by_parent
     if request.xhr?
       render partial: "topics/comment", locals: {comments_hash: @comments, comment: @comment}

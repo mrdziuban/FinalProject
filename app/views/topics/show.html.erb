@@ -206,9 +206,11 @@
 
     topic.on("click", ".submit-comment-button", function () {
       var data = {
-        text: $(".comment-input").val(),
-        topic_id: <%= params[:id] %>,
-        user_id: <%= current_user.id %>
+        comment: {
+          text: $(".comment-input").val(),
+          topic_id: <%= params[:id] %>,
+          user_id: <%= current_user.id %>
+        }
       };
       
       $.ajax({
@@ -239,22 +241,44 @@
       });
     });
 
-    topic.on("click", ".comment-delete", function () {
-      var that = this;
-      var commentId = $(that).siblings(".comment-text").attr("id");
+    topic.on("click", ".comment-reply", function () {
+      $(this).siblings(".reply-comment").slideToggle("fast");
+    });
+
+    topic.on("click", ".reply-comment-button", function () {
+      var commentId = $(this).closest("section").siblings(".comment-text").attr("id");
+      var replyComment = $(this).closest("section");
+      var commentInput = $(this).siblings(".reply-comment-input");
+      var ul = replyComment.siblings("ul");
+
+      var data = {
+        comment: {
+          text: commentInput.val(),
+          topic_id: <%= params[:id] %>,
+          user_id: <%= current_user.id %>,
+          parent_comment_id: commentId
+        }
+      };
       
       $.ajax({
-        url: "/comments/" + commentId,
-        type: "DELETE",
-        success: function () {
-          $(that).closest("li").fadeOut("fast");
+        url: "<%= forum_topic_comments_url(params[:forum_id], params[:id]) %>",
+        type: "POST",
+        data: data,
+        success: function (data) {
+          replyComment.val("");
+          replyComment.slideToggle();
+          ul.prepend(data);
+          ul.find(".comment-text").each(function (i, el) {
+            var text = $(el).text();
+            $(el).html(converter.makeHtml(text));
+          });
         }
       });
     });
 
     topic.on("click", ".comment-edit", function () {
       $(this).siblings(".edit-comment").slideToggle("fast");
-    })
+    });
 
     topic.on("click", ".update-comment-button", function () {
       var that = this;
@@ -264,7 +288,9 @@
       var li = $(that).closest("li");
 
       var data = {
-        text: $(that).siblings(".edit-comment-input").val(),
+        comment: {
+          text: $(that).siblings(".edit-comment-input").val()
+        }
       };
       
       $.ajax({
@@ -280,5 +306,18 @@
         }
       });
     })
+
+    topic.on("click", ".comment-delete", function () {
+      var that = this;
+      var commentId = $(that).siblings(".comment-text").attr("id");
+      
+      $.ajax({
+        url: "/comments/" + commentId,
+        type: "DELETE",
+        success: function () {
+          $(that).closest("li").fadeOut("fast");
+        }
+      });
+    });
   });
 </script>

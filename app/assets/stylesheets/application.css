@@ -1693,7 +1693,7 @@ div.description-hidden {
   cursor: pointer;
 }
 
-.comment-input, .edit-comment-input {
+.comment-input, .edit-comment-input, .reply-comment-input {
   margin-left: 23px;
   width: 400px;
   height: 100px;
@@ -1704,16 +1704,29 @@ div.description-hidden {
   margin-bottom: 5px;
 }
 
+.reply-comment-input {
+  margin-left: 5px;
+  margin-top: 5px;
+}
+
 .post-comment {
   display: none;
 }
 
-.submit-comment-button, .update-comment-button {
+.reply-comment {
+  display: none;
+}
+
+.submit-comment-button, .update-comment-button, .reply-comment-button {
   display: block;
   text-align: center;
   width: 45px;
   margin-left: 23px;
   margin-bottom: 10px;
+}
+
+.reply-comment-button {
+  margin-left: 5px;
 }
 
 .comment-input:focus {
