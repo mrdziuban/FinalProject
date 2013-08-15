@@ -196,7 +196,7 @@
         type: "PUT",
         data: formData,
         success: function (data) {
-          editInterval.clearInterval();
+          clearInterval(editInterval);
           $("div.edit-topic-hidden").fadeOut("fast");
           $(that.form).each(function () {this.reset()});
           $(".topic-header-container").html(data);
