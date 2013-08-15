@@ -1,6 +1,8 @@
 <section class="analysis-header-container">
   <h2><%= analysis.title %></h2>
-  <h3>by <%= analysis.user.username %></h3>
+  <% if analysis.user %>
+    <h3>by <%= analysis.user.username %></h3>
+  <% end %>
   <% if analysis.id == 1  %>
     <h3 class="charts-link"><%= link_to "View charts", analysis_charts_url(analysis) %></h3>
   <% end %>
