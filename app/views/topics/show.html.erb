@@ -329,7 +329,14 @@
         url: "/comments/" + commentId,
         type: "DELETE",
         success: function () {
-          $(that).closest("li").fadeOut("fast");
+          if ($(that).closest("li").siblings("li").length === 0) {
+            $(that).closest("ul").fadeOut("fast");
+            $(that).closest("ul").remove();
+          }
+          else {
+            $(that).closest("li").fadeOut("fast");
+            $(that).closest("li").remove();
+          }
         }
       });
     });
