@@ -120,34 +120,7 @@
   })
 
   $(document).ready(function () {
-    $("input[type=submit]").on("click", function(event) {
-      if (event.currentTarget.className === "favorite") {
-        var buttonClicked = "favorite"
-        var meth = "POST"
-      }
-      else {
-        var buttonClicked = "unfavorite"
-        var meth = "DELETE"
-      }
-
-      var params = {
-        id: "<%= @goalie.id %>",
-        type: "Goalie"
-      };
-
-      $.ajax({
-        url: "<%= favorites_url %>",
-        type: meth,
-        data: params,
-        success: function() {
-          $(".favorite-buttons").toggleClass("favorited", buttonClicked == "favorite");
-        },
-        error: function() {
-          alert("Request failed");
-          console.log("error");
-        }
-      });
-    });
+    Goalie.show("<%= @goalie.id %>", "<%= favorites_url %>");
   });
 </script>
 
