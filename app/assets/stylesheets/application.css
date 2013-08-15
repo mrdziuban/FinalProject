@@ -57,10 +57,10 @@ header > nav.navbar {
 
 header > nav.navbar li.logo {
   background: url("logo.png");
-  background-size: 35px 33.5px;
+  background-size: 42px 32.5px;
   background-repeat: no-repeat;
   text-indent: -9999px;
-  margin-top: 9px;
+  margin-top: 10px;
   margin-left: 20px;
 }
 
