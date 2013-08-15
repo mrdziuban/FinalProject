@@ -1,5 +1,5 @@
 <li>
-  <span id="<%= comment.id %>" class="comment-text"><%= comment.text %></span>
+  <div id="<%= comment.id %>" class="comment-text"><%= comment.text %></div>
   <span class="comment-reply">Reply</span>
   <% if comment.user == current_user %>
     <span class="comment-edit">Edit</span>
