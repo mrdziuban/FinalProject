@@ -136,7 +136,7 @@
     <h3 class="comments-header">Post comment</h3>
     <section class="post-comment">
       <textarea class="comment-input"></textarea><br>
-      <span class="submit-comment-button fake-button">SUBMIT</span>
+      <span class="submit-comment-button fake-button">Submit</span>
     </section>
 
     <ul class="comments-list">
@@ -229,6 +229,9 @@
           $(".comments-list").prepend(data);
           var text = $("span.comment-text").first().text();
           $("span.comment-text").first().html(converter.makeHtml(text));
+        },
+        error: function () {
+          $(".comment-input").val("You must enter comment text");
         }
       });
     });
@@ -278,6 +281,9 @@
             var text = $(el).text();
             $(el).html(converter.makeHtml(text));
           });
+        },
+        error: function () {
+          commentInput.val("You must enter comment text");
         }
       });
     });
@@ -308,6 +314,9 @@
           li.html(data);
           var text = $(document.getElementById(commentId)).text();
           $(document.getElementById(commentId)).html(converter.makeHtml(text));
+        },
+        error: function () {
+          commentInput.val("You must enter comment text");
         }
       });
     })

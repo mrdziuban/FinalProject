@@ -9,7 +9,7 @@ class CommentsController < ApplicationController
 
   def update
     @comment = Comment.find(params[:id])
-    @comment.update_attributes(params[:comment])
+    @comment.update_attributes!(params[:comment])
     @comments = @comment.topic.comments_by_parent
     if request.xhr?
       render partial: "topics/comment", locals: {comments_hash: @comments, comment: @comment}

@@ -7,8 +7,8 @@
   <h3></h3>
   <% if analysis.user == current_user %>
     <ul class="edit-delete-analysis">
-      <li class="edit-item"><span class="edit-analysis-button fake-button">EDIT</span></li>
-      <li><%= button_to "DELETE", analysis_url(analysis), method: :delete %></li>
+      <li class="edit-item"><span class="edit-analysis-button fake-button">Edit</span></li>
+      <li><%= button_to "Delete", analysis_url(analysis), method: :delete %></li>
     </ul>
   <% end %>
 </section>

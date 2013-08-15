@@ -79,8 +79,8 @@
       <img class="player-pic" src="<%= @player.image.url %>">
     <% end %>
     <div class="favorite-buttons<%= current_user.players.include?(@player) ? ' favorited' : '' %>">
-      <input class="favorite" type="submit" value="FAVORITE">
-      <input class="unfavorite" type="submit" value="UNFAVORITE">
+      <input class="favorite" type="submit" value="Favorite">
+      <input class="unfavorite" type="submit" value="Unfavorite">
     </div>
     <section class="player-stats-table">
       <table id="player-stats">
