@@ -1,8 +1,10 @@
 <li>
   <span id="<%= comment.id %>" class="comment-text"><%= comment.text %></span>
   <span class="comment-reply">Reply</span>
-  <span class="comment-edit">Edit</span>
-  <span class="comment-delete">Delete</span>
+  <% if comment.user == current_user %>
+    <span class="comment-edit">Edit</span>
+    <span class="comment-delete">Delete</span>
+  <% end %>
 
   <section class="reply-comment">
     <textarea class="reply-comment-input"></textarea><br>
@@ -10,7 +12,7 @@
   </section>
 
   <section class="edit-comment">
-    <textarea class="edit-comment-input"></textarea><br>
+    <textarea class="edit-comment-input"><%= comment.text %></textarea><br>
     <span class="update-comment-button fake-button">UPDATE</span>
   </section>
 

@@ -62,7 +62,10 @@
       filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='<%= final %>', endColorstr='<%= start %>');
     }
 
-    .edit-topic-button, .submit-comment-button {
+    .edit-topic-button,
+    .submit-comment-button,
+    .reply-comment-button,
+    .update-comment-button {
       <% start = team.background_color %>
       <% final = team.luminance(-0.4) %>
       border: 1px solid #292929;
@@ -71,7 +74,10 @@
       filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='<%= start %>', endColorstr='<%= final %>');
     }
 
-    .edit-topic-button:active, .submit-comment-button:active {
+    .edit-topic-button:active,
+    .submit-comment-button:active,
+    .reply-comment-button:active,
+    .update-comment-button:active {
       <% start = team.luminance(-0.15) %>
       <% final = team.luminance(-0.4) %>
       background: -webkit-gradient(linear, left top, left bottom, from(<%= final %>), to(<%= start %>));
@@ -92,7 +98,7 @@
       color: <%= team.background_color %>;
     }
 
-    textarea {
+    textarea, .comment-input, .edit-comment-input, .reply-comment-input {
       border: 1px solid <%= team.background_color %>;
     }
 
@@ -133,11 +139,11 @@
       <span class="submit-comment-button fake-button">SUBMIT</span>
     </section>
 
-    <% if @top_level %>
-      <ul class="comments-list">
+    <ul class="comments-list">
+      <% if @top_level %>
         <%= render partial: "comments", locals: {comments: @comments, top_level: @top_level} %>
-      </ul>
-    <% end %>
+      <% end %>
+    </ul>
   </section>
 
   <% if @top_level %>
@@ -265,7 +271,7 @@
         type: "POST",
         data: data,
         success: function (data) {
-          replyComment.val("");
+          commentInput.val("");
           replyComment.slideToggle();
           ul.prepend(data);
           ul.find(".comment-text").each(function (i, el) {
@@ -298,7 +304,6 @@
         type: "PUT",
         data: data,
         success: function (data) {
-          commentInput.val("");
           editComment.slideToggle();
           li.html(data);
           var text = $(document.getElementById(commentId)).text();
