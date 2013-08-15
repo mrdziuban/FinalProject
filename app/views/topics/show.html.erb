@@ -259,9 +259,8 @@
     topic.on("click", ".update-comment-button", function () {
       var that = this;
       var commentId = $(that).closest("section").siblings(".comment-text").attr("id");
-      var editComment = $(that).siblings(".edit-comment");
+      var editComment = $(that).closest("section");
       var commentInput = $(that).siblings(".edit-comment-input");
-      var commentText = $(that).siblings(".comment-text");
       var li = $(that).closest("li");
 
       var data = {
@@ -269,15 +268,15 @@
       };
       
       $.ajax({
-        url: "/forums/" + "<%= params[:forum_id] %>" + "/" + "<%= params[:id] %>" + "/comments/" + commentId,
+        url: "/forums/<%= params[:forum_id] %>/<%= params[:id] %>/comments/" + commentId,
         type: "PUT",
         data: data,
         success: function (data) {
           commentInput.val("");
           editComment.slideToggle();
           li.html(data);
-          var text = $(that).siblings(".comment-text").text();
-          $(that).siblings(".comment-text").html(converter.makeHtml(text));
+          var text = $(document.getElementById(commentId)).text();
+          $(document.getElementById(commentId)).html(converter.makeHtml(text));
         }
       });
     })
