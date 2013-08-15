@@ -1,0 +1,92 @@
+var Analysis = function () {
+  var index = function () {
+    $("h3.add-analysis-link").on("click", function () {
+      $("div.new-analysis-hidden").fadeIn("fast");
+    });
+
+    $(".new-analysis").on("click", function (event) {
+      event.stopPropagation();
+    });
+
+    $("div.new-analysis-hidden").on("click", function () {
+      $(this).fadeOut("fast");
+    });
+
+    $(".create-analysis").on("click", createAnalysis);
+  };
+
+  var createAnalysis = function (event) {
+    $(".form-submitting-hidden").html('<%= image_tag "loading.gif", :class => "loading-gif" %>')
+    $(".form-submitting-hidden").fadeIn("fast");
+    event.preventDefault();
+
+    var that = this;
+    var formData = new FormData(that.form);
+
+    $.ajax({
+      url: that.form.action,
+      contentType: false,
+      processData: false,
+      type: "POST",
+      data: formData,
+      success: function (data) {
+        $("div.new-analysis-hidden").fadeOut("fast");
+        $(".form-submitting-hidden").html("");
+        $(".form-submitting-hidden").fadeOut("fast");
+        $(that.form).each(function () {this.reset()});
+        $(".analyses-container").html(data);
+      },
+      error: function () {
+        console.log("error");
+      }
+    });
+  };
+
+  var show = function () {
+    $(".analysis-container").on("click", ".edit-analysis-button", function () {
+      $("div.edit-analysis-hidden").fadeIn("fast");
+    });
+
+    $(".edit-analysis").on("click", function (event) {
+      event.stopPropagation();
+    });
+
+    $("div.edit-analysis-hidden").on("click", function () {
+      $(this).fadeOut("fast");
+    });
+
+    $(".update-analysis").on("click", updateAnalysis);
+  }
+
+  var updateAnalysis = function (event) {
+    $(".form-submitting-hidden").html('<%= image_tag "loading.gif", :class => "loading-gif" %>');
+    $(".form-submitting-hidden").fadeIn("fast");
+    event.preventDefault();
+
+    var that = this;
+    var formData = new FormData(that.form);
+
+    $.ajax({
+      url: that.form.action,
+      contentType: false,
+      processData: false,
+      type: "PUT",
+      data: formData,
+      success: function (data) {
+        $("div.edit-analysis-hidden").fadeOut("fast");
+        $(".form-submitting-hidden").html("");
+        $(".form-submitting-hidden").fadeOut("fast");
+        $(that.form).each(function () {this.reset()});
+        $(".analysis-container").html(data);
+      },
+      error: function () {
+        console.log("error");
+      }
+    });
+  }
+
+  return {
+    index: index,
+    show: show
+  }
+}();

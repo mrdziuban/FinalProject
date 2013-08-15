@@ -20,43 +20,6 @@
 
 <script>
   $(document).ready(function () {
-    $(".analysis-container").on("click", ".edit-analysis-button", function () {
-      $("div.edit-analysis-hidden").fadeIn("fast");
-    });
-
-    $(".edit-analysis").on("click", function (event) {
-      event.stopPropagation();
-    });
-
-    $("div.edit-analysis-hidden").on("click", function () {
-      $(this).fadeOut("fast");
-    });
-
-    $(".update-analysis").on("click", function (event) {
-      $(".form-submitting-hidden").html('<%= image_tag "loading.gif", :class => "loading-gif" %>');
-      $(".form-submitting-hidden").fadeIn("fast");
-      event.preventDefault();
-
-      var that = this;
-      var formData = new FormData(that.form);
-
-      $.ajax({
-        url: that.form.action,
-        contentType: false,
-        processData: false,
-        type: "PUT",
-        data: formData,
-        success: function (data) {
-          $("div.edit-analysis-hidden").fadeOut("fast");
-          $(".form-submitting-hidden").html("");
-          $(".form-submitting-hidden").fadeOut("fast");
-          $(that.form).each(function () {this.reset()});
-          $(".analysis-container").html(data);
-        },
-        error: function () {
-          console.log("error");
-        }
-      })
-    });
+    Analysis.show();
   });
 </script>
