@@ -35,6 +35,7 @@ gem 'figaro'
 gem 'pg_search', '~> 0.5.7'
 gem 'chartkick'
 gem 'reverse_markdown'
+gem 'letter_opener'
 
 group :development do
   gem 'better_errors'
