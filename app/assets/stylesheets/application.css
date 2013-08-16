@@ -1647,6 +1647,124 @@ div.description-hidden {
   list-style: disc;
 }
 
+#wmd-preview h1,
+.description-hidden h1,
+.description-container h1,
+.comment-text h1,
+#wmd-preview h2,
+.description-hidden h2,
+.description-container h2,
+.comment-text h2,
+#wmd-preview h3,
+.description-hidden h3,
+.description-container h3,
+.comment-text h3,
+#wmd-preview h4,
+.description-hidden h4,
+.description-container h4,
+.comment-text h4,
+#wmd-preview h5,
+.description-hidden h5,
+.description-container h5,
+.comment-text h5,
+#wmd-preview h6,
+.description-hidden h6,
+.description-container h6,
+.comment-text h6 {
+  margin: 0;
+  padding: 0;
+}
+
+#wmd-preview h1 {
+  font-size: 24px;
+  color: black;
+}
+
+.description-hidden h1,
+.description-container h1,
+.comment-text h1 {
+  font-size: 24px;
+  color: white;
+  text-shadow: none;
+}
+
+#wmd-preview h2 {
+  font-size: 22px;
+  color: black;
+}
+
+.description-hidden h2,
+.topic-header-container .description-container h2,
+.comments-container .comment-text h2 {
+  font-size: 22px;
+  color: white;
+  text-shadow: none;
+}
+
+#wmd-preview h3 {
+  font-size: 20px;
+  color: black;
+}
+
+.description-hidden h3,
+.description-container h3,
+.comment-text h3 {
+  font-size: 20px;
+  color: white;
+  text-shadow: none;
+}
+
+#wmd-preview h4 {
+  font-size: 18px;
+  color: black;
+}
+
+.description-hidden h4,
+.description-container h4,
+.comment-text h4 {
+  font-size: 18px;
+  color: white;
+  text-shadow: none;
+}
+
+#wmd-preview h5 {
+  font-size: 16px;
+  color: black;
+}
+
+.description-hidden h5,
+.description-container h5,
+.comment-text h5 {
+  font-size: 16px;
+  color: white;
+  text-shadow: none;
+}
+
+#wmd-preview h6 {
+  font-size: 14px;
+  color: black;
+}
+
+.description-hidden h6,
+.description-container h6,
+.comment-text h6 {
+  font-size: 14px;
+  color: white;
+  text-shadow: none;
+}
+
+blockquote {
+  border-left: 4px solid white;
+  padding-left: 5px;
+}
+
+code {
+  padding: 3px;
+  background: #CBCBCB;
+  border-radius: 3px;
+  color: black;
+}
+
 /*============================================================================*/
 /* Topic show => views/topics/show.html.erb */
 
