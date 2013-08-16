@@ -35,11 +35,14 @@ var Forum = function () {
     });
 
     topics.on("click", "li", function () {
+      console.log("clicked");
       $(this).find("div.description-hidden").slideToggle("fast");
       if ($(this).find(".circle-plus").attr("src") == "/assets/circle_plus.png") {
+        console.log("plus");
         $(this).find(".circle-plus").attr("src", "/assets/circle_minus.png");
       }
       else {
+        console.log("minus");
         $(this).find(".circle-plus").attr("src", "/assets/circle_plus.png");
       }
     });
