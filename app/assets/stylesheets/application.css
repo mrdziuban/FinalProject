@@ -1050,7 +1050,8 @@ h2.tickets-link > a:hover {
   text-shadow: 1px 1px 1px #000;
 }
 
-.discussion-container h2.discussion-not-yet {
+.discussion-container h2.discussion-not-yet,
+.discussion-container h2.discussion-passed {
   text-align: center;
   color: #292929;
   margin-top: 10px;

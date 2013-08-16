@@ -88,6 +88,8 @@
 
   <% if @game.date == Date.today %>
 
+  <% elsif @game.date < Date.today %>
+    <h2 class="discussion-passed">This game has already passed</h2>
   <% else %>
     <h2 class="discussion-not-yet">Discussion will be available the day of the game</h2>
   <% end %>
