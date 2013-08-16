@@ -35,14 +35,11 @@ var Forum = function () {
     });
 
     topics.on("click", "li", function () {
-      console.log("clicked");
       $(this).find("div.description-hidden").slideToggle("fast");
-      if ($(this).find(".circle-plus").attr("src") == "/assets/circle_plus.png") {
-        console.log("plus");
+      if ($(this).find(".circle-plus").attr("src") == "/assets/circle_plus.png" || $(this).find(".circle-plus").attr("src") == "/assets/circle_plus-f0ee6d85e489c5b6de90ded216286da9.png") {
         $(this).find(".circle-plus").attr("src", "/assets/circle_minus.png");
       }
       else {
-        console.log("minus");
         $(this).find(".circle-plus").attr("src", "/assets/circle_plus.png");
       }
     });
