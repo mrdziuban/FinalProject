@@ -50,6 +50,10 @@ var Topic = function () {
       $(".post-comment").slideToggle("fast");
     });
 
+    topic.on("click", ".help-link", function () {
+      $(".help-image").fadeToggle();
+    })
+
     topic.on("click", ".comment-reply", function () {
       $(this).siblings(".reply-comment").slideToggle("fast");
     });

@@ -1833,12 +1833,35 @@ code {
   margin-bottom: 5px;
 }
 
+.comments-container > .post-comment > .help-link {
+  position: absolute;
+  top: 85px;
+  left: 340px;
+  color: white;
+  text-decoration: underline;
+}
+
+.help-link:hover {
+  cursor: pointer;
+}
+
+.help-image {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 435px;
+  z-index: 4999;
+  width: 500px;
+  border-radius: 3px;
+}
+
 .reply-comment-input {
   margin-left: 5px;
   margin-top: 5px;
 }
 
 .post-comment {
+  position: relative;
   display: none;
 }
 
