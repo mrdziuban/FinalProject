@@ -1,8 +1,9 @@
 var Forum = function () {
   var show = function () {
+    var converter = new Attacklab.showdown.converter();
+
     $("div.description-hidden").each(function (i, el) {
       var description = $(el).text();
-      var converter = new Attacklab.showdown.converter();
       $(el).html(converter.makeHtml(description));
     });
 
@@ -48,8 +49,14 @@ var Forum = function () {
       var a = $(this);
 
       $.get(a.attr("href"), function (data) {
-        $(".topics-list").append(data)
-        if ($(".forum-container li").length % 20 <= 0) {
+        var tmp = $(".forum-container li").length;
+        $(".topics-list").append(data);
+        var tmp2 = $(".forum-container li").length;
+        $("div.description-hidden").each(function (i, el) {
+          var description = $(el).text();
+          $(el).html(converter.makeHtml(description));
+        });
+        if (tmp2 - tmp < 20) {
           a.remove();
         }
       });
