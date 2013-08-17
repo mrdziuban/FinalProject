@@ -51,7 +51,7 @@ var Topic = function () {
     });
 
     topic.on("click", ".help-link", function () {
-      $(".help-image").fadeToggle();
+      $(this).siblings(".help-image").fadeToggle();
     })
 
     topic.on("click", ".comment-reply", function () {

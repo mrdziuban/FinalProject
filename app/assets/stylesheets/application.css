@@ -1842,15 +1842,35 @@ code {
   text-decoration: underline;
 }
 
+.reply-comment > .help-link,
+.edit-comment > .help-link {
+  position: absolute;
+  top: 88px;
+  left: 322px;
+  color: white;
+  text-decoration: underline;
+  font-size: 11px;
+}
+
 .help-link:hover {
   cursor: pointer;
 }
 
-.help-image {
+.comments-container > .post-comment > .help-image {
   display: none;
   position: absolute;
   top: 0;
   left: 435px;
+  z-index: 4999;
+  width: 500px;
+  border-radius: 3px;
+}
+
+.reply-comment > .help-image, .edit-comment > .help-image {
+  display: none;
+  position: absolute;
+  top: 5px;
+  left: 417px;
   z-index: 4999;
   width: 500px;
   border-radius: 3px;
@@ -1867,6 +1887,7 @@ code {
 }
 
 .reply-comment {
+  position: relative;
   display: none;
 }
 
@@ -1917,6 +1938,7 @@ code {
 }
 
 .edit-comment {
+  position: relative;
   display: none;
 }
 
