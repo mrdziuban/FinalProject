@@ -17,9 +17,14 @@ GameDay was built over 2 weeks as my capstone project for App Academy. Since I h
 * [Devise](https://github.com/plataformatec/devise) for user registration and authentication
 * [Nokogiri](https://github.com/sparklemotion/nokogiri) and OpenURI for gathering stats
 * [Paperclip](https://github.com/thoughtbot/paperclip) and Amazon S3 for image storage
+* [Figaro](https://github.com/laserlemon/figaro) to store sensitive information for access to S3
 * [Kaminari](https://github.com/amatsuda/kaminari) for pagination of stats
 * [pg_search](https://github.com/Casecommons/pg_search) for multi-model search
 * [SeatGeek](http://seatgeek.com) API integration for tickets info using RestClient and Addressable
 * [Chartkick](https://github.com/ankane/chartkick) to create charts using the Google Chart API
 
 Check it out at http://game-day.herokuapp.com. Login to demo with email: test@test.com, password: testpass.
+
+## TODO
+
+* Add Facebook login using OmniAuth
