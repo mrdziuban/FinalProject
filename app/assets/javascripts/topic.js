@@ -194,19 +194,19 @@ var Topic = function () {
   var deleteComment = function () {
     var that = this;
     var commentId = $(that).siblings(".comment-text").attr("id");
+
+    var data = {
+      comment: {
+        text: "*comment deleted*"
+      }
+    }
     
     $.ajax({
-      url: "/comments/" + commentId,
-      type: "DELETE",
+      url: updateUrl + commentId,
+      type: "PUT",
+      data: data,
       success: function () {
-        if ($(that).closest("li").siblings("li").length === 0) {
-          $(that).closest("ul").fadeOut("fast");
-          $(that).closest("ul").remove();
-        }
-        else {
-          $(that).closest("li").fadeOut("fast");
-          $(that).closest("li").remove();
-        }
+        $("#" + commentId).html(converter.makeHtml("*comment deleted*"));
       }
     });
   };
