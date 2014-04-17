@@ -1,0 +1,20 @@
+<% x = 1 %>
+<?xml version="1.0" encoding="UTF-8"?>
+<games>
+  <% @final_games.each do |game| %>
+    <game internal_id="<%= x %>" game_id="<%= game[:id] %>" game_date="<%= game[:date] %>" season="1314">
+    <% x += 1 %>
+      <home_team><%= game[:home] %></home_team>
+      <away_team><%= game[:away] %></away_team>
+      <assignments>
+        <assignment internal_id="<%= x %>" feed_name="a" feed_display_name="away">
+          <ipad_url><%= game[:away_stream] %></ipad_url>
+        </assignment>
+        <% x += 1 %>
+        <assignment internal_id="<%= x %>" feed_name="h" feed_display_name="home">
+          <ipad_url><%= game[:home_stream] %></ipad_url>
+        </assignment>
+      </assignments>
+    </game>
+  <% end %>
+</games>

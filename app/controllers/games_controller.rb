@@ -1,4 +1,5 @@
 require 'addressable/uri'
+require 'open-uri'
 
 class GamesController < ApplicationController
   before_filter :authenticate_user!
@@ -25,6 +26,38 @@ class GamesController < ApplicationController
     @home_team = @game.home_team
     @away_team = @game.away_team
     @tickets = get_seat_geek(@game)
+  end
+
+  def links
+    games_json = open('http://live.nhl.com/GameData/SeasonSchedule-20132014.json').read
+    games = JSON.parse(games_json)
+    games = games.select do |game|
+      game['est'].include?(DateTime.now.strftime('%Y%m%d'))
+    end
+
+    @final_games = []
+
+    games.each do |game|
+      game_id = game['id'].to_s[4..-1]
+      game_id = game_id.insert(2, '_')
+      date_arr = game['est'].split(' ')
+      date = "#{date_arr[0].insert(4, '-').insert(7, '-')} #{date_arr[1][0..1].to_i % 12}:#{date_arr[1][3..4]}"
+      url = "http://smb.cdnak.neulion.com/fs/nhl/mobile/feed_new/data/streams/2013/ipad/#{game_id}.json"
+      game_info_json = open(url).read
+      game_info = JSON.parse(game_info_json)
+      begin
+        @final_games << {
+          id: game_id,
+          date: date,
+          home: game['h'],
+          away: game['a'],
+          home_stream: game_info['gameStreams']['ipad']['home']['live']['bitrate0'],
+          away_stream: game_info['gameStreams']['ipad']['away']['live']['bitrate0']
+        }
+      rescue
+        next
+      end
+    end
   end
 
   private
