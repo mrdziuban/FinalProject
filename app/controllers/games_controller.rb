@@ -44,9 +44,9 @@ class GamesController < ApplicationController
       date = "#{date_arr[0].insert(4, '-').insert(7, '-')} #{date_arr[1][0..1].to_i % 12}:#{date_arr[1][3..4]}"
       url = "http://smb.cdnak.neulion.com/fs/nhl/mobile/feed_new/data/streams/2013/ipad/#{game_id}.json"
       p url
-      game_info_json = open(url).read
-      game_info = JSON.parse(game_info_json)
       begin
+        game_info_json = open(url).read
+        game_info = JSON.parse(game_info_json)
         @final_games << {
           id: game_id,
           date: date,
