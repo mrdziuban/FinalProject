@@ -2,7 +2,7 @@ require 'addressable/uri'
 require 'open-uri'
 
 class GamesController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, except: [:links, :links_json]
   helper_method :sort_column, :sort_direction, :season, :team_id
   
   def index
@@ -59,6 +59,12 @@ class GamesController < ApplicationController
         next
       end
     end
+
+    @final_games
+  end
+
+  def links_json
+    render json: links
   end
 
   private

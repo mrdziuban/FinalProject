@@ -3,6 +3,7 @@ GameDay::Application.routes.draw do
   match "user_root" => "home#index", :path => ""
   post "/search" => "home#search", as: "search"
   get "/links" => "games#links"
+  get "/links_json" => "games#links_json"
 
   resources :users, only: [:show, :update]
   get "/standings" => "teams#index"
