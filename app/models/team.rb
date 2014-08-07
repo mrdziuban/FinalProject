@@ -225,27 +225,30 @@ class Team < ActiveRecord::Base
     standings_tables = standings_page.css(".data.standings.Division")
     standings_hash = {}
 
-    standings_tables.each do |t|
-      division = (t.css("th")[1].text).to_sym
-      standings_hash[division] = {}
-      t.css("tbody tr").each do |tr|
-        team = (tr.css("a")[1].text).strip
-        team = I18n.transliterate(team)
-        team = TEAM_ABBREVS[team.downcase]
-        standings_hash[division][team] = {}
-        (2..15).each do |i|
-          key = t.css("th")[i].css("a").text.strip
-          if key == "S/O"
-            key = "SO"
+    begin
+      standings_tables.each do |t|
+        division = (t.css("th")[1].text).to_sym
+        standings_hash[division] = {}
+        t.css("tbody tr").each do |tr|
+          team = (tr.css("a")[1].text).strip
+          team = I18n.transliterate(team)
+          team = TEAM_ABBREVS[team.downcase]
+          standings_hash[division][team] = {}
+          (2..15).each do |i|
+            key = t.css("th")[i].css("a").text.strip
+            if key == "S/O"
+              key = "SO"
+            end
+            if i.between?(2,9)
+              val = tr.css("td")[i].text.strip.to_i
+            else
+              val = tr.css("td")[i].text.strip
+            end
+            standings_hash[division][team][key.to_sym] = val
           end
-          if i.between?(2,9)
-            val = tr.css("td")[i].text.strip.to_i
-          else
-            val = tr.css("td")[i].text.strip
-          end
-          standings_hash[division][team][key.to_sym] = val
         end
       end
+    rescue NoMethodError => e
     end
 
     return standings_hash
