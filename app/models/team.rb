@@ -196,7 +196,7 @@ class Team < ActiveRecord::Base
       else
         file_name = "#{name_words[-1].downcase}.jpg"
       end
-      
+
       team.background = File.new("lib/team_backgrounds/#{file_name}", "r")
       team.save
     end
@@ -232,6 +232,7 @@ class Team < ActiveRecord::Base
         t.css("tbody tr").each do |tr|
           team = (tr.css("a")[1].text).strip
           team = I18n.transliterate(team)
+          team = "Phoenix" if team == "Arizona"
           team = TEAM_ABBREVS[team.downcase]
           standings_hash[division][team] = {}
           (2..15).each do |i|

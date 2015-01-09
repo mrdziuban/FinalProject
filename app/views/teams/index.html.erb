@@ -1,6 +1,6 @@
 <style>
-  body { 
-  background: url(<%= asset_path "pond.jpg" %>) no-repeat center center fixed; 
+  body {
+  background: url(<%= asset_path "pond.jpg" %>) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -12,7 +12,7 @@
   <h2>EAST</h2>
   <table class="standings-table">
     <% @standings.each do |division, teams_hash| %>
-      <% next if [:Central, :Northwest, :Pacific].include?(division) %>
+      <% next if [:Central, :Pacific].include?(division) %>
       <thead class="standings-header">
         <tr>
           <th></th>
@@ -46,7 +46,7 @@
   <h2>WEST</h2>
   <table class="standings-table">
     <% @standings.each do |division, teams_hash| %>
-      <% next if [:Atlantic, :Northeast, :Southeast].include?(division) %>
+      <% next if [:Atlantic, :Metropolitan].include?(division) %>
       <thead class="standings-header">
         <tr>
           <th></th>
@@ -61,7 +61,7 @@
         <% teams_hash.each do |team_abbrev, stats_hash| %>
           <% next if team_abbrev.to_s == "division" %>
           <tr>
-            <% team = Team.find_by_abbrev(team_abbrev.to_s) %>
+            <% team = Team.find_by_abbrev(team_abbrev.to_s  ) %>
             <td>
               <a href="<%= team_url(team_abbrev) %>"><img class="team-pic" src="<%= team.background.url(:icon) %>"></a>
             </td>
