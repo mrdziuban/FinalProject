@@ -5,6 +5,8 @@ GameDay::Application.routes.draw do
   get "/links" => "games#links"
   get "/links_json" => "games#links_json"
 
+  get "/resume/track/opens/:company" => "home#track_resume"
+
   resources :users, only: [:show, :update]
   get "/standings" => "teams#index"
   resources :players, only: [:index, :show]
