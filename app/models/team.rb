@@ -44,7 +44,9 @@ class Team < ActiveRecord::Base
     "dallas" => :DAL,
     "new jersey" => :NJD,
     "ny islanders" => :NYI,
+    "n.y. islanders" => :NYI,
     "ny rangers" => :NYR,
+    "n.y. rangers" => :NYR,
     "philadelphia" => :PHI,
     "pittsburgh" => :PIT,
     "colorado" => :COL,
@@ -53,6 +55,7 @@ class Team < ActiveRecord::Base
     "vancouver" => :VAN,
     "washington" => :WAS,
     "phoenix" => :PHO,
+    "arizona" => :PHO,
     "san jose" => :SJS,
     "ottawa" => :OTT,
     "tampa bay" => :TAM,
@@ -220,32 +223,23 @@ class Team < ActiveRecord::Base
   end
 
   def self.scrape_standings
-    standings_url = "http://www.nhl.com/ice/standings.htm?type=DIV#&navid=nav-stn-div"
+    standings_url = "http://www.cbssports.com/nhl/standings"
     standings_page = Nokogiri::HTML(open(standings_url))
-    standings_tables = standings_page.css(".data.standings.Division")
+    standings_tables = standings_page.css("table.data")
     standings_hash = {}
 
     begin
       standings_tables.each do |t|
-        division = (t.css("th")[1].text).to_sym
+        header = t.css("tr.label").first
+        division = header.css("td").first.text.gsub(/division/i, '').strip.titleize.to_sym
         standings_hash[division] = {}
-        t.css("tbody tr").each do |tr|
-          team = (tr.css("a")[1].text).strip
-          team = I18n.transliterate(team)
-          team = "Phoenix" if team == "Arizona"
-          team = TEAM_ABBREVS[team.downcase]
+        t.css("tr")[1..-1].each do |tr|
+          team = TEAM_ABBREVS[I18n.transliterate(tr.css("a").first.text.strip).downcase]
           standings_hash[division][team] = {}
-          (2..15).each do |i|
-            key = t.css("th")[i].css("a").text.strip
-            if key == "S/O"
-              key = "SO"
-            end
-            if i.between?(2,9)
-              val = tr.css("td")[i].text.strip.to_i
-            else
-              val = tr.css("td")[i].text.strip
-            end
-            standings_hash[division][team][key.to_sym] = val
+          (1..11).each do |i|
+            key = header.css("td")[i].text.strip
+            val = tr.css("td")[i].text.strip
+            standings_hash[division][team][key.to_sym] = i.between?(1, 7) ? val.to_i : val
           end
         end
       end

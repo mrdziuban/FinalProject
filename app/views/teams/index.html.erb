@@ -61,7 +61,7 @@
         <% teams_hash.each do |team_abbrev, stats_hash| %>
           <% next if team_abbrev.to_s == "division" %>
           <tr>
-            <% team = Team.find_by_abbrev(team_abbrev.to_s  ) %>
+            <% team = Team.find_by_abbrev(team_abbrev.to_s) %>
             <td>
               <a href="<%= team_url(team_abbrev) %>"><img class="team-pic" src="<%= team.background.url(:icon) %>"></a>
             </td>
